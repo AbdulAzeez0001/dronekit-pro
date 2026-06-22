@@ -1,0 +1,30 @@
+DroneKit Pro hardware design (everything under hardware/) is licensed under the
+CERN Open Hardware Licence Version 2 - Strongly Reciprocal.
+
+SPDX-License-Identifier: CERN-OHL-S-2.0
+
+------------------------------------------------------------------------------
+IMPORTANT: PASTE THE OFFICIAL VERBATIM LICENCE TEXT BELOW BEFORE PUBLISHING.
+
+The CERN-OHL-S must be used in UNMODIFIED form only. Do not retype it or
+reconstruct it. Download the official, full text from one of:
+
+  https://cern-ohl.web.cern.ch/
+  https://spdx.org/licenses/CERN-OHL-S-2.0.html
+  https://opensource.org/license/CERN-OHL-S-2.0
+
+Replace this entire instruction block with the complete licence text.
+------------------------------------------------------------------------------
+
+Copyright (C) 2026 AbdulAzeez
+
+This source describes Open Hardware and is licensed under the CERN-OHL-S v2.
+
+You may redistribute and modify this source and make products using it under
+the terms of the CERN-OHL-S v2 (https://ohwr.org/cern_ohl_s_v2.txt).
+
+This source is distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING
+OF MERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A PARTICULAR PURPOSE.
+Please see the CERN-OHL-S v2 for applicable conditions.
+
+Source location: https://github.com/<your-username>/dronekit-pro

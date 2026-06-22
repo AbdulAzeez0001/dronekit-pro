@@ -1,0 +1,18 @@
+# Git LFS - keep binaries out of regular history so the repo does not bloat.
+*.step    filter=lfs diff=lfs merge=lfs -text
+*.stp     filter=lfs diff=lfs merge=lfs -text
+*.stl     filter=lfs diff=lfs merge=lfs -text
+*.3mf     filter=lfs diff=lfs merge=lfs -text
+*.f3d     filter=lfs diff=lfs merge=lfs -text
+*.png     filter=lfs diff=lfs merge=lfs -text
+*.jpg     filter=lfs diff=lfs merge=lfs -text
+*.jpeg    filter=lfs diff=lfs merge=lfs -text
+*.gif     filter=lfs diff=lfs merge=lfs -text
+*.pdf     filter=lfs diff=lfs merge=lfs -text
+*.mp4     filter=lfs diff=lfs merge=lfs -text
+*.zip     filter=lfs diff=lfs merge=lfs -text
+
+# KiCad sources are TEXT - keep them in normal git so diffs work.
+*.kicad_sch  text
+*.kicad_pcb  text
+*.kicad_pro  text

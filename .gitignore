@@ -1,0 +1,51 @@
+# ---------- KiCad ----------
+*-backups/
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*-bak
+*.bak
+_autosave-*
+*.lck
+fp-info-cache
+*.kicad_prl
+~*.lck
+# Regenerated fab output (keep sources, not build artifacts).
+# If you want to commit gerbers for a release, do it deliberately, not by default.
+hardware/gerbers/
+hardware/**/*.zip
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg
+
+# ---------- Node ----------
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.parcel-cache/
+.next/
+out/
+
+# ---------- Editors / OS ----------
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ---------- Env / secrets ----------
+.env
+.env.local
+*.local
