@@ -85,7 +85,8 @@ esp32 = Part(name="ESP32-WROOM-32", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
 # ----------------------------------------------------------------------------
 # Nets
 # ----------------------------------------------------------------------------
-v3v3 = Net("+3V3"); v3v3.drive = Pin.drives.POWER
+v3v3_sys = Net("+3V3_SYS"); v3v3_sys.drive = Pin.drives.POWER   # clean: STM32 + sensors
+v3v3_esp = Net("+3V3_ESP"); v3v3_esp.drive = Pin.drives.POWER   # ESP32 dedicated rail
 gnd  = Net("GND");  gnd.drive  = Pin.drives.POWER
 
 mode_sense = Net("MODE_SENSE")
@@ -98,11 +99,12 @@ stm_nrst   = Net("STM_NRST")
 # ----------------------------------------------------------------------------
 # Power
 # ----------------------------------------------------------------------------
-v3v3 += stm32["VDD"], esp32["3V3"]
-gnd  += stm32["VSS"], esp32["GND"]
+v3v3_sys += stm32["VDD"]
+v3v3_esp += esp32["3V3"]
+gnd      += stm32["VSS"], esp32["GND"]
 
 c_bulk = C(value="10uF", footprint="Capacitor_SMD:C_0805_2012Metric")  # bulk at ESP32 3V3
-v3v3 += c_bulk[1]; gnd += c_bulk[2]
+v3v3_esp += c_bulk[1]; gnd += c_bulk[2]
 
 # ----------------------------------------------------------------------------
 # Boot mode switch:  SPST to GND + 10k pull-up.
@@ -113,7 +115,7 @@ r_mode   = R(value="10k")          # pull-up
 c_deb    = C(value="100nF")        # debounce
 mode_sense += stm32["MODE_SENSE"], sw_mode[1], r_mode[1], c_deb[1]
 gnd        += sw_mode[2], c_deb[2]
-v3v3       += r_mode[2]
+v3v3_sys   += r_mode[2]   # mode pullup on STM32 rail
 
 # ----------------------------------------------------------------------------
 # ESP32 EN gating - default OFF (pull-DOWN). STM32 drives HIGH for Mode B.
@@ -148,11 +150,11 @@ gnd      += c_nrst[2]
 #   IO15 pull-up   (MTDO - normal boot)
 #   IO5  pull-up
 # ----------------------------------------------------------------------------
-r_io0  = R(value="10k"); v3v3 += r_io0[2];  s_io0  = Net("STRAP_IO0");  s_io0  += esp32["IO0"],  r_io0[1]
+r_io0  = R(value="10k"); v3v3_esp += r_io0[2];  s_io0  = Net("STRAP_IO0");  s_io0  += esp32["IO0"],  r_io0[1]
 r_io2  = R(value="10k"); gnd  += r_io2[2];  s_io2  = Net("STRAP_IO2");  s_io2  += esp32["IO2"],  r_io2[1]
 r_io12 = R(value="10k"); gnd  += r_io12[2]; s_io12 = Net("STRAP_IO12"); s_io12 += esp32["IO12"], r_io12[1]
-r_io15 = R(value="10k"); v3v3 += r_io15[2]; s_io15 = Net("STRAP_IO15"); s_io15 += esp32["IO15"], r_io15[1]
-r_io5  = R(value="10k"); v3v3 += r_io5[2];  s_io5  = Net("STRAP_IO5");  s_io5  += esp32["IO5"],  r_io5[1]
+r_io15 = R(value="10k"); v3v3_esp += r_io15[2]; s_io15 = Net("STRAP_IO15"); s_io15 += esp32["IO15"], r_io15[1]
+r_io5  = R(value="10k"); v3v3_esp += r_io5[2];  s_io5  = Net("STRAP_IO5");  s_io5  += esp32["IO5"],  r_io5[1]
 
 # ESP32 program button: GPIO0 -> GND (press = download mode)
 btn_prog = BTN(value="ESP_PROG")
