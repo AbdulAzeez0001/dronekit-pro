@@ -13,7 +13,7 @@ Betaflight target is built.
 |---|---|---|---|
 | MODE_SENSE | PC13 | input | Low-drive pin, fine for a passive input. Unused by Betaflight. |
 | ESP_EN | PB12 | output (push-pull) | Full-drive output needed to drive ESP32 EN. Free (SPI2_NSS, unused). |
-| BRIDGE_TX | PA9 | USART1_TX | RC is SPI-ELRS, so USART1 is free. |
+| BRIDGE_TX | PA9 | USART1_TX | RC is on UART3, so USART1 is free. |
 | BRIDGE_RX | PA10 | USART1_RX | Pair of USART1. |
 | STM_BOOT0 | BOOT0 | input (dedicated) | Dedicated pin, driven by ESP32 IO25 for OTA. |
 | STM_NRST | NRST | input (dedicated) | Dedicated pin, driven by ESP32 IO26 for OTA. |
@@ -40,16 +40,23 @@ Betaflight target is built.
 | PA4 | SPI1_CS (gyro) |
 | PC4 | gyro INT (EXTI) |
 
-### RC — ExpressLRS EP1 (SX1280) on SPI3
+### Blackbox flash — W25Q128 on SPI3
 | Pin | Function |
 |---|---|
 | PC10 | SPI3_SCK |
 | PC11 | SPI3_MISO |
 | PC12 | SPI3_MOSI |
-| PA15 | RX NSS |
-| PB13 | RX RESET |
-| PB14 | RX BUSY |
-| PB15 | RX DIO1 (EXTI) |
+| PA15 | FLASH_CS (W25Q128 /CS) |
+
+### RC — external CRSF receiver on UART3
+| Pin | Function |
+|---|---|
+| PB10 | RX_UART TX (USART3_TX) |
+| PB11 | RX_UART RX (USART3_RX) |
+
+Onboard SPI-ELRS (SX1280) dropped. RC now comes from an external CRSF/ELRS
+receiver wired to UART3 on an expansion header. PB10/PB11 were unassigned.
+PB13/PB14/PB15 (ex RX RESET/BUSY/DIO1) are now spare.
 
 ### Baro — BMP280 on I2C1
 | Pin | Function |
@@ -84,15 +91,17 @@ One timer bank for all four keeps DSHOT DMA clean.
 | PB12 | ESP_EN (output) |
 
 ### Free for expansion headers
-PA0, PA1, PA2, PA3 (a spare UART2 or ADC), PB9, PC0, PC3, PC5, PC6, PC7,
-PC8, PC9, PC14, PC15, PD2. Plenty for the six expansion headers.
+PA0, PA1, PA2, PA3 (a spare UART2 or ADC), PB9, PB13, PB14, PB15, PC0, PC3,
+PC5, PC6, PC7, PC8, PC9, PC14, PC15, PD2. Plenty for the six expansion headers.
+PB13/PB14/PB15 are spare (freed when onboard SPI-ELRS was dropped).
 Avoid PB2 (BOOT1). PC13/14/15 are low-drive — inputs only.
 
 ## Bus summary (no conflicts)
 - SPI1: gyro
-- SPI3: ELRS
+- SPI3: blackbox flash (W25Q128)
 - I2C1: baro
 - USART1: ESP32 bridge
+- USART3: external CRSF receiver
 - TIM3: four motors
 - USB, SWD, crystal: dedicated
 
@@ -101,12 +110,17 @@ Avoid PB2 (BOOT1). PC13/14/15 are low-drive — inputs only.
 Pin assignment is conflict-free. DMA is the remaining check. On the F405,
 DSHOT (TIM3), the SPI buses, and USART1 all request DMA streams, and DMA1/DMA2
 streams are shared. When building the Betaflight target, confirm the target's
-DMA allocation allows TIM3 DSHOT + SPI3 (ELRS) + SPI1 (gyro) + USART1
-simultaneously. If a stream collides, options are: move motors to TIM8
-(PC6-9), or move ELRS to a different SPI. Validate against the F405 DMA table
-and test, do not assume.
+DMA allocation allows TIM3 DSHOT + SPI3 (flash) + SPI1 (gyro) + USART1
+(bridge) + USART3 (CRSF RX) simultaneously. If a stream collides, options
+are: move motors to TIM8 (PC6-9), or move the flash to SPI2. Validate
+against the F405 DMA table and test, do not assume.
 
 ## To do when building the target
 - [ ] Encode this map in the Betaflight custom target (resource assignments).
 - [ ] Run the DMA check above.
 - [ ] Add the MODE_SENSE read + ESP_EN drive to target init (custom code).
+
+## Changelog
+- 2026-09-07 — Dropped onboard SPI-ELRS (SX1280). SPI3 + PA15 repurposed for the
+  W25Q128 blackbox flash (FLASH_CS = PA15). RC moved to an external CRSF receiver
+  on UART3 (RX_UART: PB10 TX / PB11 RX). PB13/PB14/PB15 freed to spare.

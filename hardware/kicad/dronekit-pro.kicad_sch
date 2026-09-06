@@ -6442,4 +6442,25 @@
       )
     )
   )
+	(sheet
+    (at 60 390)
+    (size 90 40)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "b3306075-0cc2-4391-a0f3-ec34924b38a2")
+    (property "Sheetname" "Baro + Flash"
+      (at 60 389.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "baro_flash.kicad_sch"
+      (at 60 430.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "dronekit-pro"
+        (path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9" (page "5"))
+      )
+    )
+  )
 )
