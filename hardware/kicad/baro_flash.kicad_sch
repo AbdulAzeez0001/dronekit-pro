@@ -1366,10 +1366,10 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid "6f566291-8d84-4fd8-9d0e-087a751f90ca")
   )
-  (text "FLASH_CS: the pinmap assigns NO STM32 pin for the blackbox flash CS.\nAssign a free GPIO (e.g. PB9 / PC3 / PD2) before layout - not invented here.\nSPI3 is now shared: ELRS RX (SX1280) + blackbox flash. Confirm DMA/bandwidth\n- blackbox logs continuously in flight (see pinmap DMA open item)."
+  (text "SPI3 dedicated to blackbox flash; FLASH_CS = PA15."
     (at 168.91 185.42 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "85589e01-1111-43ce-a2a0-bb7156fdd8bd")
+    (uuid "9609f0e3-953b-4f35-8358-abaf7bed31be")
   )
 	(symbol
 		(lib_id "Sensor_Pressure:BMP280")

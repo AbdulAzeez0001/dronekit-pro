@@ -2910,14 +2910,6 @@
 		(uuid "ec544302-19aa-4649-946c-3b6b8a3da5c7")
 	)
 	(no_connect
-		(at 210.82 179.07)
-		(uuid "92a724eb-9b8f-440f-8648-69fddce3f4d3")
-	)
-	(no_connect
-		(at 210.82 181.61)
-		(uuid "5e7d4884-da73-47dc-a1fe-4633142fd877")
-	)
-	(no_connect
 		(at 170.18 148.59)
 		(uuid "676b9d6b-f14f-4921-b452-176a7c3f1550")
 	)
@@ -2944,6 +2936,18 @@
 	(no_connect
 		(at 210.82 176.53)
 		(uuid "ddb7d8e2-b446-45f2-abf7-25246f5945c1")
+	)
+	(no_connect
+		(at 210.82 186.69)
+		(uuid "07e85733-9dd9-4ac1-91be-cadf178316ae")
+	)
+	(no_connect
+		(at 210.82 189.23)
+		(uuid "aaa5d6ce-6177-4a3f-839d-108f4d9e4806")
+	)
+	(no_connect
+		(at 210.82 191.77)
+		(uuid "4be3f17e-e582-4149-8fca-2c008393c1aa")
 	)
 	(wire
 		(pts
@@ -3416,27 +3420,6 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 186.69)
-			(xy 213.36 186.69)
-		)
-		(uuid "abfaf332-ccfb-4e77-9ebb-78e4c486c267")
-	)
-	(wire
-		(pts
-			(xy 210.82 189.23)
-			(xy 213.36 189.23)
-		)
-		(uuid "5505df89-ae9e-4011-8b38-a23d461429cc")
-	)
-	(wire
-		(pts
-			(xy 210.82 191.77)
-			(xy 213.36 191.77)
-		)
-		(uuid "0d19b69a-d5dc-4be2-b786-fdf51f4b7605")
-	)
-	(wire
-		(pts
 			(xy 210.82 130.81)
 			(xy 213.36 130.81)
 		)
@@ -3581,6 +3564,30 @@
 			(xy 274.32 175.26)
 		)
 		(uuid "dd03d8ee-72ac-4521-bb51-fb1fb247001a")
+	)
+	(wire
+		(pts
+			(xy 210.82 179.07)
+			(xy 213.36 179.07)
+		)
+		(uuid "91cf04af-361c-446c-bfb5-bad4a0b7d62f")
+	)
+	(wire
+		(pts
+			(xy 210.82 181.61)
+			(xy 213.36 181.61)
+		)
+		(uuid "6d375d44-c20f-4a15-810a-d5742bd0dc98")
+	)
+	(text "ESP32-driven flashing: ESP_STM_NRST high = STM32 held in reset;\nESP_STM_BOOT0 high = bootloader. Both idle low."
+		(at 238.76 185.42 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5503ed86-4319-49ef-8964-e605f43d7feb")
 	)
 	(label "VDDA"
 		(at 198.12 100.33 0)
@@ -4315,39 +4322,6 @@
 		)
 		(uuid "090ada56-2bb3-43f5-a58b-494d5d62851b")
 	)
-	(global_label "RX_RESET"
-		(shape input)
-		(at 213.36 186.69 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "6134dc14-03b4-4ff1-8d9b-f800b02e3950")
-	)
-	(global_label "RX_BUSY"
-		(shape input)
-		(at 213.36 189.23 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "9db12ee6-3757-446f-8779-c65fb2d1b5ea")
-	)
-	(global_label "RX_DIO1"
-		(shape input)
-		(at 213.36 191.77 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "1655e4b7-b456-4093-b379-28eea1a7ff48")
-	)
 	(global_label "LED_STRIP"
 		(shape input)
 		(at 213.36 130.81 0)
@@ -4402,17 +4376,6 @@
 			(justify left)
 		)
 		(uuid "3682ffbc-3b32-43d6-bf34-b3215020e5ff")
-	)
-	(global_label "RX_NSS"
-		(shape input)
-		(at 213.36 148.59 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "60b8733b-1a51-43bd-8cd9-65f1984709a4")
 	)
 	(global_label "M3"
 		(shape input)
@@ -4568,11 +4531,39 @@
 		)
 		(uuid "7058e226-29a8-47a1-ac12-afdae497e45a")
 	)
-  (text "ESP32-driven flashing: ESP_STM_NRST high = STM32 held in reset;\nESP_STM_BOOT0 high = bootloader. Both idle low."
-    (at 238.76 185.42 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "5503ed86-4319-49ef-8964-e605f43d7feb")
-  )
+	(global_label "FLASH_CS"
+		(shape input)
+		(at 213.36 148.59 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8ac6f925-60bc-484a-ab7f-3ad5a7001913")
+	)
+	(global_label "RX_UART_TX"
+		(shape input)
+		(at 213.36 179.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "76bc997d-915a-4c82-b2de-487f76a0d2de")
+	)
+	(global_label "RX_UART_RX"
+		(shape input)
+		(at 213.36 181.61 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a495e968-3aad-481d-a984-9f721aa9ef0d")
+	)
 	(symbol
 		(lib_id "MCU_ST_STM32F4:STM32F405RGTx")
 		(at 190.5 151.13 0)

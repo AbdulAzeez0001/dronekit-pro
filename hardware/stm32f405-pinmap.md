@@ -58,7 +58,7 @@ Onboard SPI-ELRS (SX1280) dropped. RC now comes from an external CRSF/ELRS
 receiver wired to UART3 on an expansion header. PB10/PB11 were unassigned.
 PB13/PB14/PB15 (ex RX RESET/BUSY/DIO1) are now spare.
 
-### Baro — BMP280 on I2C1
+### Baro — DPS368 on I2C1
 | Pin | Function |
 |---|---|
 | PB6 | I2C1_SCL |
