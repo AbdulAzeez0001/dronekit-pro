@@ -969,6 +969,11 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid "869a87d5-bee4-4f22-8d10-f1c64f64862c")
   )
+  (text "VERIFY footprint vs DS-000347 land pattern (pin-1 corner, numbering\ndirection) before layout - Bosch LGA-14 used as stand-in."
+    (at 139.7 154.94 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "719e33b0-08f1-4128-94f9-f580cd51c4fd")
+  )
 	(symbol
 		(lib_id "Sensor_Motion:IIM-42652")
 		(at 165.1 120.65 0)
