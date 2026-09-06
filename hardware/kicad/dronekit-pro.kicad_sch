@@ -3076,6 +3076,11 @@
 		)
 		(uuid "ecb07423-64c7-4374-a3af-94922720d5ff")
 	)
+  (text "Input 3S–4S (11.1–16.8 V).\nR105/R106 divider sets EN UVLO ≈ 9 V;\nEN < 6 V at 16.8 V."
+    (at 146.05 95.25 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "0be260a7-7bcd-4c5e-9467-31c954f9febe")
+  )
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
 		(at 39.37 110.49 180)
@@ -3092,7 +3097,7 @@
 				)
 			)
 		)
-		(property "Value" "2S-4S LiPo"
+		(property "Value" "3S–4S LiPo (11.1–16.8 V)"
 			(at 39.37 105.41 0)
 			(effects
 				(font
@@ -3118,7 +3123,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "3S–4S LiPo (11.1–16.8 V)"
 			(at 39.37 110.49 0)
 			(hide yes)
 			(effects
