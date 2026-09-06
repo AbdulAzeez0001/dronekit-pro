@@ -2406,15 +2406,15 @@
 		)
 		(uuid "eee6453f-2d9f-48ea-93eb-e0ad93eea3b7")
 	)
-	(label "GND"
-		(at 44.45 107.95 0)
+	(text "Input 3S–4S (11.1–16.8 V).\nR105/R106 divider sets EN UVLO ≈ 9 V;\nEN < 6 V at 16.8 V."
+		(at 146.05 95.25 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "e32921d3-0063-49c9-af44-d87bb5d04b90")
+		(uuid "0be260a7-7bcd-4c5e-9467-31c954f9febe")
 	)
 	(label "GND"
 		(at 58.42 123.19 0)
@@ -2776,106 +2776,6 @@
 		)
 		(uuid "1c464308-0e30-4d30-ab76-636d78ef7c85")
 	)
-	(label "+5V"
-		(at 208.28 102.87 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "9c953424-4d4f-4071-8b8a-dc8701903075")
-	)
-	(label "+5V"
-		(at 219.71 114.3 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "8aec56ff-19d2-4016-bc25-4b35cc6e1e9c")
-	)
-	(label "+5V"
-		(at 229.87 114.3 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "871b2646-4b96-42e2-a8fb-e6d5a1ca6d31")
-	)
-	(label "+5V"
-		(at 152.4 135.89 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "7b1b6ff8-e9a0-4131-9831-10884a74e792")
-	)
-	(label "+5V"
-		(at 251.46 99.06 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "b9f79055-cbf3-4c6f-b05f-81b87cc9cfbc")
-	)
-	(label "+5V"
-		(at 251.46 104.14 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "eb19c613-40a9-4f5e-a410-201bc47f2f04")
-	)
-	(label "+5V"
-		(at 254 146.05 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "eb1db0a1-bc0c-4c73-929f-756b642bc3a0")
-	)
-	(label "+5V"
-		(at 247.65 104.14 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "dff3ad48-bc4a-4d19-90d6-836e843f0322")
-	)
-	(label "+5V"
-		(at 247.65 148.59 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "a367d93e-92e0-46bc-81e7-7037c9464407")
-	)
-	(label "+5V"
-		(at 237.49 96.52 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e0612f6a-0781-4a33-bf1e-7c4b1ea97af3")
-	)
 	(label "FB"
 		(at 160.02 121.92 180)
 		(effects
@@ -2976,66 +2876,6 @@
 		)
 		(uuid "47e4401e-81d9-413f-98ba-4d70da65d447")
 	)
-	(label "+3V3_SYS"
-		(at 271.78 99.06 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "6fb9c378-bce5-48c1-9884-343871014d9a")
-	)
-	(label "+3V3_SYS"
-		(at 279.4 104.14 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "434aa8d3-aca6-4efd-80f0-465e684d6e69")
-	)
-	(label "+3V3_SYS"
-		(at 293.37 91.44 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "c8faab3e-2b40-49d8-b93e-fbda03426c20")
-	)
-	(label "+3V3_ESP"
-		(at 269.24 146.05 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "d552084b-8d15-4943-8872-317d8b2f164b")
-	)
-	(label "+3V3_ESP"
-		(at 279.4 148.59 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1ff3c0e0-73a8-4707-9e60-39063788a7a9")
-	)
-	(label "+3V3_ESP"
-		(at 293.37 135.89 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ee16048e-6cc2-4ae7-abff-b656059af327")
-	)
 	(label "EN_BUCK"
 		(at 121.92 104.14 0)
 		(effects
@@ -3056,16 +2896,6 @@
 		)
 		(uuid "2460c021-efe2-4ce1-8aa3-fc20a099e925")
 	)
-	(label "+5V"
-		(at 204.47 162.56 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1f431701-0e4e-430b-b257-0bca6c67cf2f")
-	)
 	(label "GND"
 		(at 224.79 162.56 0)
 		(effects
@@ -3076,11 +2906,241 @@
 		)
 		(uuid "ecb07423-64c7-4374-a3af-94922720d5ff")
 	)
-  (text "Input 3S–4S (11.1–16.8 V).\nR105/R106 divider sets EN UVLO ≈ 9 V;\nEN < 6 V at 16.8 V."
-    (at 146.05 95.25 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "0be260a7-7bcd-4c5e-9467-31c954f9febe")
-  )
+	(label "GND"
+		(at 44.45 107.95 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "453242a4-ed70-49fd-8c0b-4a7c52412056")
+	)
+	(global_label "+3V3_SYS"
+		(shape input)
+		(at 271.78 99.06 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5b843c86-12bf-4348-99d5-cd249ee89c61")
+	)
+	(global_label "+3V3_SYS"
+		(shape input)
+		(at 279.4 104.14 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "21e596dd-e6c0-427d-9289-d5c468dbf2c6")
+	)
+	(global_label "+3V3_SYS"
+		(shape input)
+		(at 293.37 91.44 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "67d1890f-ede1-4e02-b21b-e57adc402bfc")
+	)
+	(global_label "+3V3_ESP"
+		(shape input)
+		(at 269.24 146.05 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "05c45443-48c2-45ed-aac2-4e9e5c79a28f")
+	)
+	(global_label "+3V3_ESP"
+		(shape input)
+		(at 279.4 148.59 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e1d99956-eafb-45ac-9cba-936092ec0c49")
+	)
+	(global_label "+3V3_ESP"
+		(shape input)
+		(at 293.37 135.89 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "91c0aa38-a3f4-4abd-a9c5-7c42e7fa9e3a")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 208.28 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "da87509e-835f-4c74-9f09-420ddf3b3766")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 219.71 114.3 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dea0ed13-f72b-4a8a-9755-eb1efdc7c7a8")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 229.87 114.3 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "784f75a0-c9f6-4c47-b530-193e7fe2263c")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 152.4 135.89 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b7664778-e08e-4795-a626-e295a7f75f49")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 251.46 99.06 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2fed1a6e-cb73-45e2-a0ab-f6a85e442365")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 251.46 104.14 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "33900191-318a-4297-bfe7-b2dc3a2f0583")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 254 146.05 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "74e1773e-79eb-4001-8dfb-6d8eaa80eaa1")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 247.65 104.14 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "92949323-fad4-4bd0-984d-1af2daa76919")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 247.65 148.59 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "77712050-c50c-4c7c-b340-5a4dec5ec7ce")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 237.49 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a9fed346-bf1b-4c58-aedf-949a68aaaec5")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 204.47 162.56 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f3c0aaa2-88bc-4014-8447-22a11981f53e")
+	)
+	(sheet
+		(at 60 210)
+		(size 90 40)
+		(fields_autoplaced)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "7dd4e383-a039-4701-9c9e-e3cc97696d7f")
+		(property "Sheetname" "STM32 Core"
+			(at 60 209.365 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "stm32_core.kicad_sch"
+			(at 60 250.635 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(page "2")
+				)
+			)
+		)
+	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
 		(at 39.37 110.49 180)
