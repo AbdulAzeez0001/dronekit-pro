@@ -6421,4 +6421,25 @@
 			)
 		)
 	)
+	(sheet
+    (at 60 330)
+    (size 90 40)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "8907fe4b-3b91-4e52-b841-007d19352b6f")
+    (property "Sheetname" "IMU"
+      (at 60 329.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "imu.kicad_sch"
+      (at 60 370.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "dronekit-pro"
+        (path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9" (page "4"))
+      )
+    )
+  )
 )
