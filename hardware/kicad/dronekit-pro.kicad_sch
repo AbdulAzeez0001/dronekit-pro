@@ -2416,46 +2416,6 @@
 		)
 		(uuid "0be260a7-7bcd-4c5e-9467-31c954f9febe")
 	)
-	(label "VBAT"
-		(at 44.45 110.49 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "84ace5f1-8744-49c9-8e11-b4fb97eb4f26")
-	)
-	(label "VBAT"
-		(at 58.42 115.57 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "c1b41549-ecb9-4985-afb0-79e10c638a9c")
-	)
-	(label "VBAT"
-		(at 55.88 91.44 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "907322f0-c941-4ba0-9950-700d2712ad1a")
-	)
-	(label "VBAT"
-		(at 105.41 105.41 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e53f3943-8dd4-42e9-85ac-a8c650d99edd")
-	)
 	(label "VBAT_SW"
 		(at 105.41 115.57 0)
 		(effects
@@ -2903,6 +2863,50 @@
 		)
 		(uuid "f3c0aaa2-88bc-4014-8447-22a11981f53e")
 	)
+	(global_label "VBAT"
+		(shape input)
+		(at 44.45 110.49 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e1e9e887-280f-4251-a63a-96a3e1c34867")
+	)
+	(global_label "VBAT"
+		(shape input)
+		(at 58.42 115.57 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e2387ff8-09ff-4987-85f7-780f3ead45cd")
+	)
+	(global_label "VBAT"
+		(shape input)
+		(at 55.88 91.44 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3205eaa6-7ba7-4f87-bf12-1239954fe96f")
+	)
+	(global_label "VBAT"
+		(shape input)
+		(at 105.41 105.41 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "98e24813-3838-481f-b8b1-6db9ef60091d")
+	)
 	(sheet
 		(at 60 210)
 		(size 90 40)
@@ -2975,6 +2979,120 @@
 			(project "dronekit-pro"
 				(path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
 					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 60 330)
+		(size 90 40)
+		(fields_autoplaced)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "8907fe4b-3b91-4e52-b841-007d19352b6f")
+		(property "Sheetname" "IMU"
+			(at 60 329.365 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "imu.kicad_sch"
+			(at 60 370.635 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 60 390)
+		(size 90 40)
+		(fields_autoplaced)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "b3306075-0cc2-4391-a0f3-ec34924b38a2")
+		(property "Sheetname" "Baro + Flash"
+			(at 60 389.365 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "baro_flash.kicad_sch"
+			(at 60 430.635 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 60 450)
+		(size 90 40)
+		(fields_autoplaced)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "f5f416ed-42f5-42f9-8b80-b0e23536993f")
+		(property "Sheetname" "Motors"
+			(at 60 449.365 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "motors.kicad_sch"
+			(at 60 490.635 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(page "6")
 				)
 			)
 		)
@@ -6421,46 +6539,4 @@
 			)
 		)
 	)
-	(sheet
-    (at 60 330)
-    (size 90 40)
-    (fields_autoplaced yes)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0))
-    (uuid "8907fe4b-3b91-4e52-b841-007d19352b6f")
-    (property "Sheetname" "IMU"
-      (at 60 329.365 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "imu.kicad_sch"
-      (at 60 370.635 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (instances
-      (project "dronekit-pro"
-        (path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9" (page "4"))
-      )
-    )
-  )
-	(sheet
-    (at 60 390)
-    (size 90 40)
-    (fields_autoplaced yes)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0))
-    (uuid "b3306075-0cc2-4391-a0f3-ec34924b38a2")
-    (property "Sheetname" "Baro + Flash"
-      (at 60 389.365 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "baro_flash.kicad_sch"
-      (at 60 430.635 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (instances
-      (project "dronekit-pro"
-        (path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9" (page "5"))
-      )
-    )
-  )
 )
