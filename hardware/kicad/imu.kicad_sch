@@ -969,10 +969,10 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid "869a87d5-bee4-4f22-8d10-f1c64f64862c")
   )
-  (text "VERIFY footprint vs DS-000347 land pattern (pin-1 corner, numbering\ndirection) before layout - Bosch LGA-14 used as stand-in."
+  (text "Footprint verified against DS-000347 Rev 1.2 §10.2 — 14-lead LGA 2.5 x 3.0, 0.5 mm pitch, row C-C 2.525/2.025 mm, no thermal pad. Package_LGA:Bosch_LGA-14_3x2.5mm_P0.5mm is a correct mate. Rev 1.6 not obtainable; package mechanicals unchanged across revisions is assumed."
     (at 139.7 154.94 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "719e33b0-08f1-4128-94f9-f580cd51c4fd")
+    (uuid "5b6cca4f-e174-4b51-b782-cf4085842cc3")
   )
 	(symbol
 		(lib_id "Sensor_Motion:IIM-42652")

@@ -1232,12 +1232,341 @@
 			)
 			(embedded_fonts no)
 		)
-	)
-	(junction
-		(at 165.1 177.8)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c525ffe8-9dd0-4e3a-8b4d-d4158b7ef9fd")
+	
+		(symbol
+		  "Transistor_FET:AO3400A"
+		  (property "Reference" "Q"
+		    (at 5.08 1.905 0)
+		    (show_name no)
+		    (do_not_autoplace no)
+		    (effects
+		      (font
+		        (size 1.27 1.27)
+		      )
+		      (justify left)
+		    )
+		  )
+		  (property "Value" "AO3400A"
+		    (at 5.08 0 0)
+		    (show_name no)
+		    (do_not_autoplace no)
+		    (effects
+		      (font
+		        (size 1.27 1.27)
+		      )
+		      (justify left)
+		    )
+		  )
+		  (property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+		    (at 5.08 -1.905 0)
+		    (show_name no)
+		    (do_not_autoplace no)
+		    (hide yes)
+		    (effects
+		      (font
+		        (size 1.27 1.27)
+		        (italic yes)
+		      )
+		      (justify left)
+		    )
+		  )
+		  (property "Datasheet" "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf"
+		    (at 5.08 -3.81 0)
+		    (show_name no)
+		    (do_not_autoplace no)
+		    (hide yes)
+		    (effects
+		      (font
+		        (size 1.27 1.27)
+		      )
+		      (justify left)
+		    )
+		  )
+		  (property "Description" "30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"
+		    (at 0 0 0)
+		    (show_name no)
+		    (do_not_autoplace no)
+		    (hide yes)
+		    (effects
+		      (font
+		        (size 1.27 1.27)
+		      )
+		    )
+		  )
+		  (property "ki_keywords" "N-Channel MOSFET"
+		    (at 0 0 0)
+		    (show_name no)
+		    (do_not_autoplace no)
+		    (hide yes)
+		    (effects
+		      (font
+		        (size 1.27 1.27)
+		      )
+		    )
+		  )
+		  (property "ki_fp_filters" "SOT?23*"
+		    (at 0 0 0)
+		    (show_name no)
+		    (do_not_autoplace no)
+		    (hide yes)
+		    (effects
+		      (font
+		        (size 1.27 1.27)
+		      )
+		    )
+		  )
+		  (embedded_fonts no)
+		  (pin_names
+		    (offset 0)
+		    (hide yes)
+		  )
+		  (exclude_from_sim no)
+		  (in_bom yes)
+		  (on_board yes)
+		  (in_pos_files yes)
+		  (duplicate_pin_numbers_are_jumpers no)
+		  (symbol "AO3400A_0_1"
+		    (polyline
+		      (pts
+		        (xy 0.254 1.905)
+		        (xy 0.254 -1.905)
+		      )
+		      (stroke
+		        (width 0.254)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		    (polyline
+		      (pts
+		        (xy 0.254 0)
+		        (xy -2.54 0)
+		      )
+		      (stroke
+		        (width 0)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		    (polyline
+		      (pts
+		        (xy 0.762 2.286)
+		        (xy 0.762 1.27)
+		      )
+		      (stroke
+		        (width 0.254)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		    (polyline
+		      (pts
+		        (xy 0.762 0.508)
+		        (xy 0.762 -0.508)
+		      )
+		      (stroke
+		        (width 0.254)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		    (polyline
+		      (pts
+		        (xy 0.762 -1.27)
+		        (xy 0.762 -2.286)
+		      )
+		      (stroke
+		        (width 0.254)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		    (polyline
+		      (pts
+		        (xy 0.762 -1.778)
+		        (xy 3.302 -1.778)
+		        (xy 3.302 1.778)
+		        (xy 0.762 1.778)
+		      )
+		      (stroke
+		        (width 0)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		    (polyline
+		      (pts
+		        (xy 1.016 0)
+		        (xy 2.032 0.381)
+		        (xy 2.032 -0.381)
+		        (xy 1.016 0)
+		      )
+		      (stroke
+		        (width 0)
+		        (type default)
+		      )
+		      (fill
+		        (type outline)
+		      )
+		    )
+		    (circle
+		      (center 1.651 0)
+		      (radius 2.794)
+		      (stroke
+		        (width 0.254)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		    (polyline
+		      (pts
+		        (xy 2.54 2.54)
+		        (xy 2.54 1.778)
+		      )
+		      (stroke
+		        (width 0)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		    (circle
+		      (center 2.54 1.778)
+		      (radius 0.254)
+		      (stroke
+		        (width 0)
+		        (type default)
+		      )
+		      (fill
+		        (type outline)
+		      )
+		    )
+		    (circle
+		      (center 2.54 -1.778)
+		      (radius 0.254)
+		      (stroke
+		        (width 0)
+		        (type default)
+		      )
+		      (fill
+		        (type outline)
+		      )
+		    )
+		    (polyline
+		      (pts
+		        (xy 2.54 -2.54)
+		        (xy 2.54 0)
+		        (xy 0.762 0)
+		      )
+		      (stroke
+		        (width 0)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		    (polyline
+		      (pts
+		        (xy 2.921 0.381)
+		        (xy 3.683 0.381)
+		      )
+		      (stroke
+		        (width 0)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		    (polyline
+		      (pts
+		        (xy 3.302 0.381)
+		        (xy 2.921 -0.254)
+		        (xy 3.683 -0.254)
+		        (xy 3.302 0.381)
+		      )
+		      (stroke
+		        (width 0)
+		        (type default)
+		      )
+		      (fill
+		        (type none)
+		      )
+		    )
+		  )
+		  (symbol "AO3400A_1_1"
+		    (pin input line
+		      (at -5.08 0 0)
+		      (length 2.54)
+		      (name "G"
+		        (effects
+		          (font
+		            (size 1.27 1.27)
+		          )
+		        )
+		      )
+		      (number "1"
+		        (effects
+		          (font
+		            (size 1.27 1.27)
+		          )
+		        )
+		      )
+		    )
+		    (pin passive line
+		      (at 2.54 -5.08 90)
+		      (length 2.54)
+		      (name "S"
+		        (effects
+		          (font
+		            (size 1.27 1.27)
+		          )
+		        )
+		      )
+		      (number "2"
+		        (effects
+		          (font
+		            (size 1.27 1.27)
+		          )
+		        )
+		      )
+		    )
+		    (pin passive line
+		      (at 2.54 5.08 270)
+		      (length 2.54)
+		      (name "D"
+		        (effects
+		          (font
+		            (size 1.27 1.27)
+		          )
+		        )
+		      )
+		      (number "3"
+		        (effects
+		          (font
+		            (size 1.27 1.27)
+		          )
+		        )
+		      )
+		    )
+		  )
+		)
 	)
 	(junction
 		(at 165.1 180.34)
@@ -1328,13 +1657,6 @@
 			(xy 162.56 139.7)
 		)
 		(uuid "f79273b0-dc71-47aa-ac9a-8a32ad407bd8")
-	)
-	(wire
-		(pts
-			(xy 165.1 177.8)
-			(xy 162.56 177.8)
-		)
-		(uuid "7eca331a-3839-41a0-bd67-3c070bc2ea40")
 	)
 	(wire
 		(pts
@@ -1441,6 +1763,43 @@
 			(xy 162.56 182.88)
 		)
 		(uuid "3ac2e181-acd4-4d04-ae6c-ca0e19a55568")
+	)
+	(wire
+		(pts
+			(xy 151.13 177.8)
+			(xy 148.59 177.8)
+		)
+		(uuid "be353f78-e809-4881-8a21-065187ab7902")
+	)
+	(text "J701 RC receiver — CRSF/ELRS external receiver, UART3 (USART3 PB10/PB11).\n1=+5V  2=GND  3=RX_UART_TX  4=RX_UART_RX."
+		(at 120 30 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7afdb707-f177-4c11-b765-03e20184f176")
+	)
+	(text "J702 GPS — USART2, PA2 (USART2_TX -> GPS_TX) / PA3 (USART2_RX -> GPS_RX).\nFree UART pair per pinmap (\"PA2/PA3 spare UART2\"). 1=+5V 2=GND 3=GPS_TX 4=GPS_RX."
+		(at 120 75 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ee17d0ce-0463-4d8f-9eca-c4ec385d99a4")
+	)
+	(text "J703 aux I2C — shares I2C1 with U401; pull-ups already on the baro sheet, do not add more.\n1=+5V  2=GND  3=I2C1_SCL  4=I2C1_SDA."
+		(at 120 120 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "44f8bf93-07a7-4863-88e9-b46cb8e2f627")
 	)
 	(label "BUZZ_N"
 		(at 77.47 97.79 0)
@@ -1624,17 +1983,6 @@
 		)
 		(uuid "ef5e8a46-ca54-4941-bbc5-bae4e6679ae5")
 	)
-	(global_label "+5V"
-		(shape input)
-		(at 162.56 177.8 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "d9d8ebfc-07bf-4934-949b-be49f1009576")
-	)
 	(global_label "GND"
 		(shape input)
 		(at 162.56 180.34 180)
@@ -1712,30 +2060,36 @@
 		)
 		(uuid "63348df7-9dd6-4263-9d22-53890843f1be")
 	)
-  (text "J701 RC receiver — CRSF/ELRS external receiver, UART3 (USART3 PB10/PB11).\n1=+5V  2=GND  3=RX_UART_TX  4=RX_UART_RX."
-    (at 120 30 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "7afdb707-f177-4c11-b765-03e20184f176")
-  )
-  (text "J702 GPS — USART2, PA2 (USART2_TX -> GPS_TX) / PA3 (USART2_RX -> GPS_RX).\nFree UART pair per pinmap (\"PA2/PA3 spare UART2\"). 1=+5V 2=GND 3=GPS_TX 4=GPS_RX."
-    (at 120 75 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "ee17d0ce-0463-4d8f-9eca-c4ec385d99a4")
-  )
-  (text "J703 aux I2C — shares I2C1 with U401; pull-ups already on the baro sheet, do not add more.\n1=+5V  2=GND  3=I2C1_SCL  4=I2C1_SDA."
-    (at 120 120 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "44f8bf93-07a7-4863-88e9-b46cb8e2f627")
-  )
-  (text "J705 LED strip — WS2812; 5 V strip driven from a 3.3 V pin (PA8),\nlevel shift may be needed for long runs. R702 330R series on data.\n1=+5V  2=GND  3=DATA (LED_STRIP via R702)."
-    (at 120 163 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "d0d49be8-dc21-4f25-a9f0-2274ea47a8e0")
-  )
-  (text "Buzzer low-side switch: Q701 2N7002, gate from BUZZER (PB8) with R701 10k\npull-down. D701 1N4148W flyback across the buzzer, cathode to +5V.\nJ704: 1=+5V  2=buzzer- (BUZZ_N)."
+	(global_label "+5V"
+		(shape input)
+		(at 148.59 177.8 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e80e9e34-46f7-446a-b89f-70bf1bb7c050")
+	)
+(wire
+		(pts
+			(xy 158.75 177.8) (xy 165.1 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "027dff2a-4c2b-4e3a-8dcb-149068e40c7d")
+	)
+  (text "Buzzer low-side switch: Q701 AO3400A (SOT-23, 30 V, 5.7 A, ~28 mOhm) - headroom\nfor louder / higher-current buzzers vs the old 2N7002.  Gate from BUZZER (PB8)\nwith R701 10k pull-down.  D701 1N4148W flyback across the buzzer, cathode to +5V.\nJ704: 1=+5V  2=buzzer- (BUZZ_N)."
     (at 45 62 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "420aa387-4dc7-4f55-b2e3-64310f637b0c")
+    (uuid "ebee8868-d886-4ac4-a373-6073a76957f6")
+  )
+  (text "J705 LED strip - WS2812.  D702 (S2M, 2 A silicon rectifier, SMA) in series on\nstrip VDD: 5 V - ~0.7 V @ 0.5 A -> strip runs at ~4.3 V, so WS2812 VIH\n(~0.7*VDD ~= 3.0 V) is within reach of the 3V3 LED_DATA line (PA8 via R702 330R).\nA Schottky (~0.3 V) would give ~4.7 V and leave VIH marginal - silicon is required.\nReal current limit: the JST-SH connector (SM03B-SRSS-TB, 1 A / contact) caps strip\ndraw at ~1 A = roughly 16 WS2812 at full white (~60 mA each).  D702 must be rated\nabove that - S2M (2 A) clears it.  Feed a longer strip from its own 5 V, not J705.\n1=+5V (via D702)  2=GND  3=DATA (LED_STRIP via R702)."
+    (at 115 160 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "67fbfd2f-47dd-4cd2-94c8-ec21627b120c")
   )
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x04")
@@ -2203,7 +2557,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_FET:2N7002")
+		(lib_id "Transistor_FET:AO3400A")
 		(at 74.93 105.41 0)
 		(unit 1)
 		(in_bom yes)
@@ -2219,7 +2573,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "2N7002"
+		(property "Value" "AO3400A"
 			(at 80.01 105.41 0)
 			(effects
 				(font
@@ -2255,7 +2609,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C8545"
+		(property "LCSC" "C20917"
 			(at 74.93 105.41 0)
 			(hide yes)
 			(effects
@@ -2264,7 +2618,7 @@
 				)
 			)
 		)
-		(property "MPN" "2N7002"
+		(property "MPN" "AO3400A"
 			(at 74.93 105.41 0)
 			(hide yes)
 			(effects
@@ -2273,7 +2627,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Jiangsu Changjing Electronics"
+		(property "Manufacturer" "Alpha & Omega Semiconductor"
 			(at 74.93 105.41 0)
 			(hide yes)
 			(effects
@@ -2576,4 +2930,91 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "Device:D")
+		(at 154.94 177.8 180)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a7efa786-e93d-4bcc-ae0a-4702d1de0767")
+		(property "Reference" "D702"
+			(at 154.94 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "S2M"
+			(at 154.94 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SMA"
+			(at 154.94 177.8 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.94 177.8 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Diode"
+			(at 154.94 177.8 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "connectors"
+				(path "20e6064d-7924-44bd-8a09-738759519a1e"
+					(reference "D702")
+					(unit 1)
+				)
+			)
+		)
+	
+		(property "LCSC" "C18905"
+			(at 154.94 177.8 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "S2M"
+			(at 154.94 177.8 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "MDD(Microdiode Semiconductor)"
+			(at 154.94 177.8 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 )
