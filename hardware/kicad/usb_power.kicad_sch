@@ -2601,15 +2601,10 @@
 		)
 		(uuid "5f1c5bf5-38a7-416c-b56e-a624d85be611")
 	)
-  (text "POWER OR-ing - two LM66100DCKR ideal diodes into the shared +5V node:\n  USB path : VBUS (+5V_USB) -> U802.  VIN=+5V_USB, VOUT=+5V, CE tied to VOUT.\n  Buck path: MP2307 out (+5V_BUCK) -> U803 (on the power sheet). Same wiring.\n  Each: ~48 mV drop @ 0.5 A (95 mOhm), reverse-current blocking via CE=VOUT.\n  Datasheet-sanctioned diode-OR: highest input is passed to +5V, the other\n  device's FET turns off (CE > VIN) and blocks reverse current into its\n  input.  No crowbar / contention; comparator hysteresis (80 mV off /\n  250 mV on) prevents chatter when the two inputs are close.\n  FB divider stays on +5V_BUCK, so the buck regulates its own 5.0 V output\n  and does not cross-couple to VBUS.  +5V rail approx 4.95 V from either source.\n  ERC: two power-output pins on +5V (U802/U803 VOUT) -> see report.\n\nRUNS on USB power alone (~500 mA, USB2.0):\n  STM32 + gyro + baro + blackbox flash, RC receiver, GPS, buzzer (brief),\n  ESP32 for firmware flash / config (WiFi TX bursts may brown out on 500 mA).\nDOES NOT run on USB alone:\n  4-in-1 ESC / motors (VBAT only - no props spin on USB, by design),\n  long WS2812 LED strip (amps), anything on the raw VBAT rail.\nVBAT_SENSE reads ~0 V with no LiPo connected - expected."
+  (text "POWER OR-ing into the shared +5V node - two reverse-blocking paths:\n  USB path : VBUS (+5V_USB) -> U802 LM66100 ideal diode (CE tied to VOUT).\n             95 mOhm, ~48 mV @ 0.5 A.  USB is capped at 500 mA so 1.5 A is ample.\n  Buck path: MP2307 out (+5V_BUCK) -> U803 LM74700 ideal-diode controller +\n             Q803 AO3400A N-FET (on the power sheet).  FET-limited (~5 A),\n             ~53 mV @ 1.9 A.  Sized above the ~1.9 A worst-case +5V budget\n             (LED strip at the 1 A JST-SH cap + ESP32 WiFi + RX + GPS + sensors).\n  Each path blocks reverse current into its own source; highest input wins +5V.\n  +5V rail ~= 4.95 V from either source.  FB divider stays on +5V_BUCK so the\n  buck regulates its own 5.0 V and does not cross-couple to VBUS.\n  ERC: +5V now has one power-output pin (U802.VOUT); pin_map[8][8] is back to Error.\n\nRUNS on USB power alone (~500 mA, USB2.0):\n  STM32 + gyro + baro + blackbox flash, RC receiver, GPS, buzzer (brief),\n  ESP32 for firmware flash / config (WiFi TX bursts may brown out on 500 mA).\nDOES NOT run on USB alone:\n  4-in-1 ESC / motors (VBAT only - no props spin on USB, by design),\n  long WS2812 LED strip (amps), anything on the raw VBAT rail.\nVBAT_SENSE reads ~0 V with no LiPo connected - expected."
     (at 30 150 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "dd430bb2-80cc-4b76-b44c-39f07c4d1e4c")
-  )
-  (text "ERC note: pin_map power_output x power_output downgraded Error->Warning\n(dronekit-pro.kicad_pro) SOLELY for the U802/U803 ideal-diode OR on +5V,\nthe only such pair in the design. Any OTHER power_output x power_output\nwarning is a real fault (two driver outputs shorted) until proven otherwise."
-    (at 30 128 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "1a5d4f9d-5eee-43c2-8bd4-a6f8c4b665f4")
+    (uuid "fc38104a-38eb-4e20-ac6d-b4ab8c9d72c4")
   )
 	(symbol
 		(lib_id "Connector:USB_C_Receptacle_USB2.0_16P")

@@ -1,6 +1,7 @@
 {
   "design_rules": [
-    "ERC: the pin-conflict matrix cell power_output x power_output is downgraded from Error to Warning (dronekit-pro.kicad_pro erc.pin_map[8][8] = 1) ONLY because U802 x U803 (the two LM66100DCKR ideal diodes OR-ing the buck +5V and USB VBUS into the shared +5V rail, each with CE tied to VOUT) is currently the sole power_output x power_output pair in the whole hierarchy, and that OR-ing is sanctioned by the LM66100 datasheet. Any NEW power_output x power_output ERC warning must be treated as a real fault (two driver outputs shorted) until proven otherwise, and this downgrade re-evaluated / reverted to Error if the U802/U803 OR is removed."
+    "ERC pin_map[8][8] (power_output x power_output) is back to Error (dronekit-pro.kicad_pro). The earlier Warning downgrade was for the two-LM66100 +5V OR node; it was reverted when U803 became an LM74700 ideal-diode controller + external N-FET (Q803 AO3400A), which puts no power-output pin on +5V. The +5V rail's only power-output pin is now U802.VOUT (the USB-side LM66100). Any power_output x power_output ERC hit is a real fault.",
+    "+5V OR node topology: buck path = MP2307 -> +5V_BUCK (FB sensed here, regulated 5.0 V) -> U803 LM74700 + Q803 AO3400A ideal diode (~50 mV drop @ 1.9 A, FET-limited ~5 A) -> +5V. USB path = VBUS -> U802 LM66100 (1.5 A, USB capped at 500 mA) -> +5V. Both reverse-block. C113 22uF/25V bulk on +5V."
   ],
   "fab_constraints": {},
   "naming_conventions": {},
