@@ -1435,10 +1435,10 @@
 						)
 					)
 				)
-				(pin no_connect line
+				(pin passive line
 					(at 10.16 -2.54 180)
 					(length 2.54)
-					(name "NC"
+					(name "SS"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3301,10 +3301,6 @@
 		)
 	)
 	(no_connect
-		(at 180.34 116.84)
-		(uuid "e4d4676b-a667-44ec-b9ef-d155a3cdb1d0")
-	)
-	(no_connect
 		(at 271.78 104.14)
 		(uuid "ec609b0d-9234-4733-a797-a42d63bf1e0a")
 	)
@@ -3433,6 +3429,69 @@
 			(xy 228.6 78.74)
 		)
 		(uuid "c75da7b1-f621-4e96-98b6-86b884c09160")
+	)
+	(wire
+		(pts
+			(xy 113.03 106.68)
+			(xy 113.03 104.14)
+		)
+		(uuid "23dd964a-977e-438c-9d4e-606f84cfafff")
+	)
+	(wire
+		(pts
+			(xy 113.03 114.3)
+			(xy 113.03 116.84)
+		)
+		(uuid "8e60fcb5-b346-4aa0-a0c5-eabfdee1f85d")
+	)
+	(wire
+		(pts
+			(xy 180.34 116.84)
+			(xy 187.96 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c7020e54-9a22-43ac-964d-1a1d0c12e1ac")
+	)
+	(wire
+		(pts
+			(xy 187.96 116.84)
+			(xy 187.96 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f0a3569-8e9f-41ca-acdb-cb981d0e29cd")
+	)
+	(wire
+		(pts
+			(xy 187.96 125.73)
+			(xy 187.96 128.27)
+		)
+		(uuid "96b426c3-d871-4e6c-b8d2-e83bb00d5648")
+	)
+	(text "Input 3S-4S LiPo (11.1-16.8 V).  R105 100k / R106 39k on the MP2307 EN pin:\nEN_BUCK = VBAT_SW x 39/139 = x0.281.\nThis is a REGULATOR BROWNOUT / EN-lockout threshold, NOT LiPo cell protection -\nthere is no per-cell monitoring.  MP2307 (r1.9): EN LOCKOUT (buck starts/stops\nswitching) = 2.5 V typ, 2.2 / 2.7 V min/max; EN SHUTDOWN = 1.5 V typ.\nBuck stops switching when VBAT_SW falls to ~8.9 V typ, with a 7.8-9.6 V\npart-to-part spread (EN 2.2-2.7 V).  The 7.8 V worst case = 2.6 V/cell on 3S,\nwhich is below a safe cell floor - this trip only prevents buck malfunction at\nlow Vin, it does not guard the battery.  Firmware/telemetry must do LiPo cutoff.\nEN abs-max = 6 V (internal ~7 V zener):  EN_BUCK = 4.7 V @ 16.8 V, 5.6 V @ 20 V\n(both OK); 6.4 V @ 23 V abs-max VIN - add a 5.1 V zener on EN if 23 V is real."
+		(at 128 85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e115cb12-8e48-4270-9c5d-34bd828ae69c")
+	)
+	(text "Buck-side OR-ing ideal diode (U803 LM74700-Q1 + Q803 AO3400A).\nPer LM74700-Q1 datasheet (SNOSD17G) Table 5-1 / Fig 5-1 / Fig 10-18:\n  ANODE (pin 6) = input, connect to FET SOURCE  -> +5V_BUCK  (Q803.S)\n  CATHODE (pin 4) = output, connect to FET DRAIN -> +5V       (Q803.D)\n  EN (pin 3) -> ANODE (always on).  GATE (pin 5) -> Q803.G.\n  C803 100nF charge-pump cap between VCAP and ANODE (datasheet 9.3.2).\n  C804 100nF ANODE-to-CATHODE bypass (recommended external capacitance).\nQ803 body diode: anode=SOURCE=+5V_BUCK, cathode=DRAIN=+5V -> forward for the\nbuck feeding the rail (startup fallback), REVERSE-biased when +5V is driven\nabove +5V_BUCK (USB via U802), so it BLOCKS the back-feed.  Datasheet 10.2:\n\"...leaving the body diode of the MOSFET to block the reverse current flow\",\ngate pulled down in <0.45 us once V(ANODE)-V(CATHODE) < ~-11 mV.\nFB (R102/R103) senses +5V_BUCK -> buck regulates its own 5.0 V.  Drop ~53 mV\n@ 1.9 A, FET-limited ~5 A.  Replaces the 1.5 A LM66100 (< worst-case +5V load).\nWhy a diode at all: MP2307 is synchronous - its HS FET body diode (SW->VIN)\nwould back-feed VIN from an externally-driven +5V when the buck is off/UVLO."
+		(at 140 40 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1e157bfc-6354-43f6-bb8a-b1705d48470d")
 	)
 	(label "VBAT_SW"
 		(at 105.41 115.57 0)
@@ -3733,6 +3792,36 @@
 			(justify left bottom)
 		)
 		(uuid "a50d2809-3976-449a-a0b5-85c55f601365")
+	)
+	(label "QGATE"
+		(at 113.03 104.14 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "673ed461-44da-4956-a09a-43a7b9aac80c")
+	)
+	(label "VBAT_SW"
+		(at 113.03 116.84 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "35e6d19b-ff70-40fb-8960-0e32c1e109ad")
+	)
+	(label "SS_BUCK"
+		(at 184.15 116.84 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c4fd6c2a-8b32-497b-87eb-685ddafe3fc6")
 	)
 	(global_label "+3V3_SYS"
 		(shape input)
@@ -4086,6 +4175,17 @@
 		)
 		(uuid "44e1c83c-ed02-47fc-a217-6416753ffa02")
 	)
+	(global_label "GND"
+		(shape input)
+		(at 187.96 128.27 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3b79427a-5dee-4e14-a190-685b99b20113")
+	)
 	(sheet
 		(at 60 210)
 		(size 90 40)
@@ -4352,15 +4452,10 @@
 			)
 		)
 	)
-  (text "Input 3S-4S LiPo (11.1-16.8 V).  R105 100k / R106 39k on the MP2307 EN pin:\nEN_BUCK = VBAT_SW x 39/139 = x0.281.\nThis is a REGULATOR BROWNOUT / EN-lockout threshold, NOT LiPo cell protection -\nthere is no per-cell monitoring.  MP2307 (r1.9): EN LOCKOUT (buck starts/stops\nswitching) = 2.5 V typ, 2.2 / 2.7 V min/max; EN SHUTDOWN = 1.5 V typ.\nBuck stops switching when VBAT_SW falls to ~8.9 V typ, with a 7.8-9.6 V\npart-to-part spread (EN 2.2-2.7 V).  The 7.8 V worst case = 2.6 V/cell on 3S,\nwhich is below a safe cell floor - this trip only prevents buck malfunction at\nlow Vin, it does not guard the battery.  Firmware/telemetry must do LiPo cutoff.\nEN abs-max = 6 V (internal ~7 V zener):  EN_BUCK = 4.7 V @ 16.8 V, 5.6 V @ 20 V\n(both OK); 6.4 V @ 23 V abs-max VIN - add a 5.1 V zener on EN if 23 V is real."
-    (at 128 85 0)
+  (text "INRUSH / SOFT-START (7.a decision):\nBUILD REQUIREMENT: the battery lead MUST use an anti-spark XT60/XT90\nconnector (pre-charge resistor in the plug).  Plug-in inrush is NOT limited\non-board: Q101's body diode (VBAT->VBAT_SW, forward) charges C101 100uF +\nC102 10uF + C103 through the diode regardless of the gate\n(I_peak ~ 170-340 A for ~5-30 us, spark ~15 mJ at 16.8 V).  A single\nreverse-polarity P-FET cannot soft-start this; the anti-spark connector does.\nC114 100nF gate-source stays: R101*C114 = 10 ms -> Q101 channel enhances over\n~7 ms = a controlled, low-EMI turn-on and a softer VBAT_SW rise into the EN\ndivider (it is NOT an inrush limiter).\nMP2307 soft-start: C115 100nF on SS (was left open).  Per datasheet r1.9\n(CSS 0.1uF -> 15 ms, ISS 6 uA, SS ramps to ~0.925 V).  t_ss ~= 15 ms: the\n+5V rail ramps 0->5 V over ~15 ms, charging C105 + C113 (~46 uF total) at\n~15 mA average instead of slamming the buck current limit (~4 A) at startup."
+    (at 55 150 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "e115cb12-8e48-4270-9c5d-34bd828ae69c")
-  )
-  (text "Buck-side OR-ing ideal diode (U803 LM74700-Q1 + Q803 AO3400A).\nPer LM74700-Q1 datasheet (SNOSD17G) Table 5-1 / Fig 5-1 / Fig 10-18:\n  ANODE (pin 6) = input, connect to FET SOURCE  -> +5V_BUCK  (Q803.S)\n  CATHODE (pin 4) = output, connect to FET DRAIN -> +5V       (Q803.D)\n  EN (pin 3) -> ANODE (always on).  GATE (pin 5) -> Q803.G.\n  C803 100nF charge-pump cap between VCAP and ANODE (datasheet 9.3.2).\n  C804 100nF ANODE-to-CATHODE bypass (recommended external capacitance).\nQ803 body diode: anode=SOURCE=+5V_BUCK, cathode=DRAIN=+5V -> forward for the\nbuck feeding the rail (startup fallback), REVERSE-biased when +5V is driven\nabove +5V_BUCK (USB via U802), so it BLOCKS the back-feed.  Datasheet 10.2:\n\"...leaving the body diode of the MOSFET to block the reverse current flow\",\ngate pulled down in <0.45 us once V(ANODE)-V(CATHODE) < ~-11 mV.\nFB (R102/R103) senses +5V_BUCK -> buck regulates its own 5.0 V.  Drop ~53 mV\n@ 1.9 A, FET-limited ~5 A.  Replaces the 1.5 A LM66100 (< worst-case +5V load).\nWhy a diode at all: MP2307 is synchronous - its HS FET body diode (SW->VIN)\nwould back-feed VIN from an externally-driven +5V when the buck is off/UVLO."
-    (at 140 40 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "1e157bfc-6354-43f6-bb8a-b1705d48470d")
+    (uuid "a17ab971-2455-43e7-b7c8-d25a8a1331eb")
   )
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
@@ -4430,7 +4525,16 @@
 				)
 			)
 		)
-	)
+	
+		(property "Note" "Battery lead MUST use an anti-spark XT60/XT90 connector - no on-board inrush limiter (see startup note)"
+			(at 39.37 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 	(symbol
 		(lib_id "Connector:TestPoint")
 		(at 55.88 91.44 0)
@@ -4857,7 +4961,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF/25V"
+		(property "Value" "10uF/50V"
 			(at 132.715 121.92 0)
 			(effects
 				(font
@@ -4885,6 +4989,42 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 132.08 119.38 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C138687"
+			(at 132.08 119.38 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL32B106KBJNNNE"
+			(at 132.08 119.38 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro-Mechanics"
+			(at 132.08 119.38 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Voltage" "50V"
 			(at 132.08 119.38 0)
 			(hide yes)
 			(effects
@@ -8274,15 +8414,6 @@
 				)
 			)
 		)
-		(instances
-			(project "dronekit-pro"
-				(path "8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
-					(reference "C804")
-					(unit 1)
-				)
-			)
-		)
-	
 		(property "LCSC" "C14663"
 			(at 228.6 72.39 0)
 			(hide yes)
@@ -8309,5 +8440,192 @@
 					(size 1.27 1.27)
 				)
 			)
-		))
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(reference "C804")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 113.03 110.49 0)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c1134346-8208-4c2c-b81a-cc00f491bb0e")
+		(property "Reference" "C114"
+			(at 113.665 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 113.665 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 113.03 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 113.03 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 113.03 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
+			(at 113.03 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CC0603KRX7R9BB104"
+			(at 113.03 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "YAGEO"
+			(at 113.03 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(reference "C114")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 187.96 121.92 0)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c84f4c42-dfdb-45bb-a90b-7339535d6e61")
+		(property "Reference" "C115"
+			(at 188.595 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 188.595 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 187.96 121.92 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 187.96 121.92 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 187.96 121.92 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
+			(at 187.96 121.92 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CC0603KRX7R9BB104"
+			(at 187.96 121.92 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "YAGEO"
+			(at 187.96 121.92 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(reference "C115")
+					(unit 1)
+				)
+			)
+		)
+	)
 )

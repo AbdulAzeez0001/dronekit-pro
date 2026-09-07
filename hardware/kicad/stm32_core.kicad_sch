@@ -3588,6 +3588,90 @@
 		)
 		(uuid "48ae6bb7-0bb5-4797-8725-9a287293289b")
 	)
+	(wire
+		(pts
+			(xy 146.05 128.27)
+			(xy 146.05 125.73)
+		)
+		(uuid "4699daab-2868-4e95-8a6b-5d6c71440c86")
+	)
+	(wire
+		(pts
+			(xy 153.67 128.27)
+			(xy 153.67 130.81)
+		)
+		(uuid "7b7c5ab4-f79c-4386-a104-447a3bf368bd")
+	)
+	(wire
+		(pts
+			(xy 224.79 96.52)
+			(xy 222.25 96.52)
+		)
+		(uuid "3ec3ff1c-95e5-49e6-8aa1-9d6a33b6e73e")
+	)
+	(wire
+		(pts
+			(xy 232.41 96.52)
+			(xy 234.95 96.52)
+		)
+		(uuid "121bc7f7-dfd8-41a9-958a-ab65600152af")
+	)
+	(wire
+		(pts
+			(xy 224.79 106.68)
+			(xy 222.25 106.68)
+		)
+		(uuid "3661e58b-fc0d-468c-9322-05cce168313c")
+	)
+	(wire
+		(pts
+			(xy 232.41 106.68)
+			(xy 234.95 106.68)
+		)
+		(uuid "23085613-757d-4aa8-a52d-8849b257ebf6")
+	)
+	(wire
+		(pts
+			(xy 224.79 116.84)
+			(xy 222.25 116.84)
+		)
+		(uuid "d4bfffa9-a05e-462f-a13f-f3714ae846ea")
+	)
+	(wire
+		(pts
+			(xy 232.41 116.84)
+			(xy 234.95 116.84)
+		)
+		(uuid "7f02e7dd-3502-4205-ad7c-31820c89f1f2")
+	)
+	(wire
+		(pts
+			(xy 224.79 127)
+			(xy 222.25 127)
+		)
+		(uuid "a9c627ae-961e-4680-a540-0e6debfdf577")
+	)
+	(wire
+		(pts
+			(xy 232.41 127)
+			(xy 234.95 127)
+		)
+		(uuid "fa0b9f23-77f1-4e8a-b009-71a9d74fbc8f")
+	)
+	(wire
+		(pts
+			(xy 265.43 182.88)
+			(xy 262.89 182.88)
+		)
+		(uuid "a0ac41de-e670-4e70-bf64-e7bd2a260891")
+	)
+	(wire
+		(pts
+			(xy 273.05 182.88)
+			(xy 275.59 182.88)
+		)
+		(uuid "bb4651e1-2ad2-4a3f-9faa-222bb9cd03c1")
+	)
 	(text "ESP32-driven flashing: ESP_STM_NRST high = STM32 held in reset;\nESP_STM_BOOT0 high = bootloader. Both idle low."
 		(at 238.76 185.42 0)
 		(effects
@@ -3747,6 +3831,136 @@
 			(justify left bottom)
 		)
 		(uuid "a1902b91-9e87-497f-a9ba-3080a3d2ae19")
+	)
+	(label "GPS_TX_MCU"
+		(at 213.36 115.57 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2c686651-0590-4791-accb-f0def610e9ee")
+	)
+	(label "GPS_RX_MCU"
+		(at 213.36 118.11 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3774bb85-70c6-43d6-bac0-142d11703d40")
+	)
+	(label "ESC_TLM_MCU"
+		(at 167.64 128.27 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "31706b69-ac26-4bbb-be48-59868a1f88a1")
+	)
+	(label "BRIDGE_TX_MCU"
+		(at 213.36 133.35 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2bb1c1cd-2f2a-48ba-b761-74ca1e70e804")
+	)
+	(label "BRIDGE_RX_MCU"
+		(at 213.36 135.89 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c53fdb44-dfb4-471e-8e36-3832b718114f")
+	)
+	(label "ESP_STM_NRST_G"
+		(at 251.46 165.1 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "828caea8-1410-4636-a88b-cfb334a2895c")
+	)
+	(label "ESP_STM_NRST_G"
+		(at 274.32 162.56 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f73f67fd-8b3b-438d-b20e-4bc06de1a719")
+	)
+	(label "ESC_TLM_MCU"
+		(at 146.05 125.73 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1c42b1ef-4d48-448f-8163-da5e8a2ad2f7")
+	)
+	(label "GPS_TX_MCU"
+		(at 222.25 96.52 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a47f2726-8952-46ed-a79f-198762886567")
+	)
+	(label "GPS_RX_MCU"
+		(at 222.25 106.68 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9cf7e6a2-a717-40e1-9a08-f77c8e737ac4")
+	)
+	(label "BRIDGE_TX_MCU"
+		(at 222.25 116.84 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "36070903-1b83-4d1f-be4f-e6a70d3f2b4f")
+	)
+	(label "BRIDGE_RX_MCU"
+		(at 222.25 127 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "1df37a00-a94e-4de3-82cf-c77ce6a4c080")
+	)
+	(label "ESP_STM_NRST_G"
+		(at 275.59 182.88 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "548df961-7061-4e54-90e8-029caaf2a5bd")
 	)
 	(global_label "+3V3_SYS"
 		(shape input)
@@ -4342,28 +4556,6 @@
 		)
 		(uuid "d33e0b0a-738b-4f06-8bc7-d8682e1722f6")
 	)
-	(global_label "BRIDGE_TX"
-		(shape input)
-		(at 213.36 133.35 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "8df15905-4256-40d1-911e-7d7127100353")
-	)
-	(global_label "BRIDGE_RX"
-		(shape input)
-		(at 213.36 135.89 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "308298e4-87e4-486d-a464-33dd65598e42")
-	)
 	(global_label "USB_DM"
 		(shape input)
 		(at 213.36 138.43 0)
@@ -4507,28 +4699,6 @@
 		)
 		(uuid "7d2fe4d4-bb9a-40b8-a821-8225375f9bb8")
 	)
-	(global_label "ESP_STM_NRST"
-		(shape input)
-		(at 251.46 165.1 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "225fbd07-1ae9-4402-a2e5-f4f23e18fd62")
-	)
-	(global_label "ESP_STM_NRST"
-		(shape input)
-		(at 274.32 162.56 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "3c41f1ae-fecc-42dd-a81d-4bc954b46344")
-	)
 	(global_label "GND"
 		(shape input)
 		(at 274.32 175.26 0)
@@ -4573,39 +4743,77 @@
 		)
 		(uuid "a495e968-3aad-481d-a984-9f721aa9ef0d")
 	)
-	(global_label "GPS_TX"
+	(global_label "ESC_TLM"
 		(shape input)
-		(at 213.36 115.57 0)
+		(at 153.67 130.81 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "0f5c203b-e62d-46b5-b8ea-7496ffc70ec5")
+		(uuid "d6462cf3-1a9d-4c98-a1b1-5c32cbf4ca75")
+	)
+	(global_label "GPS_TX"
+		(shape input)
+		(at 234.95 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7d3e97d8-857d-4e06-ba22-01d0969a0a81")
 	)
 	(global_label "GPS_RX"
 		(shape input)
-		(at 213.36 118.11 0)
+		(at 234.95 106.68 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "6c5cd3c8-79f1-4f97-9751-60d1acb4f8f9")
+		(uuid "ce4a6b42-0c01-49a4-8dfc-ee52bf7d8c2f")
 	)
-	(global_label "ESC_TLM"
+	(global_label "BRIDGE_TX"
 		(shape input)
-		(at 167.64 128.27 180)
+		(at 234.95 116.84 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1f7a65de-f207-43a7-889b-4ecc416f11a6")
+	)
+	(global_label "BRIDGE_RX"
+		(shape input)
+		(at 234.95 127 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "483b8691-20c8-4a65-8e90-80cad7cf2f4e")
+	)
+	(global_label "ESP_STM_NRST"
+		(shape input)
+		(at 262.89 182.88 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "cd8f43d2-09a1-477a-894f-85a9ece837b6")
+		(uuid "e5269568-f234-4a68-aeb5-edf479d56a2b")
 	)
+  (text "Series protection resistors (STM32-pin side):\n  R205 1k  ESC_TLM   -> PD2   (PD2 is FT / 5 V tolerant; R is ESD + fault limit)\n  R206 1k  GPS_TX    -> PA2   PA2/PA3 = TTa (ADC), NOT 5 V tolerant - R limits\n  R207 1k  GPS_RX    -> PA3   fault injection to ~1.2 mA if a 5 V UART is plugged\n  R208 470 BRIDGE_TX -> PA9   cross-domain (STM32 +3V3_SYS <-> ESP32 +3V3_ESP):\n  R209 470 BRIDGE_RX -> PA10  limits current through the pin clamps if one 3V3\n  R210 470 ESP_STM_NRST      rail is down while the other is up.\nESP_STM_NRST_G = Q201 gate + R203 10k pull-down (fail-safe: ESP absent ->\ngate low -> Q201 off -> NRST released).  ESP_STM_BOOT0 already has R204 1k.\nRef: STM32F405 DS (DS8626) pin table, I/O structure column - FT = 5 V tol,\nTTa = 3.3 V ADC pin (not 5 V tol)."
+    (at 120 200 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "f2218a8e-980e-46a2-9cd5-23ea192ef875")
+  )
 	(symbol
 		(lib_id "MCU_ST_STM32F4:STM32F405RGTx")
 		(at 190.5 151.13 0)
@@ -6638,4 +6846,526 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "Device:R")
+		(at 149.86 128.27 90)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8adc1f50-fb7d-466a-b98e-5c7d85e4cbf3")
+		(property "Reference" "R205"
+			(at 149.86 126.238 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 149.86 128.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 149.86 128.27 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 149.86 128.27 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 149.86 128.27 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "stm32_core"
+				(path "411bc445-9e47-4f5d-9ba3-e87fb93e9836"
+					(reference "R205")
+					(unit 1)
+				)
+			)
+		)
+	
+		(property "LCSC" "C21190"
+			(at 149.86 128.27 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF1001T5E"
+			(at 149.86 128.27 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 149.86 128.27 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
+	(symbol
+		(lib_id "Device:R")
+		(at 228.6 96.52 90)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fcb5910d-a6ce-4489-96e4-499f1930e1af")
+		(property "Reference" "R206"
+			(at 228.6 94.488 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 228.6 96.52 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 228.6 96.52 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 228.6 96.52 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 228.6 96.52 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "stm32_core"
+				(path "411bc445-9e47-4f5d-9ba3-e87fb93e9836"
+					(reference "R206")
+					(unit 1)
+				)
+			)
+		)
+	
+		(property "LCSC" "C21190"
+			(at 228.6 96.52 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF1001T5E"
+			(at 228.6 96.52 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 228.6 96.52 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
+	(symbol
+		(lib_id "Device:R")
+		(at 228.6 106.68 90)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "413c8105-bd10-49c9-92b5-3f95c1e31b31")
+		(property "Reference" "R207"
+			(at 228.6 104.648 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 228.6 106.68 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 228.6 106.68 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 228.6 106.68 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 228.6 106.68 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "stm32_core"
+				(path "411bc445-9e47-4f5d-9ba3-e87fb93e9836"
+					(reference "R207")
+					(unit 1)
+				)
+			)
+		)
+	
+		(property "LCSC" "C21190"
+			(at 228.6 106.68 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF1001T5E"
+			(at 228.6 106.68 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 228.6 106.68 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
+	(symbol
+		(lib_id "Device:R")
+		(at 228.6 116.84 90)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cc2072c8-ed1b-4bba-a170-92f83cf8498b")
+		(property "Reference" "R208"
+			(at 228.6 114.808 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "470"
+			(at 228.6 116.84 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 228.6 116.84 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 228.6 116.84 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 228.6 116.84 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "stm32_core"
+				(path "411bc445-9e47-4f5d-9ba3-e87fb93e9836"
+					(reference "R208")
+					(unit 1)
+				)
+			)
+		)
+	
+		(property "LCSC" "C23179"
+			(at 228.6 116.84 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF4700T5E"
+			(at 228.6 116.84 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 228.6 116.84 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
+	(symbol
+		(lib_id "Device:R")
+		(at 228.6 127 90)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c5528980-9825-4144-ac24-0ce422030223")
+		(property "Reference" "R209"
+			(at 228.6 124.968 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "470"
+			(at 228.6 127 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 228.6 127 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 228.6 127 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 228.6 127 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "stm32_core"
+				(path "411bc445-9e47-4f5d-9ba3-e87fb93e9836"
+					(reference "R209")
+					(unit 1)
+				)
+			)
+		)
+	
+		(property "LCSC" "C23179"
+			(at 228.6 127 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF4700T5E"
+			(at 228.6 127 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 228.6 127 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
+	(symbol
+		(lib_id "Device:R")
+		(at 269.24 182.88 90)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "16f87574-3774-47f9-8bda-b773910db9a8")
+		(property "Reference" "R210"
+			(at 269.24 180.848 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "470"
+			(at 269.24 182.88 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 269.24 182.88 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 269.24 182.88 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 269.24 182.88 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "stm32_core"
+				(path "411bc445-9e47-4f5d-9ba3-e87fb93e9836"
+					(reference "R210")
+					(unit 1)
+				)
+			)
+		)
+	
+		(property "LCSC" "C23179"
+			(at 269.24 182.88 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF4700T5E"
+			(at 269.24 182.88 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 269.24 182.88 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 )

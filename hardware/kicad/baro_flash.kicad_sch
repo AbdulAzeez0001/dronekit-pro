@@ -1361,15 +1361,15 @@
 		)
 		(uuid "8c8c2cb2-09b1-4cda-aa77-5eddebdc4a08")
 	)
-  (text "I2C1 pull-ups: R401 (SCL) and R402 (SDA), 4.7k to +3V3_SYS, are the\nONLY pull-ups on I2C1. Bus master = STM32 PB6/PB7 (STM32 Core sheet).\nU401: DPS368 drawn with the BMP280 symbol (pin-identical per DPS368 DS\nv1.1 Table 2). VERIFY LGA-8 land pattern vs DPS368 DS Fig.18 before layout."
-    (at 105.41 125.73 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "6f566291-8d84-4fd8-9d0e-087a751f90ca")
-  )
   (text "SPI3 dedicated to blackbox flash; FLASH_CS = PA15."
     (at 168.91 185.42 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid "9609f0e3-953b-4f35-8358-abaf7bed31be")
+  )
+  (text "I2C1 pull-ups: R401 (SCL) / R402 (SDA) = 2.2k to +3V3_SYS, the ONLY pull-ups\non I2C1.  Master = STM32 PB6/PB7.  2.2k chosen for the J703 aux-I2C header:\nwith a cabled external device (on-board ~30 pF + J703 cable/device ~35-65 pF\n~= 90-100 pF worst case) t_r = 0.847*2.2k*100pF ~= 186 ns, under the 400 kHz\nfast-mode limit of 300 ns.  Sink current at VOL: (3.3 - 0.2)/2.2k ~= 1.4 mA\nper line, well within the I2C >=3 mA sink of the STM32 and the DPS368.\nU401 = DPS368 drawn with the BMP280 symbol (pin-identical per DPS368 DS v1.1\nTable 2).  VERIFY LGA-8 land pattern vs DPS368 DS Fig.18 before layout."
+    (at 120 175 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "b37d88eb-9a8b-479d-94a2-cdda629be256")
   )
 	(symbol
 		(lib_id "Sensor_Pressure:BMP280")
@@ -1741,7 +1741,7 @@
 				)
 			)
 		)
-		(property "Value" "4.7k"
+		(property "Value" "2.2k"
 			(at 118.11 90.17 90)
 			(effects
 				(font
@@ -1776,7 +1776,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C23162"
+		(property "LCSC" "C4190"
 			(at 118.11 90.17 0)
 			(hide yes)
 			(effects
@@ -1785,7 +1785,7 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF4701T5E"
+		(property "MPN" "0603WAF2201T5E"
 			(at 118.11 90.17 0)
 			(hide yes)
 			(effects
@@ -1828,7 +1828,7 @@
 				)
 			)
 		)
-		(property "Value" "4.7k"
+		(property "Value" "2.2k"
 			(at 110.49 90.17 90)
 			(effects
 				(font
@@ -1863,7 +1863,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C23162"
+		(property "LCSC" "C4190"
 			(at 110.49 90.17 0)
 			(hide yes)
 			(effects
@@ -1872,7 +1872,7 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF4701T5E"
+		(property "MPN" "0603WAF2201T5E"
 			(at 110.49 90.17 0)
 			(hide yes)
 			(effects

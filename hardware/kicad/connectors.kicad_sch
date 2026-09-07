@@ -1791,16 +1791,6 @@
 		)
 		(uuid "ee17d0ce-0463-4d8f-9eca-c4ec385d99a4")
 	)
-	(text "J703 aux I2C — shares I2C1 with U401; pull-ups already on the baro sheet, do not add more.\n1=+5V  2=GND  3=I2C1_SCL  4=I2C1_SDA."
-		(at 120 120 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "44f8bf93-07a7-4863-88e9-b46cb8e2f627")
-	)
 	(label "BUZZ_N"
 		(at 77.47 97.79 0)
 		(effects
@@ -2090,6 +2080,11 @@
     (at 115 160 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid "67fbfd2f-47dd-4cd2-94c8-ec21627b120c")
+  )
+  (text "J703 aux I2C - shares I2C1 with U401 (DPS368).  Pull-ups are R401/R402 = 2.2k\non the baro sheet (sized for a cabled device here); do not add more.\nt_r with a cable ~= 186 ns -> OK for 400 kHz.\n1=+5V  2=GND  3=I2C1_SCL  4=I2C1_SDA."
+    (at 120 118 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "4fc38469-a45e-487f-b9c0-203b9d0523fb")
   )
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x04")
