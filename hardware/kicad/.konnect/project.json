@@ -1,0 +1,8 @@
+{
+  "design_rules": [
+    "ERC: the pin-conflict matrix cell power_output x power_output is downgraded from Error to Warning (dronekit-pro.kicad_pro erc.pin_map[8][8] = 1) ONLY because U802 x U803 (the two LM66100DCKR ideal diodes OR-ing the buck +5V and USB VBUS into the shared +5V rail, each with CE tied to VOUT) is currently the sole power_output x power_output pair in the whole hierarchy, and that OR-ing is sanctioned by the LM66100 datasheet. Any NEW power_output x power_output ERC warning must be treated as a real fault (two driver outputs shorted) until proven otherwise, and this downgrade re-evaluated / reverted to Error if the U802/U803 OR is removed."
+  ],
+  "fab_constraints": {},
+  "naming_conventions": {},
+  "sourcing": {}
+}

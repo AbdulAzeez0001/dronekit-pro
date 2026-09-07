@@ -2376,6 +2376,390 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:D_Schottky"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D_Schottky"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Schottky diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "diode Schottky"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "D_Schottky_0_1"
+				(polyline
+					(pts
+						(xy -1.905 0.635)
+						(xy -1.905 1.27)
+						(xy -1.27 1.27)
+						(xy -1.27 -1.27)
+						(xy -0.635 -1.27)
+						(xy -0.635 -0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27)
+						(xy 1.27 -1.27)
+						(xy -1.27 0)
+						(xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0)
+						(xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "D_Schottky_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Power_Management:LM66100DCK"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at -5.08 6.096 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "LM66100DCK"
+				(at 0.254 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
+				(at 0 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/lm66100.pdf"
+				(at 0 -1.016 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Ideal Diode With Input Polarity Protection 1.5 - 5.5V  Input Voltage, 1.5A Output Current, Ron 141 mOhm, SC-70-6"
+				(at 0 -18.034 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "Texas Instruments"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "*SC?70*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "LM66100DCK_0_1"
+				(rectangle
+					(start -5.08 5.08)
+					(end 5.08 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "LM66100DCK_1_1"
+				(pin power_in line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name "VIN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -7.62 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name "~{CE}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 0 5.08 270)
+					(length 2.54)
+					(hide yes)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin open_collector line
+					(at 7.62 -2.54 180)
+					(length 2.54)
+					(name "ST"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 7.62 2.54 180)
+					(length 2.54)
+					(name "VOUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(no_connect
 		(at 180.34 116.84)
@@ -2384,6 +2768,14 @@
 	(no_connect
 		(at 271.78 104.14)
 		(uuid "ec609b0d-9234-4733-a797-a42d63bf1e0a")
+	)
+	(no_connect
+		(at 215.9 82.55)
+		(uuid "20715d9c-a4b1-4a8e-8581-2245774b28b2")
+	)
+	(no_connect
+		(at 223.52 90.17)
+		(uuid "9b0ecb6d-25b1-4c52-86fa-fafc26b1510c")
 	)
 	(wire
 		(pts
@@ -2394,17 +2786,45 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 160.02)
-			(xy 204.47 162.56)
-		)
-		(uuid "a1806aac-91db-4ce9-be79-e7c79b2cc3a6")
-	)
-	(wire
-		(pts
 			(xy 224.79 160.02)
 			(xy 224.79 162.56)
 		)
 		(uuid "eee6453f-2d9f-48ea-93eb-e0ad93eea3b7")
+	)
+	(wire
+		(pts
+			(xy 208.28 85.09)
+			(xy 205.74 85.09)
+		)
+		(uuid "d74548d2-3cef-4141-ba9d-cd00432f2f99")
+	)
+	(wire
+		(pts
+			(xy 215.9 95.25)
+			(xy 215.9 97.79)
+		)
+		(uuid "f8e14e16-2fd5-42da-a6fb-19ecd11ce308")
+	)
+	(wire
+		(pts
+			(xy 208.28 90.17)
+			(xy 205.74 90.17)
+		)
+		(uuid "281cb38a-fd85-42bf-a2a4-efd63960249b")
+	)
+	(wire
+		(pts
+			(xy 223.52 85.09)
+			(xy 226.06 85.09)
+		)
+		(uuid "1e881e0d-d94a-44b6-95d7-51738029ee41")
+	)
+	(wire
+		(pts
+			(xy 200.66 78.74)
+			(xy 200.66 85.09)
+		)
+		(uuid "33026b10-5d7a-4817-b53a-fc8c92de88d8")
 	)
 	(text "Input 3S–4S (11.1–16.8 V).\nR105/R106 divider sets EN UVLO ≈ 9 V;\nEN < 6 V at 16.8 V."
 		(at 146.05 95.25 0)
@@ -2744,50 +3164,6 @@
 	)
 	(global_label "+5V"
 		(shape input)
-		(at 208.28 102.87 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "da87509e-835f-4c74-9f09-420ddf3b3766")
-	)
-	(global_label "+5V"
-		(shape input)
-		(at 219.71 114.3 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "dea0ed13-f72b-4a8a-9755-eb1efdc7c7a8")
-	)
-	(global_label "+5V"
-		(shape input)
-		(at 229.87 114.3 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "784f75a0-c9f6-4c47-b530-193e7fe2263c")
-	)
-	(global_label "+5V"
-		(shape input)
-		(at 152.4 135.89 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "b7664778-e08e-4795-a626-e295a7f75f49")
-	)
-	(global_label "+5V"
-		(shape input)
 		(at 251.46 99.06 180)
 		(effects
 			(font
@@ -2852,17 +3228,6 @@
 		)
 		(uuid "a9fed346-bf1b-4c58-aedf-949a68aaaec5")
 	)
-	(global_label "+5V"
-		(shape input)
-		(at 204.47 162.56 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "f3c0aaa2-88bc-4014-8447-22a11981f53e")
-	)
 	(global_label "VBAT"
 		(shape input)
 		(at 44.45 110.49 0)
@@ -2906,6 +3271,105 @@
 			(justify left)
 		)
 		(uuid "98e24813-3838-481f-b8b1-6db9ef60091d")
+	)
+	(global_label "+5V_BUCK"
+		(shape input)
+		(at 208.28 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "043b1a46-a8a2-4b96-aae2-8a038f3d9729")
+	)
+	(global_label "+5V_BUCK"
+		(shape input)
+		(at 219.71 114.3 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6897c318-f125-4243-8a68-16ae49516a44")
+	)
+	(global_label "+5V_BUCK"
+		(shape input)
+		(at 229.87 114.3 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a228b909-c5c8-4ddc-84ce-3d95933a1e84")
+	)
+	(global_label "+5V_BUCK"
+		(shape input)
+		(at 152.4 135.89 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "94086932-a9d3-4cf9-895a-ca1ed8913b5b")
+	)
+	(global_label "+5V_BUCK"
+		(shape input)
+		(at 205.74 85.09 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ff923238-97d1-449f-8ec2-1b2aa3bab87e")
+	)
+	(global_label "GND"
+		(shape input)
+		(at 215.9 97.79 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "26ff758c-2d23-4793-855d-1965e66736da")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 205.74 90.17 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "53ffbb32-6586-4ad2-ad67-68bb0ab85470")
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 226.06 85.09 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9c324fa8-880c-4805-8ca7-2ab9c85c455f")
+	)
+	(global_label "+5V_BUCK"
+		(shape input)
+		(at 200.66 85.09 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "fef97578-da46-4bea-981b-512dfdf2e144")
 	)
 	(sheet
 		(at 60 210)
@@ -3097,6 +3561,87 @@
 			)
 		)
 	)
+	(sheet
+		(at 60 510)
+		(size 90 40)
+		(fields_autoplaced)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "231a498d-1ee6-4695-98a0-35b8263abef3")
+		(property "Sheetname" "Connectors"
+			(at 60 509.365 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "connectors.kicad_sch"
+			(at 60 550.635 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 60 570)
+		(size 90 40)
+		(fields_autoplaced)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "ec4d555e-03b7-4150-a69c-0077e604bd6f")
+		(property "Sheetname" "USB + Power sense"
+			(at 60 569.365 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "usb_power.kicad_sch"
+			(at 60 610.635 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(page "8")
+				)
+			)
+		)
+	)
+  (text "Buck-side OR-ing ideal diode (U803, LM66100DCKR):\nMP2307 output = +5V_BUCK (L101 / C105 / C106).  FB (R102/R103) senses\n+5V_BUCK, so the buck regulates ITS OWN output to 5.0 V (no cross-coupling\nto the USB source).  U803: VIN=+5V_BUCK, VOUT=+5V, CE tied to VOUT, GND to\nGND -> reverse-current-blocking ideal diode, ~48 mV drop at 0.5 A.\nWhy: MP2307 is synchronous; its integrated high-side FET body diode (SW->VIN)\nwould pass current from an externally-driven +5V back into VIN when the buck\nis disabled or below UVLO (board on USB, no LiPo).  U803 blocks that.\n+5V is fed by TWO ideal diodes: U803 (buck) and U802 (USB VBUS, on the\nUSB+Power sense sheet), each with CE tied to the shared +5V node.  Per the\nLM66100 datasheet this is a valid diode-OR: highest input wins, each device\nblocks reverse current into its own input, no contention.  PWR_FLAG #FLG02\non +5V was removed (U802/U803 VOUT now drive it); PWR_FLAG added on +5V_BUCK\nand +5V_USB for the ideal-diode VIN pins."
+    (at 170 62 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "ba01e7ae-a61f-4ebd-81c7-47f1d81268d7")
+  )
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
 		(at 39.37 110.49 180)
@@ -5199,67 +5744,6 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 204.47 160.02 0)
-		(unit 1)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "8b80743c-455e-4b1a-89df-105269bf9ce0")
-		(property "Reference" "#FLG02"
-			(at 204.47 158.115 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 204.47 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 204.47 160.02 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 204.47 160.02 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 204.47 160.02 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(instances
-			(project "dronekit-pro"
-				(path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
-					(reference "#FLG02")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
 		(at 224.79 160.02 0)
 		(unit 1)
 		(in_bom yes)
@@ -6539,25 +7023,154 @@
 			)
 		)
 	)
-	(sheet
-    (at 60 510)
-    (size 90 40)
-    (fields_autoplaced yes)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0))
-    (uuid "231a498d-1ee6-4695-98a0-35b8263abef3")
-    (property "Sheetname" "Connectors"
-      (at 60 509.365 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "connectors.kicad_sch"
-      (at 60 550.635 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (instances
-      (project "dronekit-pro"
-        (path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9" (page "7"))
-      )
-    )
-  )
+	(symbol
+		(lib_id "Power_Management:LM66100DCK")
+		(at 215.9 87.63 0)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bc15fab8-2fca-4997-9fb8-a0dbd68b5469")
+		(property "Reference" "U803"
+			(at 210.82 81.534 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "LM66100DCKR"
+			(at 216.154 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
+			(at 215.9 87.63 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/lm66100.pdf"
+			(at 215.9 87.63 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Ideal Diode With Input Polarity Protection 1.5 - 5.5V  Input Voltage, 1.5A Output Current, Ron 141 mOhm, SC-70-6"
+			(at 215.9 87.63 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(reference "U803")
+					(unit 1)
+				)
+			)
+		)
+	
+		(property "LCSC" "C2869734"
+			(at 215.9 87.63 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "LM66100DCKR"
+			(at 215.9 87.63 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Texas Instruments"
+			(at 215.9 87.63 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 200.66 78.74 0)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ac7483b3-5b4d-43cf-a1dc-0ebdfd2a7243")
+		(property "Reference" "#PWR023"
+			(at 200.66 76.835 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 200.66 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 200.66 78.74 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 200.66 78.74 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 200.66 78.74 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "dronekit-pro"
+				(path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9"
+					(reference "#PWR023")
+					(unit 1)
+				)
+			)
+		)
+	)
 )
