@@ -1688,6 +1688,186 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Jumper:SolderJumper_2_Open"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom no)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "JP"
+				(at 0 2.032 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SolderJumper_2_Open"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 -7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Solder Jumper, 2-pole, open"
+				(at 0 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "solder jumper SPST"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SolderJumper*Open*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SolderJumper_2_Open_0_1"
+				(polyline
+					(pts
+						(xy -0.254 1.016)
+						(xy -0.254 -1.016)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 1.016)
+						(xy 0.254 -1.016)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SolderJumper_2_Open_1_1"
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 3.81)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(no_connect
 		(at 153.67 125.73)
@@ -2103,6 +2283,20 @@
 		)
 		(uuid "8f5a3f9c-6f88-4625-bd54-bf92e6816387")
 	)
+	(wire
+		(pts
+			(xy 129.54 110.49)
+			(xy 127 110.49)
+		)
+		(uuid "fadf6fdb-2d3c-4551-bf51-2544e36d36d7")
+	)
+	(wire
+		(pts
+			(xy 139.7 110.49)
+			(xy 142.24 110.49)
+		)
+		(uuid "7dcfff27-59cc-4d3b-8ed7-ecb60ed2fbcc")
+	)
 	(text "ANTENNA KEEP-OUT (U501 ESP32-WROOM-32E):\nNo copper pour, traces, planes, components or metal under the module's\nPCB antenna, and >= 15 mm clear beyond the module edge. Antenna edge\noverhangs the board edge; ground plane cut back under the antenna."
 		(at 96.52 104.14 0)
 		(effects
@@ -2332,6 +2526,16 @@
 			(justify left bottom)
 		)
 		(uuid "0f622be3-a4ea-4e85-9ffd-85f3225b2e65")
+	)
+	(label "EN_ESP"
+		(at 142.24 110.49 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "38c4c8fd-e854-45c1-8caa-4dd23b8b7c88")
 	)
 	(global_label "+3V3_ESP"
 		(shape input)
@@ -2641,6 +2845,22 @@
 		)
 		(uuid "22661c89-0f7e-4072-8a49-a416bfacf3bc")
 	)
+	(global_label "+3V3_ESP"
+		(shape input)
+		(at 127 110.49 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1799807e-85cc-4cf7-91f7-7680a415d8d9")
+	)
+  (text "ESP32 ENABLE POLICY (review finding 4.c - decision):\nDEFAULT = ESP32 OFF.  R501 10k pulls EN_ESP low; the ESP32 only runs when\nthe STM32 drives PB12 (ESP_EN) high through R508 1k.  This keeps the ESP32\n(WiFi radio) off during flight unless firmware deliberately enables it.\nConsequence: if the STM32 is bricked / has no firmware, PB12 never goes high\nand the ESP32 cannot self-start to do OTA recovery.\nJP501 (DNP open solder-bridge, EN_ESP <-> +3V3_ESP): for a BENCH RECOVERY\nbuild only, bridge JP501 to force the ESP32 permanently on so it can\nre-flash a dead STM32.  Leave JP501 open on all flight builds.\nJP501 is DNP (dnp flag set, excluded from BOM and pick-and-place); the pads\nare on the board so it can be bridged by hand."
+    (at 100 95 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "39520597-fa04-436f-8f9a-506eaf670d98")
+  )
 	(symbol
 		(lib_id "RF_Module:ESP32-WROOM-32E")
 		(at 168.91 151.13 0)
@@ -4127,6 +4347,84 @@
 			(project "dronekit-pro"
 				(path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9/76942114-cc93-4ebe-8642-12cc5e342dca"
 					(reference "R508")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Open")
+		(at 134.62 110.49 0)
+		(unit 1)
+		(in_bom no)
+		(on_board yes)
+		(dnp yes)
+		(uuid "3ff65bd9-ce28-4c02-bc49-cd9b38658084")
+		(property "Reference" "JP501"
+			(at 134.62 108.458 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "EN_ESP recovery"
+			(at 134.62 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm"
+			(at 134.62 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 134.62 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, open"
+			(at 134.62 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Config" "DNP - bench recovery only (bridge to force ESP32 on)"
+			(at 134.62 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DNP" "yes"
+			(at 134.62 110.49 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "esp32"
+				(path "0ef45a34-ded1-4c8c-8d1b-96757aa7d83e"
+					(reference "JP501")
 					(unit 1)
 				)
 			)
