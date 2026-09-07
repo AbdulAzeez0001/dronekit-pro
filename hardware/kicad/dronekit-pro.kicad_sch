@@ -6539,4 +6539,25 @@
 			)
 		)
 	)
+	(sheet
+    (at 60 510)
+    (size 90 40)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "231a498d-1ee6-4695-98a0-35b8263abef3")
+    (property "Sheetname" "Connectors"
+      (at 60 509.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "connectors.kicad_sch"
+      (at 60 550.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "dronekit-pro"
+        (path "/8ff649ce-ea17-45ea-9d2f-8e238e021cf9" (page "7"))
+      )
+    )
+  )
 )

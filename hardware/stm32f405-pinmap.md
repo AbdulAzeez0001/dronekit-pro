@@ -90,18 +90,33 @@ One timer bank for all four keeps DSHOT DMA clean.
 | PC13 | MODE_SENSE (input) |
 | PB12 | ESP_EN (output) |
 
+### Expansion connectors (Block 7)
+| Pin | Function |
+|---|---|
+| PA2 | GPS_TX (USART2_TX) — J702 GPS header |
+| PA3 | GPS_RX (USART2_RX) — J702 GPS header |
+| PD2 | ESC_TLM (UART5_RX) — 4-in-1 ESC telemetry, RX-only |
+
+PD2 is RX-only here: UART5_TX (PC12) is consumed by SPI3_MOSI (blackbox flash),
+so UART5 can never be a full pair in this design — which is exactly what
+one-wire ESC telemetry needs. RC receiver (J701) is on USART3 (PB10/PB11,
+see RC section); buzzer (PB8) and LED strip (PA8) are in Sensing + misc.
+
 ### Free for expansion headers
-PA0, PA1, PA2, PA3 (a spare UART2 or ADC), PB9, PB13, PB14, PB15, PC0, PC3,
-PC5, PC6, PC7, PC8, PC9, PC14, PC15, PD2. Plenty for the six expansion headers.
+PA0, PA1 (UART4 pair), PB9, PB13, PB14, PB15, PC0, PC3, PC5,
+PC6, PC7 (USART6 pair), PC8, PC9, PC14, PC15.
+Remaining full free UART pairs: UART4 (PA0/PA1) and USART6 (PC6/PC7).
 PB13/PB14/PB15 are spare (freed when onboard SPI-ELRS was dropped).
 Avoid PB2 (BOOT1). PC13/14/15 are low-drive — inputs only.
 
 ## Bus summary (no conflicts)
 - SPI1: gyro
 - SPI3: blackbox flash (W25Q128)
-- I2C1: baro
+- I2C1: baro (+ aux I2C header J703, shared, no extra pull-ups)
 - USART1: ESP32 bridge
+- USART2: GPS header (J702, PA2/PA3)
 - USART3: external CRSF receiver
+- UART5: ESC telemetry, RX-only on PD2 (TX pin PC12 used by SPI3)
 - TIM3: four motors
 - USB, SWD, crystal: dedicated
 
@@ -121,6 +136,10 @@ against the F405 DMA table and test, do not assume.
 - [ ] Add the MODE_SENSE read + ESP_EN drive to target init (custom code).
 
 ## Changelog
+- 2026-09-07 — Block 7 expansion connectors. PA2 = GPS_TX (USART2), PA3 = GPS_RX
+  (USART2) for the J702 GPS header. PD2 = ESC_TLM (UART5_RX), RX-only because
+  UART5_TX/PC12 is consumed by SPI3. Aux I2C header (J703) shares I2C1 with the
+  baro. Remaining full free UART pairs: UART4 (PA0/PA1), USART6 (PC6/PC7).
 - 2026-09-07 — Dropped onboard SPI-ELRS (SX1280). SPI3 + PA15 repurposed for the
   W25Q128 blackbox flash (FLASH_CS = PA15). RC moved to an external CRSF receiver
   on UART3 (RX_UART: PB10 TX / PB11 RX). PB13/PB14/PB15 freed to spare.

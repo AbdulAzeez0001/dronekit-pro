@@ -2894,14 +2894,6 @@
 		(uuid "0bbd3bb4-49a6-4663-a20c-54923ec4e0d1")
 	)
 	(no_connect
-		(at 210.82 115.57)
-		(uuid "6b46def7-7d46-472e-b281-e0e4670b7449")
-	)
-	(no_connect
-		(at 210.82 118.11)
-		(uuid "fe636c3c-7b0f-4d01-93a4-e06d6df4f489")
-	)
-	(no_connect
 		(at 170.18 146.05)
 		(uuid "acfd2d27-e65b-422f-a36b-d5502721cab0")
 	)
@@ -2924,10 +2916,6 @@
 	(no_connect
 		(at 170.18 156.21)
 		(uuid "e1300e57-b9c1-4698-98f2-bb613b06a1f7")
-	)
-	(no_connect
-		(at 170.18 128.27)
-		(uuid "ad2e0bfe-4573-4044-a57f-12d7ed8741c2")
 	)
 	(no_connect
 		(at 210.82 161.29)
@@ -3578,6 +3566,27 @@
 			(xy 213.36 181.61)
 		)
 		(uuid "6d375d44-c20f-4a15-810a-d5742bd0dc98")
+	)
+	(wire
+		(pts
+			(xy 210.82 115.57)
+			(xy 213.36 115.57)
+		)
+		(uuid "56ca6f4f-c037-4067-a0d8-7a6cf59a3cb4")
+	)
+	(wire
+		(pts
+			(xy 210.82 118.11)
+			(xy 213.36 118.11)
+		)
+		(uuid "8457a9f6-536b-496f-aa88-39fc69bfe1ca")
+	)
+	(wire
+		(pts
+			(xy 170.18 128.27)
+			(xy 167.64 128.27)
+		)
+		(uuid "48ae6bb7-0bb5-4797-8725-9a287293289b")
 	)
 	(text "ESP32-driven flashing: ESP_STM_NRST high = STM32 held in reset;\nESP_STM_BOOT0 high = bootloader. Both idle low."
 		(at 238.76 185.42 0)
@@ -4563,6 +4572,39 @@
 			(justify left)
 		)
 		(uuid "a495e968-3aad-481d-a984-9f721aa9ef0d")
+	)
+	(global_label "GPS_TX"
+		(shape input)
+		(at 213.36 115.57 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0f5c203b-e62d-46b5-b8ea-7496ffc70ec5")
+	)
+	(global_label "GPS_RX"
+		(shape input)
+		(at 213.36 118.11 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6c5cd3c8-79f1-4f97-9751-60d1acb4f8f9")
+	)
+	(global_label "ESC_TLM"
+		(shape input)
+		(at 167.64 128.27 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "cd8f43d2-09a1-477a-894f-85a9ece837b6")
 	)
 	(symbol
 		(lib_id "MCU_ST_STM32F4:STM32F405RGTx")
