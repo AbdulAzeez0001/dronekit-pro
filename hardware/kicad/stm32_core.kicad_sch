@@ -4814,6 +4814,11 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid "f2218a8e-980e-46a2-9cd5-23ea192ef875")
   )
+  (text "HSE Y201 = X50328MSB2GI (YXC; LCSC C115962), 8 MHz, CL 20 pF, +/-10 ppm,\nESR 80R, SMD5032 (footprint Crystal_SMD_5032-2Pin_5.0x3.2mm).\nLoad caps C212 = C213 = 30 pF (C0G).  CL_eff = (C212*C213)/(C212+C213)\n+ C_stray = 15 pF + C_stray.  At C_stray ~5 pF (typical for STM32 OSC\npins + short routing) CL_eff ~= 20 pF -> exact match.  Worst case\nC_stray ~3 pF -> CL_eff ~18 pF, oscillator ~15 ppm fast - negligible\nfor the F405 HSE -> PLL -> USB path (USB needs +/-2500 ppm).\nVerified 2026-09-08 vs Y201 datasheet; caps accepted as-is, no change."
+    (at 58 120 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "4a6cb1d2-96b2-4dca-8bfd-48c138ceb34e")
+  )
 	(symbol
 		(lib_id "MCU_ST_STM32F4:STM32F405RGTx")
 		(at 190.5 151.13 0)

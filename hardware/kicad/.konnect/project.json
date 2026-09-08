@@ -1,7 +1,8 @@
 {
   "design_rules": [
     "ERC pin_map[8][8] (power_output x power_output) is back to Error (dronekit-pro.kicad_pro). The earlier Warning downgrade was for the two-LM66100 +5V OR node; it was reverted when U803 became an LM74700 ideal-diode controller + external N-FET (Q803 AO3400A), which puts no power-output pin on +5V. The +5V rail's only power-output pin is now U802.VOUT (the USB-side LM66100). Any power_output x power_output ERC hit is a real fault.",
-    "+5V OR node topology: buck path = MP2307 -> +5V_BUCK (FB sensed here, regulated 5.0 V) -> U803 LM74700 + Q803 AO3400A ideal diode (~50 mV drop @ 1.9 A, FET-limited ~5 A) -> +5V. USB path = VBUS -> U802 LM66100 (1.5 A, USB capped at 500 mA) -> +5V. Both reverse-block. C113 22uF/25V bulk on +5V."
+    "+5V OR node topology: buck path = MP2307 -> +5V_BUCK (FB sensed here, regulated 5.0 V) -> U803 LM74700 + Q803 AO3400A ideal diode (~50 mV drop @ 1.9 A, FET-limited ~5 A) -> +5V. USB path = VBUS -> U802 LM66100 (1.5 A, USB capped at 500 mA) -> +5V. Both reverse-block. C113 22uF/25V bulk on +5V.",
+    "DPS368 barometric sensor (U401) has a 0.4 mm pressure vent in the package underside near the die centre (Infineon DPS368 DS v1.1 Fig.17). During PCB layout, keep the area under the die centre clear: no vias, no traces, no copper pour, and no solder paste there; do not flood solder or apply underfill under the part. The vent must stay open to ambient air for the sensor to read pressure."
   ],
   "fab_constraints": {},
   "naming_conventions": {},

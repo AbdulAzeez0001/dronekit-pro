@@ -1366,10 +1366,15 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid "9609f0e3-953b-4f35-8358-abaf7bed31be")
   )
-  (text "I2C1 pull-ups: R401 (SCL) / R402 (SDA) = 2.2k to +3V3_SYS, the ONLY pull-ups\non I2C1.  Master = STM32 PB6/PB7.  2.2k chosen for the J703 aux-I2C header:\nwith a cabled external device (on-board ~30 pF + J703 cable/device ~35-65 pF\n~= 90-100 pF worst case) t_r = 0.847*2.2k*100pF ~= 186 ns, under the 400 kHz\nfast-mode limit of 300 ns.  Sink current at VOL: (3.3 - 0.2)/2.2k ~= 1.4 mA\nper line, well within the I2C >=3 mA sink of the STM32 and the DPS368.\nU401 = DPS368 drawn with the BMP280 symbol (pin-identical per DPS368 DS v1.1\nTable 2).  VERIFY LGA-8 land pattern vs DPS368 DS Fig.18 before layout."
-    (at 120 175 0)
+  (text "I2C1 pull-ups: R401 (SCL) / R402 (SDA) = 2.2k to +3V3_SYS, the ONLY pull-ups\non I2C1.  Master = STM32 PB6/PB7.  2.2k chosen for the J703 aux-I2C header:\nwith a cabled external device (on-board ~30 pF + J703 cable/device ~35-65 pF\n~= 90-100 pF worst case) t_r = 0.847*2.2k*100pF ~= 186 ns, under the 400 kHz\nfast-mode limit of 300 ns.  Sink current at VOL: (3.3 - 0.2)/2.2k ~= 1.4 mA\nper line, well within the I2C >=3 mA sink of the STM32 and the DPS368.\nU401 = DPS368 drawn with the BMP280 symbol (pin-identical per DPS368 DS v1.1\nTable 2).  LGA-8 land pattern VERIFIED 2026-09-08 against DPS368 DS v1.1\nFig.18: Package_LGA:Bosch_LGA-8_2x2.5mm_P0.65mm_ClockwisePinNumbering is\naccepted as-is.  0.65 mm pitch and in-row pad centres match exactly; the\nKiCad pads are IPC-nominal (0.35 x 0.50 mm on 1.60 mm rows) vs the DS Fig.18\nrecommended 0.35 x 0.35 mm on 1.45 mm rows.  The deviation is outward only -\npad inner edges coincide at 0.55 mm from centre - so fit and fillet are fine.\nNo change to footprint or symbol required."
+    (at 95 56 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "b37d88eb-9a8b-479d-94a2-cdda629be256")
+    (uuid "a10a16e6-ca71-4d1e-ab63-0ef6e1e9faa0")
+  )
+  (text "DPS368 (U401) PRESSURE VENT - PCB LAYOUT CONSTRAINT:\nthe DPS368 has a 0.4 mm pressure vent in the package underside (DS v1.1\nFig.17, near the die centre).  No vias, traces, or copper/paste under the\ndie centre; no solder flood or underfill there.  This MUST be respected\nduring PCB layout so the vent stays open to ambient air."
+    (at 95 72 0)
+    (effects (font (size 1.27 1.27) (bold yes)) (justify left bottom))
+    (uuid "06faadf2-3151-4e58-a119-f8a5acbefe45")
   )
 	(symbol
 		(lib_id "Sensor_Pressure:BMP280")
