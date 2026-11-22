@@ -1,0 +1,765 @@
+(export 
+  (version "D")
+  (design
+    (source "camera.py")
+    (date "11/22/2026 09:59 PM")
+    (tool "SKiDL (2.2.3)")
+    (sheet
+      (number 1)
+      (name "/")
+      (tstamps "/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "camera.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value "")))))
+  (components
+    (comp
+      (ref "C30")
+      (value "1uF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "80BX0uH_0e")
+        (field
+          (name "SKiDL Line") "camera.py:61"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "6b3eea0c-e333-5e2d-94f8-8ae3d21662ca"))
+    (comp
+      (ref "C31")
+      (value "1uF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "VlBxBFnvVd")
+        (field
+          (name "SKiDL Line") "camera.py:61"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "9615f3e2-3ffa-5da8-958c-94a337777f90"))
+    (comp
+      (ref "C32")
+      (value "1uF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "LYMIIvptId")
+        (field
+          (name "SKiDL Line") "camera.py:61"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "8a5c413a-5adf-55c0-9a0a-8f02c3134094"))
+    (comp
+      (ref "C33")
+      (value "1uF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "9ri3Je4DBL")
+        (field
+          (name "SKiDL Line") "camera.py:61"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "9ce2e26d-aab5-588b-aa58-e0260dde9ed4"))
+    (comp
+      (ref "C34")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "Hu6VsfoC_n")
+        (field
+          (name "SKiDL Line") "camera.py:61"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "99f6c08d-3325-5582-8722-82e05c6f4f3d"))
+    (comp
+      (ref "C35")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "uS0Vdb8tc6")
+        (field
+          (name "SKiDL Line") "camera.py:61"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "ab8f96ce-839f-5817-b6b2-d7f72cb2954c"))
+    (comp
+      (ref "C36")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "BvOXIBc1wN")
+        (field
+          (name "SKiDL Line") "camera.py:61"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "5d5683e7-c22d-5182-8fee-2136dcdf98ad"))
+    (comp
+      (ref "C37")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "PbuWCY1iAy")
+        (field
+          (name "SKiDL Line") "camera.py:61"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "e0d28591-26f1-5909-bfbb-6abb5e2e7c99"))
+    (comp
+      (ref "J30")
+      (value "CAM_FPC_24P")
+      (description "")
+      (footprint "Connector_FFC-FPC:Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Connector_FFC-FPC:Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "enY8QeltMt")
+        (field
+          (name "SKiDL Line") "camera.py:97"))
+      (libsource
+        (lib "NO_LIB")
+        (part "FPC_24P_0.5mm"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "3c438b83-e6b1-51c3-af8f-c76aa44af54c"))
+    (comp
+      (ref "R30")
+      (value "10k")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "nvwLQvYv_A")
+        (field
+          (name "SKiDL Line") "camera.py:58"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "f863586f-51d2-59d1-896b-ce7b0957157f"))
+    (comp
+      (ref "R31")
+      (value "4.7k")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "vSQ_DXcHtJ")
+        (field
+          (name "SKiDL Line") "camera.py:58"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "d2743c09-91d8-5204-8307-f1b51435f38d"))
+    (comp
+      (ref "R32")
+      (value "4.7k")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "FydnY_cYuq")
+        (field
+          (name "SKiDL Line") "camera.py:58"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "8a02a67e-ad92-50c5-9caa-2eb2c07c37d3"))
+    (comp
+      (ref "R33")
+      (value "10k")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "WMLLfc6xgq")
+        (field
+          (name "SKiDL Line") "camera.py:58"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "17a2a4d4-d50a-5474-88c2-3c34fe4ed36c"))
+    (comp
+      (ref "U2")
+      (value "ESP32-S3-WROOM-1-N8R2")
+      (description "")
+      (footprint "RF_Module:ESP32-S3-WROOM-1")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "RF_Module:ESP32-S3-WROOM-1")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "FcgaQFbqKU")
+        (field
+          (name "SKiDL Line") "camera.py:115"))
+      (libsource
+        (lib "NO_LIB")
+        (part "ESP32-S3-WROOM-1-N8R2"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "d70206a1-5713-5cfd-b67b-dcb694c85eba"))
+    (comp
+      (ref "U30")
+      (value "XC6206P282MR")
+      (description "")
+      (footprint "Package_TO_SOT_SMD:SOT-23")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_TO_SOT_SMD:SOT-23")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "iIJCvk1veT")
+        (field
+          (name "SKiDL Line") "camera.py:74"))
+      (libsource
+        (lib "NO_LIB")
+        (part "XC6206P282MR"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "f607eb18-d88e-59a6-b20e-6958ca80d004"))
+    (comp
+      (ref "U31")
+      (value "XC6206P122MR")
+      (description "")
+      (footprint "Package_TO_SOT_SMD:SOT-23")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_TO_SOT_SMD:SOT-23")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "RqjBlFHWZF")
+        (field
+          (name "SKiDL Line") "camera.py:74"))
+      (libsource
+        (lib "NO_LIB")
+        (part "XC6206P122MR"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "b26a54a9-c02b-5396-86d4-010ba0c8f386")))
+  (nets
+    (net
+      (code 1)
+      (name "+1V2_CAM")
+      (class "Default")
+      (node
+        (ref "C33")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C35")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J30")
+        (pin "15")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U31")
+        (pin "2")
+        (pintype "POWER-OUT")))
+    (net
+      (code 2)
+      (name "+2V8_CAM")
+      (class "Default")
+      (node
+        (ref "C31")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C36")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J30")
+        (pin "21")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U30")
+        (pin "2")
+        (pintype "POWER-OUT")))
+    (net
+      (code 3)
+      (name "+3V3_ESP")
+      (class "Default")
+      (node
+        (ref "C30")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C32")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C34")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J30")
+        (pin "14")
+        (pintype "POWER-IN"))
+      (node
+        (ref "R30")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R31")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R32")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R33")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "1")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U30")
+        (pin "3")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U31")
+        (pin "3")
+        (pintype "POWER-IN")))
+    (net
+      (code 4)
+      (name "CAM_HREF")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "16")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "7")
+        (pintype "INPUT")))
+    (net
+      (code 5)
+      (name "CAM_PCLK")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "8")
+        (pintype "INPUT")))
+    (net
+      (code 6)
+      (name "CAM_PWDN")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "17")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R30")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "17")
+        (pintype "OUTPUT")))
+    (net
+      (code 7)
+      (name "CAM_RESET")
+      (class "Default")
+      (node
+        (ref "C37")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J30")
+        (pin "19")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R33")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 8)
+      (name "CAM_SIOC")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "20")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R32")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "5")
+        (pintype "OUTPUT")))
+    (net
+      (code 9)
+      (name "CAM_SIOD")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "22")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R31")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "4")
+        (pintype "BIDIRECTIONAL")))
+    (net
+      (code 10)
+      (name "CAM_VSYNC")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "18")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "6")
+        (pintype "INPUT")))
+    (net
+      (code 11)
+      (name "CAM_XCLK")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "12")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "3")
+        (pintype "OUTPUT")))
+    (net
+      (code 12)
+      (name "CAM_Y2")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "9")
+        (pintype "INPUT")))
+    (net
+      (code 13)
+      (name "CAM_Y3")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "4")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "10")
+        (pintype "INPUT")))
+    (net
+      (code 14)
+      (name "CAM_Y4")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "3")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "11")
+        (pintype "INPUT")))
+    (net
+      (code 15)
+      (name "CAM_Y5")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "12")
+        (pintype "INPUT")))
+    (net
+      (code 16)
+      (name "CAM_Y6")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "13")
+        (pintype "INPUT")))
+    (net
+      (code 17)
+      (name "CAM_Y7")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "9")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "14")
+        (pintype "INPUT")))
+    (net
+      (code 18)
+      (name "CAM_Y8")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "11")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "15")
+        (pintype "INPUT")))
+    (net
+      (code 19)
+      (name "CAM_Y9")
+      (class "Default")
+      (node
+        (ref "J30")
+        (pin "13")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "16")
+        (pintype "INPUT")))
+    (net
+      (code 20)
+      (name "GND")
+      (class "Default")
+      (node
+        (ref "C30")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C31")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C32")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C33")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C34")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C35")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C36")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C37")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J30")
+        (pin "10")
+        (pintype "POWER-IN"))
+      (node
+        (ref "J30")
+        (pin "23")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U2")
+        (pin "2")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U30")
+        (pin "1")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U31")
+        (pin "1")
+        (pintype "POWER-IN")))))

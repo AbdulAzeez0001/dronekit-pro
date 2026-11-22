@@ -58,6 +58,8 @@ Swap to a TPS563201 buck only if Mode B runtime becomes a priority.
 - +5V        — MP2307 output, feeds both LDOs
 - +3V3_SYS   — STM32 + sensors (clean)
 - +3V3_ESP   — ESP32 only (isolated)
+- +2V8_CAM   — camera analog (AVDD), from +3V3_ESP via XC6206P282MR (camera block)
+- +1V2_CAM   — camera core (DVDD), from +3V3_ESP via XC6206P122MR (camera block)
 - GND        — common
 
 ## To verify before layout

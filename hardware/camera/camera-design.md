@@ -2,7 +2,8 @@
 
 Status: **decided (2026-11-22): DVP camera on an ESP32-S3-WROOM-1-N8R2.**
 The dual-boot circuit (`hardware/dual-boot/`) is moved to the S3. The camera
-connector, its 2.8V/1.2V rails and the cradle size are still to do.
+connector and its rails are in `camera.py` (netlist `camera.net`, ERC clean).
+The final cradle size waits on measuring the real module.
 
 ## The part
 
@@ -69,8 +70,8 @@ Camera pins follow Espressif's ESP32-S3-EYE board (checked against
 | VSYNC | 6 | | D4 (Y6) | 12 |
 | HREF | 7 | | D3 (Y5) | 10 |
 | PCLK | 13 | | D2 (Y4) | 8 |
-| PWDN | tie low or spare GPIO | | D1 (Y3) | 9 |
-| RESET | RC to 3.3 V | | D0 (Y2) | 11 |
+| PWDN | 14 (10k pull-up) | | D1 (Y3) | 9 |
+| RESET | RC: 10k to 3.3 V, 100nF | | D0 (Y2) | 11 |
 
 Rest of the dual-boot wiring:
 
@@ -86,12 +87,45 @@ Rest of the dual-boot wiring:
 Nothing above touches GPIO3/45/46. Strap resistors are in `hardware/dual-boot/`
 (GPIO0 pull-up, GPIO45 and GPIO46 pull-down, GPIO3 unconnected).
 
-### 4. Power: two more rails for the camera
+### 4. Camera block (`camera.py` → `camera.net`)
 
-The OV2640 needs 2.8 V and 1.2 V from small LDOs fed from the 3.3 V
-rail. The ESP32-CAM board does the same. The camera only runs in Mode B, so it
-can sit on the ESP side, `+3V3_ESP`. Budget roughly 100 mA extra while
-streaming. Part choice is open.
+```
++3V3_ESP --> U30 XC6206P282MR --> +2V8_CAM  -> AVDD  (J30 pin 21)
++3V3_ESP --> U31 XC6206P122MR --> +1V2_CAM  -> DVDD  (J30 pin 15)
++3V3_ESP --------------------------------  -> DOVDD (J30 pin 14)
+```
+
+| Ref | Part | Note |
+|---|---|---|
+| J30 | 24-pin 0.5 mm FPC, flip-lock | footprint placeholder: Hirose FH12-24S-0.5SH; pick the LCSC part at layout |
+| U30 | XC6206P282MR, SOT-23 | 2.8 V, e.g. LCSC C347374 (250 mA) |
+| U31 | XC6206P122MR, SOT-23 | 1.2 V, e.g. LCSC C2827649 (200 mA). Not the Torex "-G" C424699, which is 60 mA |
+| C30–C33 | 1 µF 0402 | LDO in/out |
+| C34–C36 | 100 nF 0402 | at J30's DOVDD, DVDD, AVDD pins |
+| R30 | 10k | PWDN pull-up |
+| R31, R32 | 4.7k | SCCB (SIOD/SIOC) pull-ups |
+| R33 + C37 | 10k + 100 nF | RESETB power-on RC |
+
+Design choices:
+
+- **PWDN pulls up.** The camera sits powered down unless the S3 drives
+  GPIO14 low. In Mode A the S3 is held off, so the camera draws only standby
+  current. It's the same dark-by-default idea as the S3's EN line.
+- **The rails hang off `+3V3_ESP`.** The camera only works when the S3 does,
+  and its current stays off the gyro's clean `+3V3_SYS` rail. Budget roughly
+  100 mA extra while streaming. The 1.2 V LDO drops 2.1 V, so at about
+  60 mA it dissipates about 0.13 W in SOT-23. That's fine, but keep some
+  copper on its pads.
+- **Y0/Y1 stay unconnected.** They're the low bits of the 10-bit bus, and
+  the driver uses 8 bits.
+
+**FPC pin numbering:** the pin numbers follow the SunFounder ESP32 camera
+extension table (pin 1 = Y0, pin 24 = NC). Some ESP32-CAM schematics number
+the same connector the other way round (pin 1 = NC … pin 24 = Y0). The
+signal order is the same either way. What matters is which end of the
+connector the ribbon's pin 1 lands on, so check the chosen connector against
+the module before layout: AGND and DGND ring through to the module's metal
+shield.
 
 ### 5. Mechanical
 
@@ -108,8 +142,12 @@ streaming. Part choice is open.
 - [x] Switch to ESP32-S3-WROOM-1-N8R2 and redo `hardware/dual-boot/` for the
       S3 strapping pins.
 - [ ] Verify the S3 strap table against the ESP32-S3 datasheet.
-- [ ] Add the camera block (24-pin FPC connector + 2.8V/1.2V LDOs) as circuit
-      code next to `dual_boot.py`.
-- [ ] Pick the 2.8 V and 1.2 V LDOs.
+- [x] Add the camera block (24-pin FPC connector + 2.8V/1.2V LDOs) as circuit
+      code: `camera.py`.
+- [x] Pick the 2.8 V and 1.2 V LDOs (XC6206P282MR / XC6206P122MR).
+- [ ] Confirm the XC6206 SOT-23 pin order (1 VSS, 2 VOUT, 3 VIN) on the
+      chosen vendor's datasheet.
+- [ ] Pick the exact FPC connector (LCSC) and check its pin-1 side against the
+      module's ribbon.
 - [ ] Measure the real module and set the final `cam_w` / `cam_d` in Fusion
       (currently a 9 mm estimate).

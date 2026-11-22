@@ -37,7 +37,7 @@ centre. Import into KiCad as **Edge.Cuts** (File → Import → Graphics, units 
   (battery sits above the board, lying along Y).
 - Motor wires drop through the holder bases at the four corners
   (motors at x, y = ±26.5 mm) — put the four motor pads near the board corners.
-- Camera 24-pin FPC connector at the +X edge; ToF / optical-flow header toward −X.
+- Camera 24-pin FPC connector (J30) on top at the +X edge, x = 11.5–15.5 mm, 16 mm wide, 2 mm tall (placeholder in Fusion); ToF / optical-flow header toward −X.
 - Battery lead comes from the side (±Y).
 
 Verified in Fusion: the board does not touch the cage, and a 3 mm parts zone
