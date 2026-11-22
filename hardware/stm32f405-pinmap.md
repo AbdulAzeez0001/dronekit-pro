@@ -49,11 +49,11 @@ Betaflight target is built.
 The receiver is an add-on the user buys and solders to J60. Betaflight:
 UART2 = Serial Rx, provider CRSF.
 
-### Baro — BMP280 on I2C1
+### Baro — BMP280 on I2C1, address 0x76 (see `hardware/baro/`)
 | Pin | Function |
 |---|---|
-| PB6 | I2C1_SCL |
-| PB7 | I2C1_SDA |
+| PB6 | I2C1_SCL (4.7k pull-up, on the baro block) |
+| PB7 | I2C1_SDA (4.7k pull-up, on the baro block) |
 
 ### Motors — 4 brushed MOSFET channels, plain PWM, all on TIM3
 | Pin | Function |
@@ -93,7 +93,7 @@ Avoid PB2 (BOOT1). PC13/14/15 are low-drive — inputs only.
 ## Bus summary (no conflicts)
 - SPI1: gyro
 - SPI3: free (expansion)
-- I2C1: baro
+- I2C1: baro (0x76), shared with the expansion header for add-on I2C sensors
 - USART1: ESP32 bridge
 - USART2: optional ELRS receiver (serial CRSF)
 - TIM3: four brushed motors (PWM)

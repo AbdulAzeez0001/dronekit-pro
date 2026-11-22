@@ -1,0 +1,275 @@
+(export 
+  (version "D")
+  (design
+    (source "baro.py")
+    (date "11/22/2026 10:24 PM")
+    (tool "SKiDL (2.2.3)")
+    (sheet
+      (number 1)
+      (name "/")
+      (tstamps "/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "baro.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value "")))))
+  (components
+    (comp
+      (ref "C70")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "33YBF25j7f")
+        (field
+          (name "SKiDL Line") "baro.py:58"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "629423b9-b64b-56cd-9004-51e747b43f9e"))
+    (comp
+      (ref "C71")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "9Ot0myNXs_")
+        (field
+          (name "SKiDL Line") "baro.py:58"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "9254d3e0-b5e7-5292-9b08-97ac74e51077"))
+    (comp
+      (ref "R70")
+      (value "4.7k")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "PlZgB1t8rd")
+        (field
+          (name "SKiDL Line") "baro.py:55"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "e9286ea9-6c8b-598f-8c45-2d36f4c57bb6"))
+    (comp
+      (ref "R71")
+      (value "4.7k")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "dVkSHbbBj8")
+        (field
+          (name "SKiDL Line") "baro.py:55"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "eb4efdc9-3699-5a95-a76d-1665fe432160"))
+    (comp
+      (ref "U1")
+      (value "STM32F405RGT6")
+      (description "")
+      (footprint "Package_QFP:LQFP-64_10x10mm_P0.5mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_QFP:LQFP-64_10x10mm_P0.5mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "YWjG3l6gdb")
+        (field
+          (name "SKiDL Line") "baro.py:77"))
+      (libsource
+        (lib "NO_LIB")
+        (part "STM32F405RGT6"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "95fc4f39-65cc-5710-b9a5-bd954df2fb39"))
+    (comp
+      (ref "U70")
+      (value "BMP280")
+      (description "")
+      (footprint "Package_LGA:Bosch_LGA-8_2x2.5mm_P0.65mm_ClockwisePinNumbering")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_LGA:Bosch_LGA-8_2x2.5mm_P0.65mm_ClockwisePinNumbering")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "YZQSU5Tl49")
+        (field
+          (name "SKiDL Line") "baro.py:63"))
+      (libsource
+        (lib "NO_LIB")
+        (part "BMP280"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "b70363be-7f45-5a4a-be1d-8824a45896c8")))
+  (nets
+    (net
+      (code 1)
+      (name "+3V3_SYS")
+      (class "Default")
+      (node
+        (ref "C70")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C71")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R70")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R71")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U70")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U70")
+        (pin "6")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U70")
+        (pin "8")
+        (pintype "POWER-IN")))
+    (net
+      (code 2)
+      (name "GND")
+      (class "Default")
+      (node
+        (ref "C70")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C71")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "1")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U70")
+        (pin "1")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U70")
+        (pin "5")
+        (pintype "INPUT"))
+      (node
+        (ref "U70")
+        (pin "7")
+        (pintype "PASSIVE")))
+    (net
+      (code 3)
+      (name "I2C1_SCL")
+      (class "Default")
+      (node
+        (ref "R70")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "2")
+        (pintype "OUTPUT"))
+      (node
+        (ref "U70")
+        (pin "4")
+        (pintype "INPUT")))
+    (net
+      (code 4)
+      (name "I2C1_SDA")
+      (class "Default")
+      (node
+        (ref "R71")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "3")
+        (pintype "BIDIRECTIONAL"))
+      (node
+        (ref "U70")
+        (pin "3")
+        (pintype "BIDIRECTIONAL")))))
