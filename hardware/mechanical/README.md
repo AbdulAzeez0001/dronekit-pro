@@ -3,6 +3,13 @@
 Source design: Fusion, Default Project → **DroneKit Cage** (fully parametric;
 edit sizes under Modify → Change Parameters).
 
+## Frame at default parameters
+
+- Motors: **720 brushed** (7 × 20 mm), 40 mm props, 75 mm wheelbase.
+- Cage: about 101 × 101 × 34 mm, about 11 g in PLA.
+- Props sit at z = 27–30 mm, 2.3 mm below the top struts.
+- For 716 motors, set `motor_len` = 16 and `cage_h` = 30.
+
 ## Flight-controller PCB that fits the cage
 
 `fc_pcb_outline.dxf` — board edge + mounting holes, in mm, origin at board
