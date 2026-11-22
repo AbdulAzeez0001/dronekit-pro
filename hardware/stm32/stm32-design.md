@@ -12,8 +12,8 @@ definition**:
 - The other blocks' `U1` entries are stubs with local pin numbers. When
   merging, keep this block's `U1` and drop the stubs; the nets connect by
   name.
-- All 20 cross-block nets were checked against the other netlists, and each
-  name matches.
+- All 21 cross-block nets (including BEEPER) were checked against the other
+  netlists, and each name matches.
 
 ## Supplies (ST DS8626, section 5.1.6 power supply scheme)
 

@@ -1,0 +1,286 @@
+(export 
+  (version "D")
+  (design
+    (source "buzzer.py")
+    (date "11/22/2026 10:49 PM")
+    (tool "SKiDL (2.2.3)")
+    (sheet
+      (number 1)
+      (name "/")
+      (tstamps "/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "buzzer.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value "")))))
+  (components
+    (comp
+      (ref "C120")
+      (value "1uF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "CKLTPf3HKQ")
+        (field
+          (name "SKiDL Line") "buzzer.py:55"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "0e84f79d-e103-53ff-aa5d-e58d2d836257"))
+    (comp
+      (ref "D120")
+      (value "B5819W")
+      (description "")
+      (footprint "Diode_SMD:D_SOD-123")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Diode_SMD:D_SOD-123")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "jiC8pmNtUL")
+        (field
+          (name "SKiDL Line") "buzzer.py:66"))
+      (libsource
+        (lib "NO_LIB")
+        (part "B5819W"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "d9821995-81e0-5705-9932-79f6eb79023f"))
+    (comp
+      (ref "J120")
+      (value "BUZZER")
+      (description "")
+      (footprint "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "5QmcEq_nlr")
+        (field
+          (name "SKiDL Line") "buzzer.py:73"))
+      (libsource
+        (lib "NO_LIB")
+        (part "Buzzer_Pads"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "acdc3be0-e711-59d0-957c-38f2b1d96a90"))
+    (comp
+      (ref "Q120")
+      (value "AO3400A")
+      (description "")
+      (footprint "Package_TO_SOT_SMD:SOT-23")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_TO_SOT_SMD:SOT-23")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "yB3aMJPOYb")
+        (field
+          (name "SKiDL Line") "buzzer.py:58"))
+      (libsource
+        (lib "NO_LIB")
+        (part "AO3400A"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "d50ac6b1-0ea4-5347-951a-d0860cb482a0"))
+    (comp
+      (ref "R120")
+      (value "22R")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "HFe6SRcwdB")
+        (field
+          (name "SKiDL Line") "buzzer.py:52"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "fe26b9b4-3617-58f0-8e0c-046aa609a6b1"))
+    (comp
+      (ref "R121")
+      (value "10k")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "GpKrbfi3vt")
+        (field
+          (name "SKiDL Line") "buzzer.py:52"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "0dae6d3e-ba88-5222-ad26-489c631caef1"))
+    (comp
+      (ref "U1")
+      (value "STM32F405RGT6")
+      (description "")
+      (footprint "Package_QFP:LQFP-64_10x10mm_P0.5mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_QFP:LQFP-64_10x10mm_P0.5mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "vwBGVuADeC")
+        (field
+          (name "SKiDL Line") "buzzer.py:80"))
+      (libsource
+        (lib "NO_LIB")
+        (part "STM32F405RGT6"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "5f88a0c0-3f3b-5471-a469-4b9ac03fb691")))
+  (nets
+    (net
+      (code 1)
+      (name "+3V8")
+      (class "Default")
+      (node
+        (ref "C120")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "D120")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J120")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 2)
+      (name "BEEPER")
+      (class "Default")
+      (node
+        (ref "R120")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "2")
+        (pintype "OUTPUT")))
+    (net
+      (code 3)
+      (name "BZ_GATE")
+      (class "Default")
+      (node
+        (ref "Q120")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R120")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R121")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 4)
+      (name "BZ_NEG")
+      (class "Default")
+      (node
+        (ref "D120")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J120")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "Q120")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 5)
+      (name "GND")
+      (class "Default")
+      (node
+        (ref "C120")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "Q120")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R121")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "1")
+        (pintype "POWER-IN")))))

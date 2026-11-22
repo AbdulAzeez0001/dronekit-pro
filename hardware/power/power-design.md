@@ -40,9 +40,9 @@ VBAT ─ TPS63070 buck-boost ─> +3V8
 | Rail | Loads | Typical | Peak |
 |---|---|---|---|
 | +3V3_SYS | STM32F405, ICM-42688-P, BMP280 | ~150 mA | ~180 mA |
-| +3V8 direct | optional ELRS receiver on J60 | ~50 mA | ~100 mA |
+| +3V8 direct | optional ELRS receiver (J60) + buzzer (J120) | ~50 mA | ~140 mA |
 | +3V3_ESP | ESP32-S3 (+ camera ~100 mA, Mode B) | ~220 mA | ~600 mA (TX burst) |
-| +3V8 total | both LDOs + receiver | ~420 mA | ~880 mA |
+| +3V8 total | both LDOs + receiver + buzzer | ~420 mA | ~920 mA |
 
 Battery current for the logic at peak:
 

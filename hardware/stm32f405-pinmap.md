@@ -74,7 +74,7 @@ drives an AO3400A gate through 22R, with a 10k pull-down (see
 |---|---|
 | PC1 | VBAT sense (ADC), 10k/1k divider = vbat_scale 110; also detects 1S vs 2S |
 | PC2 | current sense (ADC) — not fitted (no shunt on the board yet); free |
-| PB8 | buzzer (via FET) — planned, no block yet |
+| PB8 | buzzer / Betaflight BEEPER (AO3400A low-side, see `hardware/buzzer/`) |
 | PA8 | LED strip (WS2811, TIM1_CH1) — optional |
 
 ### Bridge + dual-boot control

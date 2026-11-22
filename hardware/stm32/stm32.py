@@ -264,6 +264,8 @@ BLOCK_NETS = {
     "PB0": "M1_PWM", "PB1": "M2_PWM", "PB4": "M3_PWM", "PB5": "M4_PWM",
     # power (hardware/power)
     "PC1": "VBAT_SENSE",
+    # buzzer (hardware/buzzer)
+    "PB8": "BEEPER",
 }
 for pin, net in BLOCK_NETS.items():
     n = Net(net); n += u1[pin]
