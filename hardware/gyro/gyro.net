@@ -1,0 +1,323 @@
+(export 
+  (version "D")
+  (design
+    (source "gyro.py")
+    (date "11/22/2026 10:35 PM")
+    (tool "SKiDL (2.2.3)")
+    (sheet
+      (number 1)
+      (name "/")
+      (tstamps "/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "gyro.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value "")))))
+  (components
+    (comp
+      (ref "C80")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "r6lUnvMuN9")
+        (field
+          (name "SKiDL Line") "gyro.py:68"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "0b26ad60-b5c1-579b-ba2b-d9a1c771f2a8"))
+    (comp
+      (ref "C81")
+      (value "2.2uF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "Kh7WLfn6oI")
+        (field
+          (name "SKiDL Line") "gyro.py:68"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "3ff93eba-e761-563e-a91b-a35518c06b46"))
+    (comp
+      (ref "C82")
+      (value "10nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "ds7LevWIlP")
+        (field
+          (name "SKiDL Line") "gyro.py:68"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "b3510644-57e8-5bd2-a276-5251752b5dc0"))
+    (comp
+      (ref "R80")
+      (value "10k")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "WMNI1CJdNz")
+        (field
+          (name "SKiDL Line") "gyro.py:65"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "4a5ee81b-cfcc-597b-b9c6-127c34180eb6"))
+    (comp
+      (ref "U1")
+      (value "STM32F405RGT6")
+      (description "")
+      (footprint "Package_QFP:LQFP-64_10x10mm_P0.5mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_QFP:LQFP-64_10x10mm_P0.5mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "ygyN0OCwXl")
+        (field
+          (name "SKiDL Line") "gyro.py:95"))
+      (libsource
+        (lib "NO_LIB")
+        (part "STM32F405RGT6"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "f1d2e123-e49a-5ea5-8bdf-4bad47e845ef"))
+    (comp
+      (ref "U80")
+      (value "ICM-42688-P")
+      (description "")
+      (footprint "Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "Wp72aVVnK_")
+        (field
+          (name "SKiDL Line") "gyro.py:75"))
+      (libsource
+        (lib "NO_LIB")
+        (part "ICM-42688-P"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "317da9b4-8ff9-546e-b918-dbd64b41d9ee")))
+  (nets
+    (net
+      (code 1)
+      (name "+3V3_SYS")
+      (class "Default")
+      (node
+        (ref "C80")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C81")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C82")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R80")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U80")
+        (pin "5")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U80")
+        (pin "8")
+        (pintype "POWER-IN")))
+    (net
+      (code 2)
+      (name "GND")
+      (class "Default")
+      (node
+        (ref "C80")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C81")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C82")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "1")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U80")
+        (pin "10")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U80")
+        (pin "11")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U80")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U80")
+        (pin "3")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U80")
+        (pin "6")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U80")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U80")
+        (pin "9")
+        (pintype "PASSIVE")))
+    (net
+      (code 3)
+      (name "GYRO_CS")
+      (class "Default")
+      (node
+        (ref "R80")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "5")
+        (pintype "OUTPUT"))
+      (node
+        (ref "U80")
+        (pin "12")
+        (pintype "INPUT")))
+    (net
+      (code 4)
+      (name "GYRO_INT")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "6")
+        (pintype "INPUT"))
+      (node
+        (ref "U80")
+        (pin "4")
+        (pintype "OUTPUT")))
+    (net
+      (code 5)
+      (name "GYRO_MISO")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "3")
+        (pintype "INPUT"))
+      (node
+        (ref "U80")
+        (pin "1")
+        (pintype "OUTPUT")))
+    (net
+      (code 6)
+      (name "GYRO_MOSI")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "4")
+        (pintype "OUTPUT"))
+      (node
+        (ref "U80")
+        (pin "14")
+        (pintype "INPUT")))
+    (net
+      (code 7)
+      (name "GYRO_SCK")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "2")
+        (pintype "OUTPUT"))
+      (node
+        (ref "U80")
+        (pin "13")
+        (pintype "INPUT")))))

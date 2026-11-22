@@ -31,14 +31,14 @@ Betaflight target is built.
 | VCAP1 / VCAP2 | internal reg caps — 2.2uF each, easy to forget |
 | VDD/VSS/VDDA/VSSA/VBAT | power |
 
-### Gyro — MPU-6000 on SPI1
+### Gyro — ICM-42688-P on SPI1 (see `hardware/gyro/`)
 | Pin | Function |
 |---|---|
 | PA5 | SPI1_SCK |
 | PA6 | SPI1_MISO |
 | PA7 | SPI1_MOSI |
-| PA4 | SPI1_CS (gyro) |
-| PC4 | gyro INT (EXTI) |
+| PA4 | SPI1_CS (gyro, 10k pull-up) |
+| PC4 | gyro INT (EXTI4) |
 
 ### RC — optional serial ELRS receiver on USART2 (see `hardware/elrs/`)
 | Pin | Function |
