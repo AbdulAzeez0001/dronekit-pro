@@ -20,16 +20,18 @@ Betaflight target is built.
 
 ## Full pin allocation
 
-### Fixed / dedicated
+### Fixed / dedicated (see `hardware/stm32/`, which holds the real LQFP64 pin numbers)
 | Pin | Function |
 |---|---|
-| PA11 / PA12 | USB DM / DP |
-| PA13 / PA14 | SWDIO / SWCLK (programming, keep) |
-| PH0 / PH1 | 8MHz HSE crystal (OSC_IN / OSC_OUT) |
+| PA11 / PA12 | USB DM / DP (USB-C, USBLC6 ESD; VBUS powers the logic via the power block) |
+| PA13 / PA14 | SWDIO / SWCLK (SWD pads J91) |
+| PH0 / PH1 | 8MHz HSE crystal (OSC_IN / OSC_OUT), 20pF load caps |
 | NRST | reset (STM_NRST) |
-| BOOT0 | boot select (STM_BOOT0) |
-| VCAP1 / VCAP2 | internal reg caps — 2.2uF each, easy to forget |
-| VDD/VSS/VDDA/VSSA/VBAT | power |
+| BOOT0 | boot select (STM_BOOT0), BOOT button to 3V3 via 1k |
+| PB2 | BOOT1, 10k pull-down |
+| PB9 | LED0 status LED (active low) |
+| VCAP1 / VCAP2 | internal reg caps — 2.2uF each, ESR < 2 ohm |
+| VDD/VSS/VDDA/VSSA/VBAT | power (VDDA, VBAT tied to VDD) |
 
 ### Gyro — ICM-42688-P on SPI1 (see `hardware/gyro/`)
 | Pin | Function |
@@ -71,8 +73,8 @@ drives an AO3400A gate through 22R, with a 10k pull-down (see
 | Pin | Function |
 |---|---|
 | PC1 | VBAT sense (ADC), 10k/1k divider = vbat_scale 110; also detects 1S vs 2S |
-| PC2 | current sense (ADC) |
-| PB8 | buzzer (via FET) |
+| PC2 | current sense (ADC) — not fitted (no shunt on the board yet); free |
+| PB8 | buzzer (via FET) — planned, no block yet |
 | PA8 | LED strip (WS2811, TIM1_CH1) — optional |
 
 ### Bridge + dual-boot control
@@ -84,7 +86,7 @@ drives an AO3400A gate through 22R, with a 10k pull-down (see
 | PB12 | ESP_EN (output) |
 
 ### Free for expansion headers
-PA0, PA1 (ADC), PB9, PC0, PC3, PC5, PC6, PC7,
+PA0, PA1 (ADC), PC0, PC3, PC5, PC6, PC7,
 PC8, PC9, PC14, PC15, PD2. Plenty for the six expansion headers.
 SPI3 is also free now (PC10 SCK, PC11 MISO, PC12 MOSI, plus PA15, PB13,
 PB14, PB15 for chip-selects / interrupts), e.g. for an SPI expansion header.

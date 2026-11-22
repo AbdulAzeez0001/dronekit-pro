@@ -1,7 +1,8 @@
 # Power section — 1S or 2S input, split rails
 
 Status: decided. The board runs from a **1S or 2S LiPo** with nothing to
-change between them. Parts to verify on LCSC before layout.
+change between them, **or from USB** (logic only) for the configurator and
+bench coding. Parts to verify on LCSC before layout.
 
 Source of truth: `power.py`, which generates `power.net` (ERC clean).
 
@@ -10,11 +11,12 @@ Source of truth: `power.py`, which generates `power.net` (ERC clean).
 ```
 1S/2S LiPo (VBAT_RAW, 3.0–8.4 V)
   ├─ motors (hardware/motors/: 4 × AO3400A + SS34, straight off the battery)
-  └─ AO3401A reverse-polarity P-FET ─> VBAT
-        ├─ TPS63070 buck-boost ─> +3V8
-        │     ├─ RT9013-33  ─> +3V3_SYS   STM32, ICM-42688-P, BMP280
-        │     └─ AP7361C-33 ─> +3V3_ESP   ESP32-S3, camera (2V8/1V2 LDOs)
-        └─ 10k/1k divider ─> VBAT_SENSE (STM32 PC1)
+  ├─ 10k/1k divider ─> VBAT_SENSE (STM32 PC1)
+  └─ Q10 AO3401A P-FET (reverse polarity + USB auto-select) ─> VBAT
+USB-C VBUS (5 V) ─ D10 B5819W Schottky ─> VBAT     (and VBUS ─ 1k ─> Q10 gate)
+VBAT ─ TPS63070 buck-boost ─> +3V8
+        ├─ RT9013-33  ─> +3V3_SYS   STM32, ICM-42688-P, BMP280
+        └─ AP7361C-33 ─> +3V3_ESP   ESP32-S3, camera (2V8/1V2 LDOs)
 ```
 
 ## Why a buck-boost to 3.8 V
@@ -83,10 +85,43 @@ How the control pins are tied:
 - **It protects the logic only.** Motor current is several amps on 1S and
   comes from `VBAT_RAW`.
 
+## USB power path
+
+USB powers the logic, so the configurator and Mode B coding work without a
+battery. It does this without back-feeding the LiPo.
+
+- **VBUS feeds VBAT through Schottky D10** (B5819W, 40 V, 1 A).
+- **VBUS also drives Q10's gate** through R17 (1k), against R10 (100k) to
+  GND.
+
+| Case | What happens |
+|---|---|
+| USB only | Q10 off. The logic runs from VBUS − Vf ≈ 4.6 V. **Motors get nothing, so USB can never spin a motor.** |
+| USB + 1S (≤ 4.35 V) | Gate ≈ 4.95 V, source ≈ 4.3–4.7 V, so Vgs is +0.25 to +0.65 V and Q10 is **off**. Its body diode is reverse-biased, so **no charge current flows into the cell.** |
+| USB + 2S (6–8.4 V) | The battery is higher. Q10 conducts (Vgs −1 to −3.4 V) and the pack runs the logic. D10 is reverse-biased, so nothing flows back into USB. |
+| Battery only | R10 pulls the gate to GND, so Q10 is on, as before. |
+| Reversed pack | Q10 is off and its body diode blocks, as before. |
+
+**Limits:**
+
+- **Nearly empty 2S with USB plugged in:** at about 6 V, Q10 only just turns
+  on (Vgs ≈ −1 V), so it runs warm. That's harmless on the bench. Unplug USB
+  or use a charged pack.
+- **USB current:** a USB 2.0 port gives 500 mA.
+  - Mode A (configurator) draws about 0.2 A from USB, which is fine.
+  - Mode B with WiFi and the camera streaming can peak around 0.75 A. Use a
+    USB-C charger or port rated above 500 mA for that.
+- **Capacitance on VBUS:** the input caps (about 30 µF on VBAT) are more
+  than the USB spec's 10 µF inrush limit. Most ports tolerate it. If one
+  resets on plug-in, add a soft-start (load-switch) on VBUS.
+
 ## Battery voltage sense
 
-- The 10k / 1k divider plus a 100 nF filter feeds STM32 **PC1**. That's
-  Betaflight `vbat_scale` 110.
+- The 10k / 1k divider plus a 100 nF filter sits on **VBAT_RAW** (the
+  battery side of Q10) and feeds STM32 **PC1**. That's Betaflight
+  `vbat_scale` 110.
+- Because it's on the battery side, it reads the real pack even when USB is
+  plugged in, and 0 V means no battery.
 - 8.4 V reads as 0.76 V and 4.2 V as 0.38 V, so the STM32 can tell a 1S
   pack from a 2S pack at boot.
 
@@ -106,13 +141,14 @@ motors.** On 2S:
 ## Net naming (consistent across subcircuits)
 
 - VBAT_RAW   — battery +, before the P-FET (motors)
-- VBAT       — protected battery, feeds the buck-boost and the sense divider
+- VBAT       — protected battery or USB (diode-OR), feeds the buck-boost
+- VBUS       — USB-C 5 V (connector in hardware/stm32), logic only
 - +3V8       — TPS63070 output, feeds both LDOs
 - +3V3_SYS   — STM32 + sensors (clean)
 - +3V3_ESP   — ESP32-S3 + camera (isolated)
 - +2V8_CAM   — camera analog (AVDD), from +3V3_ESP via XC6206P282MR (camera block)
 - +1V2_CAM   — camera core (DVDD), from +3V3_ESP via XC6206P122MR (camera block)
-- VBAT_SENSE — divided battery voltage to STM32 PC1
+- VBAT_SENSE — divided VBAT_RAW (real battery) to STM32 PC1
 - PG_3V8     — TPS63070 power-good (open drain, 100k pull-up)
 - GND        — common
 
@@ -131,3 +167,5 @@ motors.** On 2S:
 - [ ] Star-ground or careful ground pour: keep ESP32 and buck-boost return
       currents from flowing under the gyro.
 - [ ] Firmware: detect 1S/2S from VBAT_SENSE and set `motor_output_limit`.
+- [ ] Bench-test the USB power path: USB + full 1S must show no current into
+      the cell; USB + 2S must not back-feed VBUS.

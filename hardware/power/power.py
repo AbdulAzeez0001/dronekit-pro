@@ -5,11 +5,13 @@ Generates a KiCad-importable netlist for Block 1: the supply chain that feeds
 the whole board from a 1S OR 2S LiPo, with no jumper or setting to change.
 
     1S/2S LiPo (VBAT_RAW, 3.0-8.4V)
-        --[reverse-polarity P-FET]--> VBAT
+        --[P-FET Q10: reverse polarity + USB auto-select]--> VBAT
+    USB VBUS (5V) --[Schottky D10]--> VBAT
         VBAT --> TPS63070 buck-boost --> +3V8 (pre-regulator)
             +3V8 --> RT9013-33  --> +3V3_SYS   (STM32 + sensors, clean)
             +3V8 --> AP7361C-33 --> +3V3_ESP   (ESP32-S3 + camera)
-        VBAT --> 10k/1k divider --> VBAT_SENSE (STM32 PC1, cell-count detect)
+    VBAT_RAW --> 10k/1k divider --> VBAT_SENSE (STM32 PC1: real battery voltage,
+                                                0V = no battery)
 
 Design reference: hardware/power/power-design.md
 
@@ -26,6 +28,20 @@ Why this shape:
      only rated Vgs +/-8V, and a full 2S pack puts 8.4V on the gate.
   4. PS/SYNC is tied LOW = forced fixed-frequency PWM. Steady 2.4MHz ripple is
      far easier for the LDOs to reject than power-save-mode bursts.
+  5. USB powers the logic (configurator / Mode B on the bench) without
+     back-feeding the battery. VBUS feeds VBAT through Schottky D10 AND drives
+     Q10's gate through 1k (R17, with the 100k R10 to GND):
+       - USB only:      Q10 off, VBAT = VBUS - Vf (~4.6V). Motors (VBAT_RAW)
+                        get nothing, so USB can never spin a motor.
+       - USB + 1S:      gate 5V, source ~4.6V -> Q10 OFF; its body diode is
+                        reverse-biased (cell <= 4.35V), so no charge current
+                        flows into the LiPo.
+       - USB + 2S:      battery (6-8.4V) is higher: Q10 conducts, D10 is
+                        reverse-biased, so the battery runs the logic and
+                        nothing flows back into USB.
+       - battery only:  gate pulled to GND by R10 -> Q10 on (as before).
+       - reversed pack: Q10 off and its body diode blocks (as before).
+     The sense divider moved to VBAT_RAW so it reads the battery, not USB.
 
 TPS63070 values from TI SLVSC58B (Rev. B, 2019), section 9.2:
   VFB = 0.8V, Vout = 0.8 * (1 + R11/R12). R11 374k / R12 100k -> 3.79V.
@@ -124,6 +140,13 @@ q10 = Part(name="AO3401A", tool=SKIDL, ref_prefix="Q", dest=TEMPLATE,
            )(value="AO3401A", footprint="Package_TO_SOT_SMD:SOT-23")
 q10.ref = "Q10"
 
+# B5819W Schottky  SOD-123: 1 K  2 A.  40V, 1A. USB VBUS -> VBAT (logic only).
+d10 = Part(name="B5819W", tool=SKIDL, ref_prefix="D", dest=TEMPLATE,
+           pins=[Pin(num=1, name="K", func=T.PASSIVE),
+                 Pin(num=2, name="A", func=T.PASSIVE)]
+           )(value="B5819W", footprint="Diode_SMD:D_SOD-123")
+d10.ref = "D10"
+
 # 1.5uH inductor, TI-recommended Coilcraft XFL4020-152ME (4x4x2.1, Isat 4.6A).
 # Any shielded 1.5uH with Isat >= ~2A and low DCR works (pick an LCSC part).
 l10 = Part(name="XFL4020-152ME", tool=SKIDL, ref_prefix="L", dest=TEMPLATE,
@@ -159,6 +182,8 @@ bb_en    = Net("BB_EN")
 pg       = Net("PG_3V8")
 q_gate   = Net("Q10_GATE")
 vbat_sns = Net("VBAT_SENSE")
+vbus     = Net("VBUS")      # from the USB-C connector in the STM32 block
+vbus.do_erc = False         # driven by the connector in hardware/stm32 (merged by name)
 
 # ----------------------------------------------------------------------------
 # Battery input + reverse-polarity protection (high-side P-FET)
@@ -168,6 +193,13 @@ gnd      += j10[2]
 vbat     += q10["S"]
 r10 = Rn("R10", "100k")                     # gate pulldown: FET on only with correct polarity
 q_gate += q10["G"], r10[1]; gnd += r10[2]
+
+# ----------------------------------------------------------------------------
+# USB power path: VBUS -> Schottky -> VBAT, and VBUS turns Q10 off
+# ----------------------------------------------------------------------------
+vbus += d10["A"]; vbat += d10["K"]          # USB feeds the logic only
+r17 = Rn("R17", "1k")                       # VBUS -> Q10 gate (with R10: 4.95V)
+vbus += r17[1]; q_gate += r17[2]
 
 # ----------------------------------------------------------------------------
 # TPS63070 buck-boost: VBAT (3.0-8.4V) -> +3V8
@@ -228,11 +260,13 @@ v3v3_esp += c20[1]; gnd += c20[2]
 # ----------------------------------------------------------------------------
 # Battery voltage sense -> STM32 PC1 (ADC). 10k/1k = Betaflight vbat_scale 110.
 # 8.4V -> 0.76V, 4.2V -> 0.38V. Firmware reads this at boot to tell 1S from 2S.
+# On VBAT_RAW (battery side), so it reads the real pack even on USB, and 0V
+# means no battery.
 # ----------------------------------------------------------------------------
 r15 = Rn("R15", "10k")
 r16 = Rn("R16", "1k")
 c21 = Cn("C21", "100nF")                    # ADC filter
-vbat += r15[1]; vbat_sns += r15[2], r16[1], c21[1]; gnd += r16[2], c21[2]
+vbat_raw += r15[1]; vbat_sns += r15[2], r16[1], c21[1]; gnd += r16[2], c21[2]
 
 # ----------------------------------------------------------------------------
 # Checks + output
