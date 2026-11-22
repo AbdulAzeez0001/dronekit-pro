@@ -1,0 +1,267 @@
+(export 
+  (version "D")
+  (design
+    (source "elrs.py")
+    (date "11/22/2026 10:21 PM")
+    (tool "SKiDL (2.2.3)")
+    (sheet
+      (number 1)
+      (name "/")
+      (tstamps "/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "elrs.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value "")))))
+  (components
+    (comp
+      (ref "C60")
+      (value "10uF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "AVFnMzBcrA")
+        (field
+          (name "SKiDL Line") "elrs.py:57"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "3635b7e3-6809-5ca7-bbed-a63c9e080661"))
+    (comp
+      (ref "C61")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "EtnNm8TD5D")
+        (field
+          (name "SKiDL Line") "elrs.py:57"))
+      (libsource
+        (lib "NO_LIB")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "e9d2ccf7-091a-5b87-8722-a0d5817fe8bc"))
+    (comp
+      (ref "J60")
+      (value "ELRS_RX")
+      (description "")
+      (footprint "Connector_PinHeader_1.27mm:PinHeader_1x04_P1.27mm_Vertical")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Connector_PinHeader_1.27mm:PinHeader_1x04_P1.27mm_Vertical")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "72OJk7sYGk")
+        (field
+          (name "SKiDL Line") "elrs.py:64"))
+      (libsource
+        (lib "NO_LIB")
+        (part "RC_RX_Pads"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "2d21ca93-01e4-5691-bf8f-dd0547746e9d"))
+    (comp
+      (ref "R60")
+      (value "100R")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "VB4J35OArY")
+        (field
+          (name "SKiDL Line") "elrs.py:54"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "bf9451e0-8242-5b8e-bead-b933f8624bfb"))
+    (comp
+      (ref "R61")
+      (value "100R")
+      (description "")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "53DFJvuUGd")
+        (field
+          (name "SKiDL Line") "elrs.py:54"))
+      (libsource
+        (lib "NO_LIB")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "0e9ea71e-bcdc-5767-992a-ecfd8b631388"))
+    (comp
+      (ref "U1")
+      (value "STM32F405RGT6")
+      (description "")
+      (footprint "Package_QFP:LQFP-64_10x10mm_P0.5mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_QFP:LQFP-64_10x10mm_P0.5mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "tw2QuqdpVb")
+        (field
+          (name "SKiDL Line") "elrs.py:73"))
+      (libsource
+        (lib "NO_LIB")
+        (part "STM32F405RGT6"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "17702c84-0361-516a-8bf2-e1f83bde4983")))
+  (nets
+    (net
+      (code 1)
+      (name "+3V8")
+      (class "Default")
+      (node
+        (ref "C60")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C61")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J60")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 2)
+      (name "CRSF_RX")
+      (class "Default")
+      (node
+        (ref "J60")
+        (pin "4")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R61")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 3)
+      (name "CRSF_RX_MCU")
+      (class "Default")
+      (node
+        (ref "R61")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "3")
+        (pintype "INPUT")))
+    (net
+      (code 4)
+      (name "CRSF_TX")
+      (class "Default")
+      (node
+        (ref "J60")
+        (pin "3")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R60")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 5)
+      (name "CRSF_TX_MCU")
+      (class "Default")
+      (node
+        (ref "R60")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "2")
+        (pintype "OUTPUT")))
+    (net
+      (code 6)
+      (name "GND")
+      (class "Default")
+      (node
+        (ref "C60")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C61")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J60")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "1")
+        (pintype "POWER-IN")))))

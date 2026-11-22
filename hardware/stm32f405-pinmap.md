@@ -13,7 +13,7 @@ Betaflight target is built.
 |---|---|---|---|
 | MODE_SENSE | PC13 | input | Low-drive pin, fine for a passive input. Unused by Betaflight. |
 | ESP_EN | PB12 | output (push-pull) | Full-drive output needed to drive ESP32 EN. Free (SPI2_NSS, unused). |
-| BRIDGE_TX | PA9 | USART1_TX | RC is SPI-ELRS, so USART1 is free. |
+| BRIDGE_TX | PA9 | USART1_TX | RC receiver uses USART2, so USART1 is free. |
 | BRIDGE_RX | PA10 | USART1_RX | Pair of USART1. |
 | STM_BOOT0 | BOOT0 | input (dedicated) | Dedicated pin, driven by ESP32-S3 GPIO41 for OTA. |
 | STM_NRST | NRST | input (dedicated) | Dedicated pin, driven by ESP32-S3 GPIO42 for OTA. |
@@ -40,16 +40,14 @@ Betaflight target is built.
 | PA4 | SPI1_CS (gyro) |
 | PC4 | gyro INT (EXTI) |
 
-### RC — ExpressLRS EP1 (SX1280) on SPI3
+### RC — optional serial ELRS receiver on USART2 (see `hardware/elrs/`)
 | Pin | Function |
 |---|---|
-| PC10 | SPI3_SCK |
-| PC11 | SPI3_MISO |
-| PC12 | SPI3_MOSI |
-| PA15 | RX NSS |
-| PB13 | RX RESET |
-| PB14 | RX BUSY |
-| PB15 | RX DIO1 (EXTI) |
+| PA2 | USART2_TX -> receiver RX (J60, via 100R) |
+| PA3 | USART2_RX <- receiver TX (J60, via 100R) |
+
+The receiver is an add-on the user buys and solders to J60. Betaflight:
+UART2 = Serial Rx, provider CRSF.
 
 ### Baro — BMP280 on I2C1
 | Pin | Function |
@@ -86,15 +84,18 @@ drives an AO3400A gate through 22R, with a 10k pull-down (see
 | PB12 | ESP_EN (output) |
 
 ### Free for expansion headers
-PA0, PA1, PA2, PA3 (a spare UART2 or ADC), PB9, PC0, PC3, PC5, PC6, PC7,
+PA0, PA1 (ADC), PB9, PC0, PC3, PC5, PC6, PC7,
 PC8, PC9, PC14, PC15, PD2. Plenty for the six expansion headers.
+SPI3 is also free now (PC10 SCK, PC11 MISO, PC12 MOSI, plus PA15, PB13,
+PB14, PB15 for chip-selects / interrupts), e.g. for an SPI expansion header.
 Avoid PB2 (BOOT1). PC13/14/15 are low-drive — inputs only.
 
 ## Bus summary (no conflicts)
 - SPI1: gyro
-- SPI3: ELRS
+- SPI3: free (expansion)
 - I2C1: baro
 - USART1: ESP32 bridge
+- USART2: optional ELRS receiver (serial CRSF)
 - TIM3: four brushed motors (PWM)
 - USB, SWD, crystal: dedicated
 
@@ -104,7 +105,7 @@ Pin assignment is conflict-free. DMA is the remaining check. With brushed
 motors, TIM3 runs plain PWM and needs no DMA (the old DSHOT design did), so
 the load is lighter. The SPI buses and USART1 still request DMA streams, and
 DMA1/DMA2 streams are shared. When building the Betaflight target, confirm
-the allocation for SPI3 (ELRS) + SPI1 (gyro) + USART1 (+ the LED strip on
+the allocation for SPI1 (gyro) + USART1 (bridge) + USART2 (receiver) (+ the LED strip on
 TIM1 if used). Validate against the F405 DMA table and test, do not assume.
 
 ## To do when building the target

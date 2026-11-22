@@ -30,7 +30,7 @@ DroneKit Pro is two drones in one body:
 | IMU / Baro | MPU-6000 (SPI) / BMP280 (I2C) |
 | Motors | 4x 720 brushed coreless (7 x 20mm) |
 | Motor drive | 4x AO3400A low-side MOSFET + SS34 flyback, brushed PWM (no ESC) |
-| RX | ExpressLRS EP1 (SPI) |
+| RX | Optional: any small serial ELRS receiver (user-supplied), CRSF on UART2 pads |
 | Battery | 1S or 2S LiPo (board runs from either; 1S for the brushed whoop) |
 | Build time | 3-4 hours (first build) |
 | Target price | TBD - pending verified JLC/LCSC BOM quote |

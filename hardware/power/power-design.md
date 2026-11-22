@@ -12,7 +12,7 @@ Source of truth: `power.py`, which generates `power.net` (ERC clean).
   ├─ motors (hardware/motors/: 4 × AO3400A + SS34, straight off the battery)
   └─ AO3401A reverse-polarity P-FET ─> VBAT
         ├─ TPS63070 buck-boost ─> +3V8
-        │     ├─ RT9013-33  ─> +3V3_SYS   STM32, MPU-6000, BMP280, ELRS
+        │     ├─ RT9013-33  ─> +3V3_SYS   STM32, MPU-6000, BMP280
         │     └─ AP7361C-33 ─> +3V3_ESP   ESP32-S3, camera (2V8/1V2 LDOs)
         └─ 10k/1k divider ─> VBAT_SENSE (STM32 PC1)
 ```
@@ -37,9 +37,10 @@ Source of truth: `power.py`, which generates `power.net` (ERC clean).
 
 | Rail | Loads | Typical | Peak |
 |---|---|---|---|
-| +3V3_SYS | STM32F405, MPU-6000, BMP280, ELRS RX | ~180 mA | ~230 mA |
+| +3V3_SYS | STM32F405, MPU-6000, BMP280 | ~150 mA | ~180 mA |
+| +3V8 direct | optional ELRS receiver on J60 | ~50 mA | ~100 mA |
 | +3V3_ESP | ESP32-S3 (+ camera ~100 mA, Mode B) | ~220 mA | ~600 mA (TX burst) |
-| +3V8 | both LDOs | ~400 mA | ~830 mA |
+| +3V8 total | both LDOs + receiver | ~420 mA | ~880 mA |
 
 Battery current for the logic at peak:
 
@@ -125,7 +126,8 @@ motors.** On 2S:
       VIN/VOUT caps tight to the pins and the L1/L2 loop small.
 - [ ] Confirm AP7361C-33E dropout at about 600 mA leaves margin from 3.8 V.
       If not, raise Vout (R11 = 402k gives 4.02 V).
-- [ ] Confirm the ELRS RX supply voltage (3.3 V) and put it on +3V3_SYS.
+- [ ] Confirm the recommended ELRS receivers accept 3.8 V on their power pin
+      (J60 is fed from +3V8; there is no 5 V rail).
 - [ ] Star-ground or careful ground pour: keep ESP32 and buck-boost return
       currents from flowing under the gyro.
 - [ ] Firmware: detect 1S/2S from VBAT_SENSE and set `motor_output_limit`.
