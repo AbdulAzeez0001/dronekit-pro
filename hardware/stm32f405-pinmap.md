@@ -75,7 +75,18 @@ drives an AO3400A gate through 22R, with a 10k pull-down (see
 | PC1 | VBAT sense (ADC), 10k/1k divider = vbat_scale 110; also detects 1S vs 2S |
 | PC2 | current sense (ADC) — not fitted (no shunt on the board yet); free |
 | PB8 | buzzer / Betaflight BEEPER (AO3400A low-side, see `hardware/buzzer/`) |
-| PA8 | LED strip (WS2811, TIM1_CH1) — optional |
+| PA8 | LED strip (WS2812, TIM1_CH1) -> header J132 |
+
+### Expansion headers (see `hardware/expansion/`)
+| Pin | Function |
+|---|---|
+| PB6 / PB7 | I2C1 SCL / SDA -> SENSOR header J130 (shared with the baro) |
+| PB10 / PB11 | USART3 TX / RX -> UART3 header J131 |
+| PA8 | LED strip -> LED header J132 |
+| PC6 / PC7 / PC8 / PC9 | TIM8_CH1-4 -> PWM header J133 |
+
+All header signals go through 100R series resistors. The ESP32-S3 has two
+more headers (CODE-I2C on GPIO47/48, CODE-IO on GPIO21/38/39/40).
 
 ### Bridge + dual-boot control
 | Pin | Function |
@@ -85,9 +96,8 @@ drives an AO3400A gate through 22R, with a 10k pull-down (see
 | PC13 | MODE_SENSE (input) |
 | PB12 | ESP_EN (output) |
 
-### Free for expansion headers
-PA0, PA1 (ADC), PC0, PC3, PC5, PC6, PC7,
-PC8, PC9, PC14, PC15, PD2. Plenty for the six expansion headers.
+### Still free
+PA0, PA1, PC0, PC2, PC3 (ADC-capable), PC5, PD2, PB3, PC14, PC15.
 SPI3 is also free now (PC10 SCK, PC11 MISO, PC12 MOSI, plus PA15, PB13,
 PB14, PB15 for chip-selects / interrupts), e.g. for an SPI expansion header.
 Avoid PB2 (BOOT1). PC13/14/15 are low-drive — inputs only.
@@ -95,9 +105,11 @@ Avoid PB2 (BOOT1). PC13/14/15 are low-drive — inputs only.
 ## Bus summary (no conflicts)
 - SPI1: gyro
 - SPI3: free (expansion)
-- I2C1: baro (0x76), shared with the expansion header for add-on I2C sensors
+- I2C1: baro (0x76), shared with the SENSOR header (J130)
 - USART1: ESP32 bridge
 - USART2: optional ELRS receiver (serial CRSF)
+- USART3: UART3 expansion header (J131)
+- TIM1: LED strip (PA8); TIM8: PWM header (PC6-PC9)
 - TIM3: four brushed motors (PWM)
 - USB, SWD, crystal: dedicated
 

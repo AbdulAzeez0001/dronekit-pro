@@ -40,13 +40,13 @@ VBAT ─ TPS63070 buck-boost ─> +3V8
 | Rail | Loads | Typical | Peak |
 |---|---|---|---|
 | +3V3_SYS | STM32F405, ICM-42688-P, BMP280 | ~150 mA | ~180 mA |
-| +3V8 direct | optional ELRS receiver (J60) + buzzer (J120) | ~50 mA | ~140 mA |
-| +3V3_ESP | ESP32-S3 (+ camera ~100 mA, Mode B) | ~220 mA | ~600 mA (TX burst) |
-| +3V8 total | both LDOs + receiver + buzzer | ~420 mA | ~920 mA |
+| +3V8 direct | optional ELRS receiver (J60) + buzzer (J120) + UART/LED/PWM headers | ~50 mA | ~240 mA |
+| +3V3_ESP | ESP32-S3 (+ camera ~100 mA, Mode B) + 3V3 header modules (~100 mA budget) | ~220 mA | ~700 mA (TX burst) |
+| +3V8 total | both LDOs + receiver, buzzer and headers | ~420 mA | ~1.1 A |
 
 Battery current for the logic at peak:
 
-- At 1S, 3.0 V in: 3.8 V × 0.83 A ÷ 0.9 ÷ 3.0 V ≈ 1.2 A. That's well
+- At 1S, 3.0 V in: 3.8 V × 1.1 A ÷ 0.9 ÷ 3.0 V ≈ 1.5 A (everything at peak at once). That's
   inside the 3.6 A switch limit.
 - At 2S, 7.4 V in: about 0.5 A.
 
