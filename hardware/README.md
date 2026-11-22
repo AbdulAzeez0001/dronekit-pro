@@ -9,7 +9,7 @@ Build first, in this order:
 1. Dual-boot reset circuit (the differentiator). Verify ESP32 strapping pins
    GPIO0 / GPIO2 / GPIO15 are not fought by the boot switch or reset routing.
 2. Full schematic: STM32F405 min system, ESP32-WROOM, MPU-6000 (SPI),
-   BMP280 (I2C), power tree (1S/2S -> TPS63070 buck-boost 3.8V -> RT9013 / AP7361C 3.3V, see power/), 4-in-1 ESC
-   interface, ELRS SPI, buzzer FET, 6 expansion headers.
+   BMP280 (I2C), power tree (1S/2S -> TPS63070 buck-boost 3.8V -> RT9013 / AP7361C 3.3V, see power/), brushed motor
+   drivers (motors/), ELRS SPI, buzzer FET, 6 expansion headers.
 3. Layout, then clean ERC + DRC.
 4. Generate a JLCPCB fab quote and an LCSC BOM cost sheet (free, no purchase).

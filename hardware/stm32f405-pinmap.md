@@ -57,15 +57,17 @@ Betaflight target is built.
 | PB6 | I2C1_SCL |
 | PB7 | I2C1_SDA |
 
-### Motors — 4-in-1 ESC, DSHOT300, all on TIM3
+### Motors — 4 brushed MOSFET channels, plain PWM, all on TIM3
 | Pin | Function |
 |---|---|
-| PB0 | M1 (TIM3_CH3) |
-| PB1 | M2 (TIM3_CH4) |
-| PB4 | M3 (TIM3_CH1) |
-| PB5 | M4 (TIM3_CH2) |
+| PB0 | M1 rear right (TIM3_CH3) |
+| PB1 | M2 front right (TIM3_CH4) |
+| PB4 | M3 rear left (TIM3_CH1) |
+| PB5 | M4 front left (TIM3_CH2) |
 
-One timer bank for all four keeps DSHOT DMA clean.
+One timer for all four gives one shared brushed PWM frequency. Each pin
+drives an AO3400A gate through 22R, with a 10k pull-down (see
+`hardware/motors/`).
 
 ### Sensing + misc
 | Pin | Function |
@@ -93,18 +95,17 @@ Avoid PB2 (BOOT1). PC13/14/15 are low-drive — inputs only.
 - SPI3: ELRS
 - I2C1: baro
 - USART1: ESP32 bridge
-- TIM3: four motors
+- TIM3: four brushed motors (PWM)
 - USB, SWD, crystal: dedicated
 
 ## Open verification item — DMA
 
-Pin assignment is conflict-free. DMA is the remaining check. On the F405,
-DSHOT (TIM3), the SPI buses, and USART1 all request DMA streams, and DMA1/DMA2
-streams are shared. When building the Betaflight target, confirm the target's
-DMA allocation allows TIM3 DSHOT + SPI3 (ELRS) + SPI1 (gyro) + USART1
-simultaneously. If a stream collides, options are: move motors to TIM8
-(PC6-9), or move ELRS to a different SPI. Validate against the F405 DMA table
-and test, do not assume.
+Pin assignment is conflict-free. DMA is the remaining check. With brushed
+motors, TIM3 runs plain PWM and needs no DMA (the old DSHOT design did), so
+the load is lighter. The SPI buses and USART1 still request DMA streams, and
+DMA1/DMA2 streams are shared. When building the Betaflight target, confirm
+the allocation for SPI3 (ELRS) + SPI1 (gyro) + USART1 (+ the LED strip on
+TIM1 if used). Validate against the F405 DMA table and test, do not assume.
 
 ## To do when building the target
 - [ ] Encode this map in the Betaflight custom target (resource assignments).

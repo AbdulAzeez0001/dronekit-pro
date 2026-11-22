@@ -9,7 +9,7 @@ Source of truth: `power.py`, which generates `power.net` (ERC clean).
 
 ```
 1S/2S LiPo (VBAT_RAW, 3.0–8.4 V)
-  ├─ motors (MOSFET drivers, straight off the battery)
+  ├─ motors (hardware/motors/: 4 × AO3400A + SS34, straight off the battery)
   └─ AO3401A reverse-polarity P-FET ─> VBAT
         ├─ TPS63070 buck-boost ─> +3V8
         │     ├─ RT9013-33  ─> +3V3_SYS   STM32, MPU-6000, BMP280, ELRS
@@ -117,6 +117,8 @@ motors.** On 2S:
 
 ## To verify before layout
 
+- [ ] Pick a KEYED battery connector: motors sit on VBAT_RAW, so a reversed
+      pack shorts through the motor FET body diodes and flyback diodes.
 - [ ] Pick LCSC parts for the TPS63070RNM, the 1.5 µH inductor and the
       AO3401A, and check stock.
 - [ ] Get TI's RNM0015A footprint, and follow TI's layout guidance: keep the
