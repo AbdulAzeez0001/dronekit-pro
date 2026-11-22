@@ -15,8 +15,8 @@ Betaflight target is built.
 | ESP_EN | PB12 | output (push-pull) | Full-drive output needed to drive ESP32 EN. Free (SPI2_NSS, unused). |
 | BRIDGE_TX | PA9 | USART1_TX | RC is SPI-ELRS, so USART1 is free. |
 | BRIDGE_RX | PA10 | USART1_RX | Pair of USART1. |
-| STM_BOOT0 | BOOT0 | input (dedicated) | Dedicated pin, driven by ESP32 IO25 for OTA. |
-| STM_NRST | NRST | input (dedicated) | Dedicated pin, driven by ESP32 IO26 for OTA. |
+| STM_BOOT0 | BOOT0 | input (dedicated) | Dedicated pin, driven by ESP32-S3 GPIO41 for OTA. |
+| STM_NRST | NRST | input (dedicated) | Dedicated pin, driven by ESP32-S3 GPIO42 for OTA. |
 
 ## Full pin allocation
 
@@ -78,8 +78,8 @@ One timer bank for all four keeps DSHOT DMA clean.
 ### Bridge + dual-boot control
 | Pin | Function |
 |---|---|
-| PA9 | BRIDGE_TX (USART1_TX) -> ESP32 IO16 |
-| PA10 | BRIDGE_RX (USART1_RX) <- ESP32 IO17 |
+| PA9 | BRIDGE_TX (USART1_TX) -> ESP32-S3 GPIO1 |
+| PA10 | BRIDGE_RX (USART1_RX) <- ESP32-S3 GPIO2 |
 | PC13 | MODE_SENSE (input) |
 | PB12 | ESP_EN (output) |
 

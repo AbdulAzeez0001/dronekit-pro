@@ -3,6 +3,10 @@
 Status: paper design, not yet captured in KiCad, not yet built.
 This is the gate. Verify here before any layout.
 
+ESP side: **ESP32-S3-WROOM-1-N8R2** (changed from ESP32-WROOM-32 so the DVP
+camera has PSRAM; see `hardware/camera/camera-design.md`). Everything below
+is written for the S3.
+
 ## What it has to do
 
 | | Mode A (Fly) | Mode B (Code) |
@@ -37,29 +41,32 @@ Dark-by-default is the correct failure state for a flying machine.
 |---|---|---|---|---|
 | MODE_SENSE | Boot switch | STM32 GPIO (in) | 10k pull + 100nF debounce | Proposed pin PC4. Read once at init. |
 | ESP_EN | STM32 GPIO (out, push-pull) | ESP32 EN | 10k pulldown to GND, 100nF to GND | Default OFF. STM32 drives HIGH for Mode B. |
-| BRIDGE_TX | STM32 USART TX | ESP32 GPIO16 (U2RXD) | series 100R optional | Use ESP32 UART2, not UART0. |
-| BRIDGE_RX | STM32 USART RX | ESP32 GPIO17 (U2TXD) | series 100R optional | UART2 = non-strapping pins. |
-| STM_BOOT0 | ESP32 GPIO (out) | STM32 BOOT0 | 10k pulldown to GND | Default LOW (flash boot). ESP32 drives HIGH only to flash STM32. |
-| STM_NRST | ESP32 GPIO (open-drain) | STM32 NRST | STM32 internal pullup + 100nF | ESP32 pulses LOW to reset STM32 into bootloader. |
+| BRIDGE_TX | STM32 USART TX | ESP32-S3 GPIO1 (UART1 RX) | series 100R optional | UART1 routed by the GPIO matrix; keep UART0 for the console. |
+| BRIDGE_RX | STM32 USART RX | ESP32-S3 GPIO2 (UART1 TX) | series 100R optional | Non-strapping on the S3. |
+| STM_BOOT0 | ESP32-S3 GPIO41 (out) | STM32 BOOT0 | 10k pulldown to GND | Default LOW (flash boot). ESP32 drives HIGH only to flash STM32. |
+| STM_NRST | ESP32-S3 GPIO42 (open-drain) | STM32 NRST | STM32 internal pullup + 100nF | ESP32 pulses LOW to reset STM32 into bootloader. |
 
 Proposed STM32 pins are placeholders. Reconcile MODE_SENSE, ESP_EN and the
 bridge UART against the Betaflight STM32F405 target resource map before layout.
 
-## ESP32 strapping pins — verification
+## ESP32-S3 strapping pins — verification
 
-The STM32 must touch NONE of these. Each gets its own resistor; the ESP32 reads
+The STM32 must touch NONE of these. Each gets its own resistor; the S3 reads
 them itself when EN rises.
 
 | Pin | Required at boot | Resistor | Why |
 |---|---|---|---|
-| GPIO0 | HIGH (flash boot) | 10k pull-up | LOW = download mode. Program button pulls it low. |
-| GPIO2 | LOW / floating | 10k pull-down | Blue LED to GND is fine. Must not be high at boot. |
-| GPIO12 (MTDI) | LOW | 10k pull-down | Selects 3.3V flash. HIGH = 1.8V = boot fails. Critical. |
-| GPIO15 (MTDO) | HIGH | 10k pull-up | LOW changes boot behaviour. |
-| GPIO5 | HIGH | 10k pull-up (default) | SDIO timing. Default fine. |
+| GPIO0 | HIGH (SPI flash boot) | 10k pull-up | LOW = download mode. Program button pulls it low. |
+| GPIO45 | LOW | 10k pull-down | VDD_SPI select. HIGH = 1.8V flash/PSRAM supply = boot fails on the 3.3V N8R2. Critical. |
+| GPIO46 | LOW | 10k pull-down | With GPIO0 LOW it must be LOW for download mode (GPIO0=0, GPIO46=1 is invalid). |
+| GPIO3 | don't care | none, leave unconnected | JTAG source select, only read if the eFuse enables it. |
 
-Rule: confine STM32-to-ESP32 wiring to EN, the UART2 bridge, and the two
-flash-control lines that originate on the ESP32 side. Nothing on GPIO0/2/12/15.
+Rule: confine STM32-to-ESP32-S3 wiring to EN, the UART bridge, and the two
+flash-control lines that originate on the S3 side. Nothing on GPIO0/3/45/46.
+Camera pins (GPIO4–18, see the camera doc) also stay away from the straps.
+
+Verify the strap table against the ESP32-S3 datasheet "Strapping Pins" section
+before layout.
 
 ## Open risk — 3.3V supply current (read this before layout)
 
@@ -87,7 +94,7 @@ This must be decided before layout because it changes the power section.
 
 | Qty | Part | Value | Note |
 |---|---|---|---|
-| 6 | Resistor 0402 | 10k | strapping + EN + BOOT0 pulls |
+| 6 | Resistor 0402 | 10k | mode, strapping (IO0/45/46), EN, BOOT0 pulls |
 | 2 | Resistor 0402 | 100R | optional UART series |
 | 3 | Cap 0402 | 100nF | EN, NRST, debounce |
 | 1 | Cap 0805 | 10uF | ESP32 3V3 bulk |
@@ -99,4 +106,5 @@ This must be decided before layout because it changes the power section.
 - [ ] Confirm RT9013 vs ESP32 current; pick the 3.3V solution.
 - [ ] Map MODE_SENSE / ESP_EN / bridge UART to free STM32F405 pins not used by Betaflight.
 - [ ] Confirm the ESP32 program/reset method (USB-UART vs pads) and that it does not collide with the STM32 bridge.
-- [ ] Confirm GPIO2 is the intended ESP32 status LED and the LED wiring keeps it low at boot.
+- [ ] Confirm the S3 strap table (GPIO0/3/45/46) against the ESP32-S3 datasheet.
+- [ ] Decide S3 programming: native USB (GPIO19/20) vs UART0 pads.

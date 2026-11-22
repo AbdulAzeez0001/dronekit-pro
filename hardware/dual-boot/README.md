@@ -15,12 +15,13 @@ Expected: `ERC INFO: No errors or warnings` and `0 errors`.
 2. File > Import > Netlist, choose `dual_boot.net`.
 3. Place the parts, then assign the real symbols. The netlist already carries
    proposed footprints; verify each against the BOM in `dual-boot-design.md`.
-4. The two ICs (U1 STM32F405, U2 ESP32-WROOM-32) use minimal pin sets here -
+4. The two ICs (U1 STM32F405, U2 ESP32-S3-WROOM-1-N8R2) use minimal pin sets here -
    only the dual-boot nets. Add the remaining pins when you merge this into
    the full board schematic.
 
 ## What NOT to change without re-reading the design doc
-- `r_en` is a pull-DOWN on ESP_EN. This is the fail-safe (ESP32 dark by
+- `r_en` is a pull-DOWN on ESP_EN. This is the fail-safe (ESP32-S3 dark by
   default). Do not "fix" it to a pull-up.
 - The STM32 connects only to EN, the UART2 bridge, and the two flash-control
-  lines. Nothing on STRAP_IO0/2/12/15. STRAP_IO12 high at boot bricks the ESP32.
+  lines. Nothing on STRAP_IO0/45/46. STRAP_IO45 high at boot selects 1.8V
+  flash/PSRAM and the S3 will not boot.

@@ -25,7 +25,7 @@ Both LDOs run from the common +5V rail. The MP2307 (3A) easily supplies both.
 | Rail | Loads | Typical | Peak |
 |---|---|---|---|
 | +3V3_SYS | STM32F405, MPU-6000, BMP280, ELRS RX | ~180mA | ~230mA |
-| +3V3_ESP | ESP32-WROOM-32 | ~120mA | ~500mA (TX burst) |
+| +3V3_ESP | ESP32-S3-WROOM-1 (+ DVP camera LDOs, ~100mA, Mode B) | ~220mA | ~600mA (TX burst) |
 
 RT9013 (500mA) covers SYS with margin. AP7361C (1A) covers ESP peaks with margin.
 

@@ -9,11 +9,14 @@ Design reference: hardware/dual-boot/dual-boot-design.md
 
 This is the NOVEL part of the board. The values and topology here encode
 the two decisions that an AI schematic generator gets wrong:
-  1. ESP32 EN has a pull-DOWN (default OFF / dark-by-default), not the
+  1. ESP32-S3 EN has a pull-DOWN (default OFF / dark-by-default), not the
      usual pull-up. The STM32 boots first and drives EN high only in Mode B.
-  2. The STM32 touches ONLY: EN, the UART2 bridge, and the two flash-control
-     lines that originate on the ESP32 side. It NEVER drives the ESP32
-     strapping pins (GPIO0/2/12/15), which carry their own resistors.
+  2. The STM32 touches ONLY: EN, the UART bridge, and the two flash-control
+     lines that originate on the ESP32-S3 side. It NEVER drives the S3
+     strapping pins (GPIO0/3/45/46), which carry their own resistors.
+
+The ESP side is an ESP32-S3-WROOM-1-N8R2 (PSRAM for the DVP camera; see
+hardware/camera/camera-design.md). Camera pins are reserved there, not here.
 
 Parts are defined with explicit pins (SKIDL tool) so the script runs without
 a local KiCad symbol library. When you capture this in KiCad/EasyEDA, map each
@@ -66,21 +69,20 @@ stm32 = Part(name="STM32F405RGT6", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
                  Pin(num=8,  name="NRST",       func=T.INPUT),
              ])(value="STM32F405RGT6", footprint="Package_QFP:LQFP-64_10x10mm_P0.5mm")
 
-esp32 = Part(name="ESP32-WROOM-32", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
+# Pin numbers below are local to this script, not module pad numbers.
+esp32 = Part(name="ESP32-S3-WROOM-1-N8R2", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
              pins=[
                  Pin(num=1,  name="3V3",  func=T.PWRIN),
                  Pin(num=2,  name="GND",  func=T.PWRIN),
                  Pin(num=3,  name="EN",   func=T.INPUT),   # CHIP_PU
-                 Pin(num=4,  name="IO16", func=T.INPUT),   # U2RXD  <- bridge TX
-                 Pin(num=5,  name="IO17", func=T.OUTPUT),  # U2TXD  -> bridge RX
+                 Pin(num=4,  name="IO1",  func=T.INPUT),   # UART1 RX <- bridge TX (GPIO matrix)
+                 Pin(num=5,  name="IO2",  func=T.OUTPUT),  # UART1 TX -> bridge RX (not a strap on S3)
                  Pin(num=6,  name="IO0",  func=T.BIDIR),   # strapping (pull-up)
-                 Pin(num=7,  name="IO2",  func=T.BIDIR),   # strapping (pull-down)
-                 Pin(num=8,  name="IO12", func=T.BIDIR),   # strapping (pull-down) MTDI
-                 Pin(num=9,  name="IO15", func=T.BIDIR),   # strapping (pull-up)  MTDO
-                 Pin(num=10, name="IO5",  func=T.BIDIR),   # strapping (pull-up)
-                 Pin(num=11, name="IO25", func=T.OUTPUT),  # -> STM32 BOOT0
-                 Pin(num=12, name="IO26", func=T.OPENCOLL),# -> STM32 NRST (open-drain)
-             ])(value="ESP32-WROOM-32", footprint="RF_Module:ESP32-WROOM-32")
+                 Pin(num=7,  name="IO45", func=T.BIDIR),   # strapping (pull-down) VDD_SPI select
+                 Pin(num=8,  name="IO46", func=T.BIDIR),   # strapping (pull-down) boot mode
+                 Pin(num=9,  name="IO41", func=T.OUTPUT),  # -> STM32 BOOT0
+                 Pin(num=10, name="IO42", func=T.OPENCOLL),# -> STM32 NRST (open-drain)
+             ])(value="ESP32-S3-WROOM-1-N8R2", footprint="RF_Module:ESP32-S3-WROOM-1")
 
 # ----------------------------------------------------------------------------
 # Nets
@@ -126,37 +128,34 @@ esp_en += stm32["ESP_EN"], esp32["EN"], r_en[1], c_en[1]
 gnd    += r_en[2], c_en[2]
 
 # ----------------------------------------------------------------------------
-# UART2 bridge (ESP32 UART2 = non-strapping pins). Series 100R optional.
+# UART bridge on S3 UART1 via the GPIO matrix (IO1/IO2, non-strapping). Series 100R optional.
 # ----------------------------------------------------------------------------
-bridge_tx += stm32["BRIDGE_TX"], esp32["IO16"]
-bridge_rx += stm32["BRIDGE_RX"], esp32["IO17"]
+bridge_tx += stm32["BRIDGE_TX"], esp32["IO1"]
+bridge_rx += stm32["BRIDGE_RX"], esp32["IO2"]
 
 # ----------------------------------------------------------------------------
 # ESP32 -> STM32 flash control (Mode B only; ESP32 pins high-Z in Mode A).
 # ----------------------------------------------------------------------------
 r_boot0 = R(value="10k")           # BOOT0 pull-DOWN: normal flash boot by default
-stm_boot0 += esp32["IO25"], stm32["BOOT0"], r_boot0[1]
+stm_boot0 += esp32["IO41"], stm32["BOOT0"], r_boot0[1]
 gnd       += r_boot0[2]
 
 c_nrst = C(value="100nF")          # STM32 has internal NRST pull-up
-stm_nrst += esp32["IO26"], stm32["NRST"], c_nrst[1]
+stm_nrst += esp32["IO42"], stm32["NRST"], c_nrst[1]
 gnd      += c_nrst[2]
 
 # ----------------------------------------------------------------------------
-# ESP32 strapping pins - own resistors. STM32 MUST NOT drive these.
-#   IO0  pull-up   (HIGH = flash boot;  button pulls low for download)
-#   IO2  pull-down (must be low/floating at boot)
-#   IO12 pull-down (MTDI - selects 3.3V flash; HIGH bricks boot)
-#   IO15 pull-up   (MTDO - normal boot)
-#   IO5  pull-up
+# ESP32-S3 strapping pins - own resistors. STM32 MUST NOT drive these.
+#   IO0  pull-up   (HIGH = SPI flash boot; button pulls low for download)
+#   IO45 pull-down (VDD_SPI select: LOW = 3.3V flash/PSRAM; HIGH = 1.8V, boot fails)
+#   IO46 pull-down (must be LOW for download mode; IO0=0 + IO46=1 is invalid)
+#   IO3  left unconnected (JTAG source select, only read if eFuse says so)
 # ----------------------------------------------------------------------------
 r_io0  = R(value="10k"); v3v3_esp += r_io0[2];  s_io0  = Net("STRAP_IO0");  s_io0  += esp32["IO0"],  r_io0[1]
-r_io2  = R(value="10k"); gnd  += r_io2[2];  s_io2  = Net("STRAP_IO2");  s_io2  += esp32["IO2"],  r_io2[1]
-r_io12 = R(value="10k"); gnd  += r_io12[2]; s_io12 = Net("STRAP_IO12"); s_io12 += esp32["IO12"], r_io12[1]
-r_io15 = R(value="10k"); v3v3_esp += r_io15[2]; s_io15 = Net("STRAP_IO15"); s_io15 += esp32["IO15"], r_io15[1]
-r_io5  = R(value="10k"); v3v3_esp += r_io5[2];  s_io5  = Net("STRAP_IO5");  s_io5  += esp32["IO5"],  r_io5[1]
+r_io45 = R(value="10k"); gnd += r_io45[2];      s_io45 = Net("STRAP_IO45"); s_io45 += esp32["IO45"], r_io45[1]
+r_io46 = R(value="10k"); gnd += r_io46[2];      s_io46 = Net("STRAP_IO46"); s_io46 += esp32["IO46"], r_io46[1]
 
-# ESP32 program button: GPIO0 -> GND (press = download mode)
+# ESP32-S3 program button: GPIO0 -> GND (press = download mode)
 btn_prog = BTN(value="ESP_PROG")
 esp32["IO0"] += btn_prog[1]
 gnd          += btn_prog[2]
