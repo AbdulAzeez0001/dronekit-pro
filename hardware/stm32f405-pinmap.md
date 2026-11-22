@@ -70,7 +70,7 @@ One timer bank for all four keeps DSHOT DMA clean.
 ### Sensing + misc
 | Pin | Function |
 |---|---|
-| PC1 | VBAT sense (ADC) |
+| PC1 | VBAT sense (ADC), 10k/1k divider = vbat_scale 110; also detects 1S vs 2S |
 | PC2 | current sense (ADC) |
 | PB8 | buzzer (via FET) |
 | PA8 | LED strip (WS2811, TIM1_CH1) — optional |

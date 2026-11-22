@@ -31,7 +31,7 @@ DroneKit Pro is two drones in one body:
 | Motors | 4x 14mm 15000KV brushless |
 | ESC | 4-in-1 BLHELI_S 10A, DSHOT300 |
 | RX | ExpressLRS EP1 (SPI) |
-| Battery | 2S 450mAh LiPo |
+| Battery | 1S or 2S LiPo (board runs from either; 1S for the brushed whoop) |
 | Build time | 3-4 hours (first build) |
 | Target price | TBD - pending verified JLC/LCSC BOM quote |
 

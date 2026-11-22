@@ -68,9 +68,13 @@ Camera pins (GPIO4–18, see the camera doc) also stay away from the straps.
 Verify the strap table against the ESP32-S3 datasheet "Strapping Pins" section
 before layout.
 
-## Open risk — 3.3V supply current (read this before layout)
+## 3.3V supply current — resolved by the split rails
 
-The documented power tree is XT30 -> MP2307 buck (5V) -> RT9013 LDO (3.3V).
+Resolved: the power tree (`hardware/power/`) now gives the ESP32-S3 its own
+1A LDO (`+3V3_ESP`), fed from a 1S/2S buck-boost. The original concern, kept
+for the record:
+
+The old power tree was XT30 -> MP2307 buck (5V) -> RT9013 LDO (3.3V).
 The RT9013 is a 500mA part. The ESP32 alone wants a 3.3V rail rated for ~500mA
 because WiFi TX draws current spikes up to ~500mA. Feeding STM32 + sensors +
 ESP32 WiFi from one 500mA LDO is very likely to brown out on TX bursts. This is
