@@ -68,6 +68,9 @@ DERATE = BETA75_MIN / ideal_minutes(BETA75_DRY + BETA75_BATT_G, BETA75_BATT_MAH)
 WEIGHTS = {
     "cage (PLA, 108x108x34, 85 mm wb)": (8.2,  "[F] DroneKit Cage 6.60 cm3 x 1.24 g/cm3 (covered, open centre, rod_w 1.0)"),
     "FC PCB 32x30x1.6 mm, 4-layer":     (2.9,  "[E] FR4 volume x ~1.9 g/cm3"),
+    "vision PCB 32x30x1.0 mm, 4-layer": (1.8,  "[E] FR4 volume x ~1.9 g/cm3 (second board of the stack)"),
+    "B2B header + socket, 4 standoffs": (0.8,  "[E] 2x12 1.27 mm pair + M1.4 nylon spacers"),
+    "cage +5 mm taller for the stack":  (0.4,  "[E] longer struts/posts, not yet modelled in Fusion"),
     "ESP32-S3-WROOM-1 module":          (3.0,  "[E] 18x25.5x3.1 mm shielded module"),
     "other FC parts + 6 JST-SH + USB-C": (2.5, "[E] STM32, regulators, connectors"),
     "4x 7x20 motors (17500 kV)":        (14.0, "[D] BetaFPV 7x20: ~3.5 g each (generic 720: up to ~5 g)"),

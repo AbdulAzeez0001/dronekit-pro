@@ -94,7 +94,8 @@ def Cn(ref, value, footprint=None):
 # TPS63070RNM buck-boost, VQFN-HR 15 pin (TI pin table, SLVSC58B section 6):
 #  1 PS/SYNC  2 PG  3 VAUX  4 GND  5 FB  6 FB2  7,8 VOUT  9 L2  10 PGND
 #  11 L1  12,13 VIN  14 EN  15 VSEL
-# Footprint: no stock KiCad footprint confirmed for RNM0015A - import TI's.
+# Footprint: no stock KiCad footprint for RNM0015A; drawn from TI's land
+# pattern (SLVSC58B p.40) in hardware/board/dronekit.pretty.
 u10 = Part(name="TPS63070RNM", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
            pins=[Pin(num=1,  name="PS/SYNC", func=T.INPUT),
                  Pin(num=2,  name="PG",      func=T.OPENCOLL),
@@ -111,7 +112,7 @@ u10 = Part(name="TPS63070RNM", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
                  Pin(num=13, name="VIN_2",   func=T.PWRIN),
                  Pin(num=14, name="EN",      func=T.INPUT),
                  Pin(num=15, name="VSEL",    func=T.INPUT)]
-           )(value="TPS63070RNM", footprint="TI:RNM0015A")
+           )(value="TPS63070RNM", footprint="dronekit:TI_RNM0015A_VQFN-HR-15_2.5x3mm_P0.5mm")
 u10.ref = "U10"
 
 # RT9013-33GB LDO  SOT-23-5: 1 VIN 2 GND 3 EN 4 NC 5 VOUT (EN tied to VIN)
@@ -152,16 +153,16 @@ d10.ref = "D10"
 l10 = Part(name="XFL4020-152ME", tool=SKIDL, ref_prefix="L", dest=TEMPLATE,
            pins=[Pin(num=1, name="1", func=T.PASSIVE),
                  Pin(num=2, name="2", func=T.PASSIVE)]
-           )(value="1.5uH", footprint="Inductor_SMD:L_Coilcraft_XFL4020-XXX")
+           )(value="1.5uH", footprint="Inductor_SMD:L_Coilcraft_XxL4020")
 l10.ref = "L10"
 
 # Battery input: 1S or 2S. Solder pads for a pigtail (motor current flows here
-# too on 1S whoops, so no small JST-PH). Placeholder footprint.
+# too on 1S whoops, so no small JST-PH). 2.5 x 3.5 mm SMD wire pads.
 j10 = Part(name="Conn_VBAT_1S_2S", tool=SKIDL, ref_prefix="J", dest=TEMPLATE,
            pins=[Pin(num=1, name="VBAT", func=T.PWROUT),
                  Pin(num=2, name="GND",  func=T.PWRIN)]
            )(value="VBAT_1S_2S",
-             footprint="Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+             footprint="dronekit:SolderPads_1x02_P3.5mm_2.5x3.5mm")
 j10.ref = "J10"
 
 # ----------------------------------------------------------------------------

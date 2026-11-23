@@ -22,6 +22,13 @@ parts, pins and nets, then:
 Then it re-reads board.kicad_sch, rebuilds connectivity purely from label and
 pin coordinates, and checks it matches the merged netlist exactly.
 
+Finally it splits the system into the two stacked boards (section 2b):
+  fc.net / fc.kicad_sch / fc.kicad_pro              bottom, flight controller
+  vision.net / vision.kicad_sch / vision.kicad_pro  top, ESP32-S3 + camera
+each with its half of the J200/J201 board-to-board connector, and checks
+and re-reads each one the same way. board.kicad_sch stays as the whole-system
+reference schematic.
+
 Run:  python3 build_board.py      (from hardware/board/)
 """
 
@@ -140,7 +147,7 @@ def merge(block_parts):
     u1_by_name = {pin["name"]: pin for pin in real_u1["pins"]}
 
     u2 = {"ref": "U2", "name": "ESP32-S3-WROOM-1-N8R2", "value": "ESP32-S3-WROOM-1-N8R2",
-          "footprint": "RF_Module:ESP32-S3-WROOM-1", "block": "dual-boot", "pins": []}
+          "footprint": "dronekit:ESP32-S3-WROOM-1_BoardEdge", "block": "dual-boot", "pins": []}
     for nm, pad in ESP_PADS.items():
         ptype = "power_in" if nm in ("3V3",) + ESP_GND_PADS else (
             "input" if nm == "EN" else "bidirectional")
@@ -218,6 +225,97 @@ def sanity(parts, nets):
         if t.count("power_out") > 1:
             problems.append(f"net {name} has {t.count('power_out')} power outputs")
     return problems
+
+
+# ---------------------------------------------------------------------------
+# 2b. Split into two stacked boards (hardware/board/README.md, "Two boards")
+# ---------------------------------------------------------------------------
+# The parts don't fit one 32 x 30 mm board, so the system is two boards of
+# the same outline, stacked on the same four M1.4 holes:
+#   fc     (bottom) flight controller: power, STM32, USB-C, gyro, baro,
+#                   motors, buzzer, receiver port, STM32 I2C + UART3 ports
+#   vision (top)    ESP32-S3 + its 3.3 V LDO, camera, boot-mode switch,
+#                   PWM + LED-strip ports, the ESP32-S3 expansion ports
+# joined by one 2 x 12, 1.27 mm through-hole connector pair: a male header
+# J200 on top of fc plugs into a female socket J201 on the underside of
+# vision (same pin number = same net = same XY). The pair sets the gap
+# between the boards. A part's board comes from its block, with
+# the exceptions listed below.
+BOARD_OF_BLOCK = {"dual-boot": "vision", "camera": "vision"}     # rest: fc
+BOARD_EXCEPTIONS = {
+    # dual-boot parts that sit at the STM32, not the ESP32-S3
+    "R3": "fc",      # STM_BOOT0 pull-down
+    "C4": "fc",      # STM_NRST filter cap
+    # the ESP32-S3 rail is made on the vision board, from +3V8
+    "U12": "vision", "C19": "vision", "C20": "vision",
+    # expansion ports that move up to balance the area
+    "J132": "vision", "C132": "vision", "R134": "vision",               # LED strip
+    "J133": "vision", "C133": "vision",                                  # PWM
+    "R135": "vision", "R136": "vision", "R137": "vision", "R138": "vision",
+    "J134": "vision", "C134": "vision", "R139": "vision", "R140": "vision",  # ESP I2C
+    "R141": "vision", "R142": "vision",
+    "J135": "vision", "C135": "vision",                                  # ESP IO
+    "R143": "vision", "R144": "vision", "R145": "vision", "R146": "vision",
+}
+# J200/J201 pinout, pin 1..24 (2 x 12: pins 1/2 side by side, then 3/4 ...).
+# +3V8 feeds the vision board's AP7361C (ESP32-S3 + camera, ~0.5 A peak):
+# three pins. +3V3_SYS is the MODE_SENSE pull-up rail; +3V3_ESP goes back
+# down for the STM32's sensor-I2C port J130. Six GND pins.
+B2B_PINOUT = [
+    "GND",        "GND",           # 1, 2
+    "+3V8",       "+3V8",          # 3, 4
+    "+3V8",       "GND",           # 5, 6
+    "+3V3_SYS",   "+3V3_ESP",      # 7, 8
+    "GND",        "GND",           # 9, 10
+    "ESP_USB_DP", "ESP_USB_DN",    # 11, 12  ESP32-S3 native USB (Mode B)
+    "BRIDGE_TX",  "BRIDGE_RX",     # 13, 14  STM32 USART1 <-> ESP32-S3
+    "ESP_EN",     "MODE_SENSE",    # 15, 16
+    "STM_BOOT0",  "STM_NRST",      # 17, 18  ESP32-S3 can flash the STM32
+    "PWM1",       "PWM2",          # 19, 20  STM32 servo/aux outputs -> J133
+    "PWM3",       "PWM4",          # 21, 22
+    "LED_STRIP",  "GND",           # 23, 24  STM32 LED-strip output -> J132
+]
+B2B_FOOTPRINT = {
+    "fc":     ("J200", "B2B_HEADER_2x12_1.27mm",
+               "Connector_PinHeader_1.27mm:PinHeader_2x12_P1.27mm_Vertical"),
+    "vision": ("J201", "B2B_SOCKET_2x12_1.27mm",
+               "Connector_PinSocket_1.27mm:PinSocket_2x12_P1.27mm_Vertical"),
+}
+
+
+def board_of(p):
+    return BOARD_EXCEPTIONS.get(p["ref"], BOARD_OF_BLOCK.get(p["block"], "fc"))
+
+
+def split(parts):
+    """Returns {"fc": parts, "vision": parts}, each with its J200/J201."""
+    errors = []
+    for ref in BOARD_EXCEPTIONS:
+        if ref not in {p["ref"] for p in parts}:
+            errors.append(f"BOARD_EXCEPTIONS names {ref}, which no block defines")
+    where = defaultdict(set)
+    for p in parts:
+        for pin in p["pins"]:
+            if pin["net"]:
+                where[pin["net"]].add(board_of(p))
+    crossing = {n for n, b in where.items() if len(b) == 2}
+    on_b2b = set(B2B_PINOUT)
+    for n in sorted(crossing - on_b2b):
+        errors.append(f"net {n} has parts on both boards but no J200/J201 pin")
+    for n in sorted(on_b2b - crossing):
+        errors.append(f"J200/J201 carries {n}, but no net needs to cross")
+    if errors:
+        raise BuildError("\n".join(errors))
+
+    boards = {"fc": [], "vision": []}
+    for p in parts:
+        boards[board_of(p)].append(p)
+    for board, (ref, value, footprint) in B2B_FOOTPRINT.items():
+        pins = [{"num": str(i + 1), "name": f"{n}_{i + 1}", "type": "passive", "net": n}
+                for i, n in enumerate(B2B_PINOUT)]
+        boards[board].append({"ref": ref, "name": "B2B_2x12", "value": value,
+                              "footprint": footprint, "pins": pins, "block": "b2b"})
+    return boards, sorted(crossing)
 
 
 # ---------------------------------------------------------------------------
@@ -361,7 +459,7 @@ def write_schematic(parts, nets, sch_path, project):
     by_block = defaultdict(list)
     for p in parts:
         by_block[p["block"]].append(p)
-    for block, _, title in BLOCKS:
+    for block, _, title in BLOCKS + [("b2b", None, "BOARD-TO-BOARD: fc J200 <-> vision J201")]:
         bp = sorted(by_block.get(block, []), key=lambda p: (-len(p["pins"]), ref_key(p["ref"])))
         if not bp:
             continue
@@ -523,8 +621,29 @@ def main():
     nc = sum(1 for p in parts for pin in p["pins"] if not pin["net"])
     print(f">>> {len(parts)} parts, {len(nets)} nets, {npins} pins ({nc} unconnected)")
     print(f">>> power flags on: {', '.join(flagged) or '-'}")
-    print(">>> wrote board.net, board.kicad_sch, board.kicad_pro")
+    print(">>> wrote board.net, board.kicad_sch, board.kicad_pro (whole system)")
     print(">>> schematic connectivity re-read from file: matches the netlist")
+
+    # The two physical boards, each its own KiCad project
+    boards, crossing = split(parts)
+    print(f">>> split: {len(crossing)} nets cross on J200/J201: {', '.join(crossing)}")
+    for name, bparts in boards.items():
+        bnets = netmap(bparts)
+        problems = sanity(bparts, bnets)
+        for p in problems:
+            print(f"  CHECK {name}:", p)
+        if problems:
+            raise BuildError(f"{name}: connectivity check failed")
+        write_netlist(bparts, bnets, f"{name}.net")
+        _, bflag = write_schematic(bparts, bnets, f"{name}.kicad_sch", name)
+        pro = f"{name}.kicad_pro"
+        if not os.path.exists(pro):          # keep design rules written by build_pcb.py
+            write_project(pro, name)
+        ok, want, got = verify_schematic(f"{name}.kicad_sch", bnets)
+        if not ok:
+            raise BuildError(f"{name}.kicad_sch connectivity does not match {name}.net")
+        print(f">>> {name:6}: {len(bparts)} parts, {len(bnets)} nets, power flags on "
+              f"{', '.join(bflag) or '-'}; wrote {name}.net/.kicad_sch, re-read OK")
 
 
 if __name__ == "__main__":

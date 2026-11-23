@@ -97,7 +97,7 @@ Nothing above touches GPIO3/45/46. Strap resistors are in `hardware/dual-boot/`
 
 | Ref | Part | Note |
 |---|---|---|
-| J30 | 24-pin 0.5 mm FPC, flip-lock | footprint placeholder: Hirose FH12-24S-0.5SH; pick the LCSC part at layout |
+| J30 | 24-pin 0.5 mm FPC, flip-lock | footprint: Hirose FH12-24S-0.5SH, on the vision board's underside at the front edge (`hardware/board/README.md`, "vision placement"); pick the LCSC part with its contacts facing the ribbon's exposed side |
 | U30 | XC6206P282MR, SOT-23 | 2.8 V, e.g. LCSC C347374 (250 mA) |
 | U31 | XC6206P122MR, SOT-23 | 1.2 V, e.g. LCSC C2827649 (200 mA). Not the Torex "-G" C424699, which is 60 mA |
 | C30–C33 | 1 µF 0402 | LDO in/out |

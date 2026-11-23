@@ -22,6 +22,8 @@ centre. Import into KiCad as **Edge.Cuts** (File → Import → Graphics, units 
 | Mounting holes | 4 × Ø1.6 mm (M1.4) on a 25.5 mm square, centred |
 | Orientation | +X = front (camera side), −X = rear (sensor bay) |
 | Board sits at | 5.6 mm above cage floor (on 4 mm standoffs) |
+| Second board | **vision** board, same outline and holes, 1.0 mm, stacked at least 5.5 mm above fc on a 2 × 12 1.27 mm header + socket (`hardware/board/README.md`, "Two boards") |
+| ESP32-S3 antenna | on the vision board's rear edge, ending 1.4 mm past it (x = −17.4 mm); keep cage parts and metal away from it |
 
 ### Size limits (from the cage, at default parameters)
 
@@ -29,6 +31,9 @@ centre. Import into KiCad as **Edge.Cuts** (File → Import → Graphics, units 
 - **Y ≤ 31.8 mm** — battery-cage posts at y = ±16.6 mm.
 - **Top-side parts ≤ 4.4 mm tall** — the battery underside sits 4.4 mm above
   the board (ESP32-S3-WROOM-1 at 3.1 mm fits; raise `fc_clear` for taller parts).
+  **Not enough for the two-board stack (2026-11-23):** fc + gap + vision +
+  ESP32-S3 module needs about 9.5–10 mm above fc, so `fc_clear` has to grow
+  by about 5–6 mm. Not changed in Fusion yet.
 - **Bottom-side parts:** 3.5 mm keep-out circles around each mounting hole
   (standoff bosses); otherwise ~3.5 mm of clearance to the cage plate.
 

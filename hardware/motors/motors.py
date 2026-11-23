@@ -83,13 +83,14 @@ def SCHOTTKY(ref):
     p.ref = ref
     return p
 
-# Motor solder pads: 1 = M+ (VBAT_RAW), 2 = M- (FET drain). Placeholder footprint.
+# Motor solder pads: 1 = M+ (VBAT_RAW), 2 = M- (FET drain). SMD wire pads
+# (hardware/board/dronekit.pretty), on the fc board's underside.
 def MOTOR_PADS(ref, label):
     p = Part(name="Motor_Pads", tool=SKIDL, ref_prefix="J", dest=TEMPLATE,
              pins=[Pin(num=1, name="M+", func=T.PASSIVE),
                    Pin(num=2, name="M-", func=T.PASSIVE)]
              )(value=label,
-               footprint="Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+               footprint="dronekit:SolderPads_1x02_P2mm_1.3x2mm")
     p.ref = ref
     return p
 

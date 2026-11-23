@@ -18,15 +18,18 @@ Thinner parts (`rod_w` 1.4 → 1.0 mm, `ring_w` 2.0 → 1.5 mm, `pod_wall`
 the centre opening with its rim took off 0.05 g. The quad
 most like it that actually flew (BetaFPV's Beta75: same 7 × 20 mm motors,
 40 mm props, 75 mm frame) weighed about **39 g** ready to fly. DroneKit
-comes out at about **43 g** with a 300 mAh pack, or **48 g** with the
-450 mAh pack. The wider wheelbase doesn't change the thrust model, because
+comes out at about **46 g** with a 300 mAh pack, or **51 g** with the
+450 mAh pack. That includes the second board of the two-board electronics
+stack (2026-11-23, see `hardware/board/README.md`), which added about 3 g:
+the 1.0 mm vision PCB, the board-to-board header pair and standoffs, and a
+taller cage. The wider wheelbase doesn't change the thrust model, because
 the prop area is the same.
 
 | Scenario | All-up weight | Thrust/weight (low–mid–high) | Hover current | Flight time |
 |---|---|---|---|---|
-| Current design (8.2 g cage, open centre), 450 mAh | 47.7 g | 1.5 – **1.8** – 2.1 | 3.6 A | ~4.5 min |
-| Current design (8.2 g cage, open centre), 300 mAh | 43.3 g | 1.6 – **2.0** – 2.3 | 3.1 A | ~3.5 min |
-| 0.8 mm PCB (−1.4 g), 300 mAh | 41.9 g | 1.7 – **2.0** – 2.4 | 2.9 A | ~3.6 min |
+| Current design (two-board stack), 450 mAh | 50.7 g | 1.4 – **1.7** – 2.0 | 3.9 A | ~4.1 min |
+| Current design (two-board stack), 300 mAh | 46.3 g | 1.5 – **1.9** – 2.2 | 3.4 A | ~3.1 min |
+| 0.8 mm FC PCB (−1.4 g), 300 mAh | 44.9 g | 1.6 – **1.9** – 2.2 | 3.3 A | ~3.3 min |
 | BetaFPV Beta75 (reference, flew) | 39.0 g | 1.8 – 2.2 – 2.6 | 2.6 A | 3.5 min (stated) |
 
 **How to read thrust/weight:**
@@ -48,8 +51,10 @@ flight.
 | Cage, PLA, covered with an open centre, 108 × 108 × 34 mm (85 mm wheelbase) | 8.2 | Fusion model volume (6.60 cm³) × 1.24 g/cm³ |
 | 4 × 7×20 motors | 14.0 | BetaFPV 7×20 listing: ~3.5 g each (some generic 720s are up to ~5 g) |
 | Flight controller (PCB 2.9 + ESP32-S3 module ~3 + parts ~2.5) | 8.4 | estimate |
+| Second board: vision PCB 1.0 mm (1.8) + header pair and standoffs (0.8) | 2.6 | estimate |
+| Cage made ~5 mm taller for the board stack | 0.4 | estimate, not yet in Fusion |
 | Props, camera, wiring, foam | 4.4 | estimate |
-| **Dry** | **35.0** | |
+| **Dry** | **38.0** | |
 | Battery: 450 mAh / 300 mAh | 12.7 / 8.3 | BetaFPV BT2.0 listings |
 
 **The cage was the biggest thing to cut.** Moulded whoop frames are a few

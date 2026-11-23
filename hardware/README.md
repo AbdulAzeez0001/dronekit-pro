@@ -23,17 +23,22 @@ doc that explains its choices:
 | `buzzer/` | Betaflight beeper |
 | `expansion/` | six JST-SH expansion headers |
 | `mechanical/` | cage / PCB outline (Fusion) |
-| **`board/`** | **all blocks merged into one KiCad schematic: start here for KiCad** |
+| **`board/`** | **all blocks merged, then split into the two stacked boards (fc + vision): start here for KiCad** |
 
 `stm32f405-pinmap.md` is the human-readable pin allocation.
 
 ## Workflow
 
 1. Edit a block's `.py`, run it (ERC must be clean).
-2. Run `board/build_board.py` to regenerate `board/board.kicad_sch` and
-   `board/board.net` (it cross-checks every shared pin and re-verifies the
+2. Run `board/build_board.py` to regenerate `board/board.kicad_sch`,
+   `board/board.net` and the two boards' `fc.*` / `vision.*` (it cross-checks every shared pin and re-verifies the
    schematic's connectivity).
-3. Open `board/board.kicad_pro` in KiCad 8, run ERC, then Tools > Update PCB
-   from Schematic and lay out the board.
+3. Run `board/build_pcb.py fc` and `board/build_pcb.py vision` with
+   KiCad 10's Python to start the two stacked boards' PCBs (outline, holes,
+   rules, board-to-board connector, every footprint with its nets), then
+   `board/place_fc.py` and `board/place_vision.py` to place each board's
+   parts. After that, change
+   the schematic with `build_board.py` and use Tools > Update PCB from
+   Schematic in KiCad, so placement and routing survive.
 4. Clean DRC, then generate a JLCPCB fab quote and an LCSC BOM cost sheet
    (free, no purchase).

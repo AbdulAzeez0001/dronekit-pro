@@ -77,7 +77,7 @@ is now fixed in the design (`hardware/baro/`); the gyro is still open:
 | J132 | JST SH 3-pin | — | 1 | ~0.12 | 0.12 | estimate |
 | L10 | 1.5 µH shielded, Isat ≥ 2 A | — | 1 | ~0.15 | 0.15 | estimate. The Coilcraft XFL4020 isn't at LCSC, so pick an LCSC equivalent |
 | Y90 | 8 MHz 3225, CL = 20 pF | — | 1 | ~0.05 | 0.05 | estimate |
-| SW1, SW2, SW90 | slide + 2 tactile | — | 3 | ~0.05 | 0.15 | estimate |
+| SW1, SW2, SW90 | Copal CHS-01A 1-position slide + 2 × C&K KMR2 tactile (4.2 × 2.8 mm) | — | 3 | ~0.05 | 0.15 | estimate |
 | D90 | LED 0402 | — | 1 | 0.01 | 0.01 | basic part |
 | C*, R* | ~95 passives, 0402/0603/0805 | basic | ~95 | ~0.003 | 0.30 | estimate |
 
