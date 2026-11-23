@@ -111,4 +111,6 @@ This must be decided before layout because it changes the power section.
 - [ ] Map MODE_SENSE / ESP_EN / bridge UART to free STM32F405 pins not used by Betaflight.
 - [ ] Confirm the ESP32 program/reset method (USB-UART vs pads) and that it does not collide with the STM32 bridge.
 - [ ] Confirm the S3 strap table (GPIO0/3/45/46) against the ESP32-S3 datasheet.
-- [ ] Decide S3 programming: native USB (GPIO19/20) vs UART0 pads.
+- [x] S3 programming: native USB (GPIO19/20) through the shared USB-C port in
+      Mode B (TS3USB221A switch in the stm32 block), plus UART0 pads (J1:
+      GND, TXD0, RXD0) for factory flashing and recovery.

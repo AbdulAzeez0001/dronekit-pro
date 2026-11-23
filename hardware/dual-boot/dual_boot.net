@@ -2,7 +2,7 @@
   (version "D")
   (design
     (source "dual_boot.py")
-    (date "11/22/2026 09:55 PM")
+    (date "11/22/2026 11:07 PM")
     (tool "SKiDL (2.2.3)")
     (sheet
       (number 1)
@@ -55,16 +55,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "GpCa6uYGzp")
+          (name "SKiDL Tag") "CNgg8ZRJXd")
         (field
-          (name "SKiDL Line") "dual_boot.py:108"))
+          (name "SKiDL Line") "dual_boot.py:110"))
       (libsource
         (lib "NO_LIB")
         (part "C"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "c01b400b-02a9-5f2f-9127-f395b765570e"))
+      (tstamps "8d47c269-87c5-5889-ac2d-71901301caa3"))
     (comp
       (ref "C2")
       (value "100nF")
@@ -78,16 +78,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "1A5xhEULKM")
+          (name "SKiDL Tag") "XDFZajsRLI")
         (field
-          (name "SKiDL Line") "dual_boot.py:117"))
+          (name "SKiDL Line") "dual_boot.py:119"))
       (libsource
         (lib "NO_LIB")
         (part "C"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "8e84e699-f759-5889-9bbb-46b50f6428e6"))
+      (tstamps "78dad1b6-e301-56d1-a711-8eb562970474"))
     (comp
       (ref "C3")
       (value "100nF")
@@ -101,16 +101,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "XNBEUhfsOW")
+          (name "SKiDL Tag") "1GIncGePA4")
         (field
-          (name "SKiDL Line") "dual_boot.py:126"))
+          (name "SKiDL Line") "dual_boot.py:128"))
       (libsource
         (lib "NO_LIB")
         (part "C"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "fade6a1a-167c-5c3c-9dbd-3ae963d740a4"))
+      (tstamps "005b8373-ab36-573b-a4f8-250bdc9f5181"))
     (comp
       (ref "C4")
       (value "100nF")
@@ -124,16 +124,39 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "xOsekJjY_N")
+          (name "SKiDL Tag") "JyZinEkDoQ")
         (field
-          (name "SKiDL Line") "dual_boot.py:143"))
+          (name "SKiDL Line") "dual_boot.py:145"))
       (libsource
         (lib "NO_LIB")
         (part "C"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "4a367de9-72e3-5dcd-acd2-b7a863eb8914"))
+      (tstamps "0e30e04e-f42d-5100-9a5a-9626cf56d5f5"))
+    (comp
+      (ref "J1")
+      (value "ESP_UART0")
+      (description "")
+      (footprint "Connector_PinHeader_1.27mm:PinHeader_1x03_P1.27mm_Vertical")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Connector_PinHeader_1.27mm:PinHeader_1x03_P1.27mm_Vertical")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "vXNrXGiTrY")
+        (field
+          (name "SKiDL Line") "dual_boot.py:176"))
+      (libsource
+        (lib "NO_LIB")
+        (part "UART0_Pads"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (tstamps "2e67c816-8beb-597f-8e80-cdb66ec0c53d"))
     (comp
       (ref "R1")
       (value "10k")
@@ -147,16 +170,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "XGVQyZQVZy")
+          (name "SKiDL Tag") "cW6FXgxBGI")
         (field
-          (name "SKiDL Line") "dual_boot.py:116"))
+          (name "SKiDL Line") "dual_boot.py:118"))
       (libsource
         (lib "NO_LIB")
         (part "R"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "11b56d85-8e78-5022-aee4-05728b191921"))
+      (tstamps "f18a6092-1d5b-5271-b504-ee27d95b19b6"))
     (comp
       (ref "R2")
       (value "10k")
@@ -170,16 +193,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "Mzu6KP9FHE")
+          (name "SKiDL Tag") "gNzTEKiRTc")
         (field
-          (name "SKiDL Line") "dual_boot.py:125"))
+          (name "SKiDL Line") "dual_boot.py:127"))
       (libsource
         (lib "NO_LIB")
         (part "R"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "463a49bc-4f85-506f-960f-c5f53cda4615"))
+      (tstamps "1dea73fe-562d-5ad8-ba8a-a48ec04c7189"))
     (comp
       (ref "R3")
       (value "10k")
@@ -193,16 +216,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "V0QUSIH06R")
+          (name "SKiDL Tag") "3NfIX60tpH")
         (field
-          (name "SKiDL Line") "dual_boot.py:139"))
+          (name "SKiDL Line") "dual_boot.py:141"))
       (libsource
         (lib "NO_LIB")
         (part "R"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "cfe51552-6e80-54f3-af08-f5f33186a0dc"))
+      (tstamps "a7fe6a95-552e-5138-9e8f-a014c1f08389"))
     (comp
       (ref "R4")
       (value "10k")
@@ -216,16 +239,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "TRTlWEvISi")
+          (name "SKiDL Tag") "PVwYySDf7K")
         (field
-          (name "SKiDL Line") "dual_boot.py:154"))
+          (name "SKiDL Line") "dual_boot.py:156"))
       (libsource
         (lib "NO_LIB")
         (part "R"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "caddbb14-e493-5e55-a1f5-0bd1af6462cf"))
+      (tstamps "0110f3d4-c8c8-5ab0-a45c-eb0ec50071fb"))
     (comp
       (ref "R5")
       (value "10k")
@@ -239,16 +262,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "9omTsOFcjp")
+          (name "SKiDL Tag") "zPTQ8HpRAx")
         (field
-          (name "SKiDL Line") "dual_boot.py:155"))
+          (name "SKiDL Line") "dual_boot.py:157"))
       (libsource
         (lib "NO_LIB")
         (part "R"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "4c5ea350-bc5f-5694-ba71-a1aa47b588d6"))
+      (tstamps "f3c20efb-c46b-5f0d-beb3-76f285635b40"))
     (comp
       (ref "R6")
       (value "10k")
@@ -262,16 +285,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "xAOKJU2g9V")
+          (name "SKiDL Tag") "V99cLWtS5A")
         (field
-          (name "SKiDL Line") "dual_boot.py:156"))
+          (name "SKiDL Line") "dual_boot.py:158"))
       (libsource
         (lib "NO_LIB")
         (part "R"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "ae3f5532-f4f9-5bcb-8396-ade8d17e6f4a"))
+      (tstamps "753bad10-f10d-58fc-ba93-654946b3bac8"))
     (comp
       (ref "SW1")
       (value "boot_mode")
@@ -285,16 +308,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "NbFNGByykD")
+          (name "SKiDL Tag") "S1uH3z2aNa")
         (field
-          (name "SKiDL Line") "dual_boot.py:115"))
+          (name "SKiDL Line") "dual_boot.py:117"))
       (libsource
         (lib "NO_LIB")
         (part "SW_SPST"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "e397ed7d-4078-53df-9f52-4ff2d46735f7"))
+      (tstamps "510368a6-03db-5949-ab42-477b84247d71"))
     (comp
       (ref "SW2")
       (value "ESP_PROG")
@@ -308,16 +331,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "2WeeQM0RK9")
+          (name "SKiDL Tag") "KhY38F_qx7")
         (field
-          (name "SKiDL Line") "dual_boot.py:159"))
+          (name "SKiDL Line") "dual_boot.py:161"))
       (libsource
         (lib "NO_LIB")
         (part "SW_PUSH"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "a1f9fe64-1031-5f2a-8190-a6fa9e2bd5ce"))
+      (tstamps "7238579a-9234-57d3-a287-bd7b4c434a63"))
     (comp
       (ref "U1")
       (value "STM32F405RGT6")
@@ -331,7 +354,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "pWgsCSvBIk")
+          (name "SKiDL Tag") "3oFQL1HjHo")
         (field
           (name "SKiDL Line") "dual_boot.py:60"))
       (libsource
@@ -340,7 +363,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "13b35513-21a2-5709-a8b5-5999c90759f7"))
+      (tstamps "a4976a11-f4ec-5f09-b44e-8df45cf7d660"))
     (comp
       (ref "U2")
       (value "ESP32-S3-WROOM-1-N8R2")
@@ -354,7 +377,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "a5tdOpKe5Z")
+          (name "SKiDL Tag") "UnYLYd6u_8")
         (field
           (name "SKiDL Line") "dual_boot.py:73"))
       (libsource
@@ -363,7 +386,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "1ca517ff-7b28-5b00-b8a3-d1c4e2c03c0f")))
+      (tstamps "5ee11149-5d50-5c4e-b4ce-a92846d9a146")))
   (nets
     (net
       (code 1)
@@ -439,6 +462,30 @@
         (pintype "INPUT")))
     (net
       (code 6)
+      (name "ESP_RXD0")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "3")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "12")
+        (pintype "INPUT")))
+    (net
+      (code 7)
+      (name "ESP_TXD0")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U2")
+        (pin "11")
+        (pintype "OUTPUT")))
+    (net
+      (code 8)
       (name "GND")
       (class "Default")
       (node
@@ -456,6 +503,10 @@
       (node
         (ref "C4")
         (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J1")
+        (pin "1")
         (pintype "PASSIVE"))
       (node
         (ref "R2")
@@ -490,7 +541,7 @@
         (pin "2")
         (pintype "POWER-IN")))
     (net
-      (code 7)
+      (code 9)
       (name "MODE_SENSE")
       (class "Default")
       (node
@@ -510,7 +561,7 @@
         (pin "3")
         (pintype "INPUT")))
     (net
-      (code 8)
+      (code 10)
       (name "STM_BOOT0")
       (class "Default")
       (node
@@ -526,7 +577,7 @@
         (pin "9")
         (pintype "OUTPUT")))
     (net
-      (code 9)
+      (code 11)
       (name "STM_NRST")
       (class "Default")
       (node
@@ -542,7 +593,7 @@
         (pin "10")
         (pintype "OPEN-COLLECTOR")))
     (net
-      (code 10)
+      (code 12)
       (name "STRAP_IO0")
       (class "Default")
       (node
@@ -558,7 +609,7 @@
         (pin "6")
         (pintype "BIDIRECTIONAL")))
     (net
-      (code 11)
+      (code 13)
       (name "STRAP_IO45")
       (class "Default")
       (node
@@ -570,7 +621,7 @@
         (pin "7")
         (pintype "BIDIRECTIONAL")))
     (net
-      (code 12)
+      (code 14)
       (name "STRAP_IO46")
       (class "Default")
       (node

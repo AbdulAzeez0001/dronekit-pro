@@ -13,10 +13,10 @@ python3 elrs.py             # runs ERC, writes elrs.net
 ```
 Expected: `ERC INFO: No errors or warnings` and `0 errors`.
 
-## Import into KiCad
-Same as the other blocks: File > Import > Netlist, then assign real symbols.
-`U1` here is the same STM32F405 as `U1` in the dual-boot netlist, so merge
-them into one part in the full schematic.
+## Use in KiCad
+Don't import this netlist on its own. `hardware/board/build_board.py` merges
+every block into one schematic, `hardware/board/board.kicad_sch`, with the real
+STM32 and ESP32-S3 pin numbers. See `hardware/board/README.md`.
 
 ## What NOT to change without re-reading the design doc
 - Pad order (GND, PWR, FC_TX, FC_RX) matches common receivers' wire order.

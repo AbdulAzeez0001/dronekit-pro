@@ -13,10 +13,10 @@ python3 expansion.py        # runs ERC, writes expansion.net
 ```
 Expected: `ERC INFO: No errors or warnings` and `0 errors`.
 
-## Import into KiCad
-Same as the other blocks. `U1` (STM32) and `U2` (ESP32-S3) here are stubs:
-keep the `hardware/stm32` block's `U1` and one ESP32-S3 `U2`, and let the nets
-join by name.
+## Use in KiCad
+Don't import this netlist on its own. `hardware/board/build_board.py` merges
+every block into one schematic, `hardware/board/board.kicad_sch`, with the real
+STM32 and ESP32-S3 pin numbers. See `hardware/board/README.md`.
 
 ## What NOT to change without re-reading the design doc
 - Header 3V3 is `+3V3_ESP`, never `+3V3_SYS` (gyro rail).

@@ -14,11 +14,10 @@ python3 stm32.py            # runs ERC, writes stm32.net
 ```
 Expected: `ERC INFO: No errors or warnings` and `0 errors`.
 
-## Merging the blocks in KiCad
-Import every block's netlist into one schematic. Keep THIS block's `U1`
-(real pin numbers); the `U1` in the dual-boot, gyro, baro, receiver and motor
-netlists is a stub with local pin numbers, so delete it and let the nets join
-by name (MODE_SENSE, GYRO_CS, M1_PWM, ...).
+## Use in KiCad
+Don't import this netlist on its own. `hardware/board/build_board.py` merges
+every block into one schematic, `hardware/board/board.kicad_sch`, with the real
+STM32 and ESP32-S3 pin numbers. See `hardware/board/README.md`.
 
 ## What NOT to change without re-reading the design doc
 - VCAP_1 / VCAP_2 need 2.2 uF each (ESR < 2 ohm).

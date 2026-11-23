@@ -10,10 +10,10 @@ python3 gyro.py             # runs ERC, writes gyro.net
 ```
 Expected: `ERC INFO: No errors or warnings` and `0 errors`.
 
-## Import into KiCad
-Same as the other blocks: File > Import > Netlist, then assign real symbols.
-`U1` here is the same STM32F405 as `U1` in the dual-boot netlist, so merge
-them into one part in the full schematic.
+## Use in KiCad
+Don't import this netlist on its own. `hardware/board/build_board.py` merges
+every block into one schematic, `hardware/board/board.kicad_sch`, with the real
+STM32 and ESP32-S3 pin numbers. See `hardware/board/README.md`.
 
 ## What NOT to change without re-reading the design doc
 - The IMU stays on +3V3_SYS, never +3V3_ESP or +3V8.

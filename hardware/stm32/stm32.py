@@ -26,6 +26,10 @@ Decisions encoded here:
   2. USB-C, USB 2.0 full-speed (PA11/PA12). VBUS goes to the power block's
      USB power path (Schottky + battery-FET gate drive), which powers the
      logic without back-feeding the LiPo; motors never run from USB.
+     The data lines go through a TS3USB221A USB 2.0 switch steered by the
+     boot-mode switch (MODE_SENSE): Mode A (LOW) -> STM32 (Betaflight
+     configurator), Mode B (HIGH) -> ESP32-S3 native USB (flashing, Python
+     REPL). One connector, no adapter, nothing to press.
      CC1/CC2 5.1k pull-downs so USB-C hosts see a device; USBLC6-2SC6 ESD
      protection on D+/D-.
   3. BOOT button to 3.3V through 1k: holds BOOT0 high for DFU. The 1k
@@ -147,6 +151,31 @@ u91 = Part(name="USBLC6-2SC6", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
            )(value="USBLC6-2SC6", footprint="Package_TO_SOT_SMD:SOT-23-6")
 u91.ref = "U91"
 
+# TS3USB221A USB 2.0 2:1 switch, UQFN-10 (RSE), TI SCDS277C Table 4-1:
+#  1 1D+  2 1D-  3 2D+  4 2D-  5 GND  6 OE  7 D-  8 D+  9 S  10 VCC
+# Truth table (7-1): OE=H disconnect; OE=L,S=L: D=1D; OE=L,S=H: D=2D.
+# Footprint: import TI's RSE0010A.
+u92 = Part(name="TS3USB221A", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
+           pins=[Pin(num=1,  name="1D+", func=T.PASSIVE),
+                 Pin(num=2,  name="1D-", func=T.PASSIVE),
+                 Pin(num=3,  name="2D+", func=T.PASSIVE),
+                 Pin(num=4,  name="2D-", func=T.PASSIVE),
+                 Pin(num=5,  name="GND", func=T.PWRIN),
+                 Pin(num=6,  name="OE",  func=T.INPUT),
+                 Pin(num=7,  name="D-",  func=T.PASSIVE),
+                 Pin(num=8,  name="D+",  func=T.PASSIVE),
+                 Pin(num=9,  name="S",   func=T.INPUT),
+                 Pin(num=10, name="VCC", func=T.PWRIN)]
+           )(value="TS3USB221A", footprint="TI:RSE0010A")
+u92.ref = "U92"
+
+# ESP32-S3 (same part as dual-boot U2) - native USB pins only. Local numbers.
+esp = Part(name="ESP32-S3-WROOM-1-N8R2", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
+           pins=[Pin(num=1, name="IO19", func=T.BIDIR),     # USB D-
+                 Pin(num=2, name="IO20", func=T.BIDIR)]     # USB D+
+           )(value="ESP32-S3-WROOM-1-N8R2", footprint="RF_Module:ESP32-S3-WROOM-1")
+esp.ref = "U2"
+
 sw90 = Part(name="SW_PUSH", tool=SKIDL, ref_prefix="SW", dest=TEMPLATE,
             pins=[Pin(num=1, name="A", func=T.PASSIVE),
                   Pin(num=2, name="B", func=T.PASSIVE)]
@@ -215,9 +244,23 @@ r90 = Rn("R90", "5.1k"); r91 = Rn("R91", "5.1k")             # CC pull-downs: US
 cc1 = Net("USB_CC1"); cc1 += j90["CC1"], r90[1]; gnd += r90[2]
 cc2 = Net("USB_CC2"); cc2 += j90["CC2"], r91[1]; gnd += r91[2]
 
+# Connector side (ESD here) -> switch common port
 usb_dp = Net("USB_DP"); usb_dn = Net("USB_DN")
-usb_dp += u1["PA12"], j90["DP_A6"], j90["DP_B6"], u91["IO1"], u91["IO1_6"]
-usb_dn += u1["PA11"], j90["DN_A7"], j90["DN_B7"], u91["IO2"], u91["IO2_4"]
+usb_dp += j90["DP_A6"], j90["DP_B6"], u91["IO1"], u91["IO1_6"], u92["D+"]
+usb_dn += j90["DN_A7"], j90["DN_B7"], u91["IO2"], u91["IO2_4"], u92["D-"]
+
+# Port 1 -> STM32 (Mode A), port 2 -> ESP32-S3 native USB (Mode B)
+stm_dp = Net("STM_USB_DP"); stm_dp += u92["1D+"], u1["PA12"]
+stm_dn = Net("STM_USB_DN"); stm_dn += u92["1D-"], u1["PA11"]
+esp_dp = Net("ESP_USB_DP"); esp_dp += u92["2D+"], esp["IO20"]
+esp_dn = Net("ESP_USB_DN"); esp_dn += u92["2D-"], esp["IO19"]
+
+# Switch control: S follows the boot-mode switch, OE tied low (always enabled)
+mode_sense = Net("MODE_SENSE")            # dual-boot block: 10k pull-up, switch to GND
+mode_sense += u92["S"]
+gnd       += u92["OE"], u92["GND"]
+v3v3_sys  += u92["VCC"]
+c103 = Cn("C103", "100nF"); v3v3_sys += c103[1]; gnd += c103[2]   # VCC bypass at pin 10
 
 # ----------------------------------------------------------------------------
 # Boot: BOOT0 button (DFU) and BOOT1 pull-down
@@ -271,7 +314,7 @@ BLOCK_NETS = {
     "PC6": "PWM1", "PC7": "PWM2", "PC8": "PWM3", "PC9": "PWM4",
 }
 for pin, net in BLOCK_NETS.items():
-    n = Net(net); n += u1[pin]
+    n = Net.fetch(net); n += u1[pin]     # reuse the net if this block already made it
     n.do_erc = False        # other end lives in that block's netlist (merged by name)
 
 # Every remaining GPIO is free (expansion) - mark explicitly unconnected.

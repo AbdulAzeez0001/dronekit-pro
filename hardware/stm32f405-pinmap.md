@@ -23,7 +23,7 @@ Betaflight target is built.
 ### Fixed / dedicated (see `hardware/stm32/`, which holds the real LQFP64 pin numbers)
 | Pin | Function |
 |---|---|
-| PA11 / PA12 | USB DM / DP (USB-C, USBLC6 ESD; VBUS powers the logic via the power block) |
+| PA11 / PA12 | USB DM / DP via the TS3USB221A switch (USB-C goes to the STM32 in Mode A, to the ESP32-S3 in Mode B); VBUS powers the logic via the power block |
 | PA13 / PA14 | SWDIO / SWCLK (SWD pads J91) |
 | PH0 / PH1 | 8MHz HSE crystal (OSC_IN / OSC_OUT), 20pF load caps |
 | NRST | reset (STM_NRST) |
@@ -93,7 +93,7 @@ more headers (CODE-I2C on GPIO47/48, CODE-IO on GPIO21/38/39/40).
 |---|---|
 | PA9 | BRIDGE_TX (USART1_TX) -> ESP32-S3 GPIO1 |
 | PA10 | BRIDGE_RX (USART1_RX) <- ESP32-S3 GPIO2 |
-| PC13 | MODE_SENSE (input) |
+| PC13 | MODE_SENSE (input); the same net steers the USB switch |
 | PB12 | ESP_EN (output) |
 
 ### Still free

@@ -10,10 +10,10 @@ python3 camera.py           # runs ERC, writes camera.net
 ```
 Expected: `ERC INFO: No errors or warnings` and `0 errors`.
 
-## Import into KiCad
-Same as `hardware/dual-boot/`: File > Import > Netlist, then assign real
-symbols. `U2` here is the same ESP32-S3 as `U2` in the dual-boot netlist
-(camera pins only), so merge them into one part in the full schematic.
+## Use in KiCad
+Don't import this netlist on its own. `hardware/board/build_board.py` merges
+every block into one schematic, `hardware/board/board.kicad_sch`, with the real
+STM32 and ESP32-S3 pin numbers. See `hardware/board/README.md`.
 
 ## What NOT to change without re-reading the design doc
 - `R30` pulls CAM_PWDN UP. That keeps the camera powered down whenever the

@@ -36,15 +36,40 @@ other side of the board.
   capacitance.
 - If the chosen crystal has a different CL, recalculate the caps.
 
-## USB (Betaflight configurator)
+## USB: one port for both chips
+
+The single USB-C port goes to the STM32 or the ESP32-S3, chosen by the
+boot-mode switch:
+
+| Mode switch | USB-C connects to | Used for |
+|---|---|---|
+| Mode A (Fly), MODE_SENSE low | STM32 PA12/PA11 (USB OTG FS) | Betaflight configurator, DFU flashing |
+| Mode B (Code), MODE_SENSE high | ESP32-S3 IO20/IO19 (native USB) | flashing the ESP32-S3, Python REPL / serial console |
 
 | | |
 |---|---|
-| Connector | USB-C 16-pin (HRO TYPE-C-31-M-12 footprint) |
-| Data | D+ → PA12, D− → PA11 (USB OTG FS), both rows of the connector tied |
+| Connector | USB-C 16-pin (HRO TYPE-C-31-M-12 footprint), both rows of D+/D− tied |
+| Switch | TI TS3USB221A (U92), a USB 2.0 2:1 analog switch, UQFN-10 |
+| Switch control | S = MODE_SENSE (low: port 1 = STM32, high: port 2 = ESP32-S3); OE tied low (always on); VCC on +3V3_SYS with 100 nF (C103) |
 | CC1 / CC2 | 5.1k pull-downs each, so a USB-C host sees a device |
-| ESD | USBLC6-2SC6 on D+/D− |
+| ESD | USBLC6-2SC6 on D+/D−, on the connector side of the switch |
 | VBUS | powers the logic through the USB power path in `hardware/power/` (not the motors) |
+
+The switch pinout and truth table are from TI's TS3USB221A datasheet
+(SCDS277C): pin table 4-1, truth table 7-1, VCC 2.3–3.6 V. Flipping the Mode
+switch with the cable plugged in simply re-enumerates the device on the PC.
+
+**Why it's built this way:**
+
+- **Code mode needs USB on the ESP32-S3.** It's the chip that runs the
+  student's code, and its ROM bootloader only listens on UART0 or native USB.
+  The STM32 bridge uses UART1, so it can't reach the bootloader.
+- **The ESP32-S3's built-in USB serial/JTAG** lets esptool flash it with no
+  adapter and no buttons, and gives a serial console for Python.
+- **One port is simpler for students.** There's no second connector to
+  find, and the Mode switch already says which chip they're talking to.
+- **Recovery:** if the ESP32-S3 firmware ever breaks USB, the UART0 pads
+  in the dual-boot block are the way back in.
 
 **USB powers the logic, so no battery is needed for the configurator.**
 VBUS goes to the power block, where a Schottky and the battery FET's gate
@@ -67,7 +92,7 @@ so USB can never spin them.
 
 ## Pins used by this block
 
-PH0/PH1 (crystal), PA11/PA12 (USB), PA13/PA14 (SWD), BOOT0, NRST, PB2
+PH0/PH1 (crystal), PA11/PA12 (USB, via the U92 switch), PA13/PA14 (SWD), BOOT0, NRST, PB2
 (BOOT1) and PB9 (LED0). Every other GPIO either belongs to another block or
 is left free for expansion; see `hardware/stm32f405-pinmap.md`.
 

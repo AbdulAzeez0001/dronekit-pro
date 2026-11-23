@@ -82,6 +82,8 @@ esp32 = Part(name="ESP32-S3-WROOM-1-N8R2", tool=SKIDL, ref_prefix="U", dest=TEMP
                  Pin(num=8,  name="IO46", func=T.BIDIR),   # strapping (pull-down) boot mode
                  Pin(num=9,  name="IO41", func=T.OUTPUT),  # -> STM32 BOOT0
                  Pin(num=10, name="IO42", func=T.OPENCOLL),# -> STM32 NRST (open-drain)
+                 Pin(num=11, name="TXD0", func=T.OUTPUT),  # UART0 TX (ROM bootloader / console)
+                 Pin(num=12, name="RXD0", func=T.INPUT),   # UART0 RX
              ])(value="ESP32-S3-WROOM-1-N8R2", footprint="RF_Module:ESP32-S3-WROOM-1")
 
 # ----------------------------------------------------------------------------
@@ -159,6 +161,23 @@ r_io46 = R(value="10k"); gnd += r_io46[2];      s_io46 = Net("STRAP_IO46"); s_io
 btn_prog = BTN(value="ESP_PROG")
 esp32["IO0"] += btn_prog[1]
 gnd          += btn_prog[2]
+
+# ----------------------------------------------------------------------------
+# ESP32-S3 UART0 pads: factory flashing and recovery.
+# Normal flashing is over USB-C in Mode B (native USB via the switch in the
+# stm32 block). These pads reach the ROM bootloader with any 3.3V USB-serial
+# adapter: hold the program button (IO0), power up in Mode B, run esptool.
+# Pads: 1 GND  2 ESP_TXD0 (to adapter RX)  3 ESP_RXD0 (from adapter TX)
+# ----------------------------------------------------------------------------
+UART_PADS = Part(name="UART0_Pads", tool=SKIDL, ref_prefix="J", dest=TEMPLATE,
+                 pins=[Pin(num=1, name="GND", func=T.PASSIVE),
+                       Pin(num=2, name="TX",  func=T.PASSIVE),
+                       Pin(num=3, name="RX",  func=T.PASSIVE)])
+j_uart = UART_PADS(value="ESP_UART0",
+                   footprint="Connector_PinHeader_1.27mm:PinHeader_1x03_P1.27mm_Vertical")
+gnd += j_uart["GND"]
+esp_txd0 = Net("ESP_TXD0"); esp_txd0 += esp32["TXD0"], j_uart["TX"]
+esp_rxd0 = Net("ESP_RXD0"); esp_rxd0 += esp32["RXD0"], j_uart["RX"]
 
 # ----------------------------------------------------------------------------
 # Checks + output
