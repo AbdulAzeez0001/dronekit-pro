@@ -5,9 +5,10 @@ edit sizes under Modify → Change Parameters).
 
 ## Frame at default parameters
 
-- Motors: **720 brushed** (7 × 20 mm), 40 mm props, 75 mm wheelbase.
-- Cage: about 101 × 101 × 34 mm, about 11 g in PLA.
-- Props sit at z = 27–30 mm, 2.3 mm below the top struts.
+- Motors: **720 brushed** (7 × 20 mm), 40 mm props, 85 mm wheelbase.
+- Cage: top ring and struts over the props, about 108 × 108 × 34 mm, about 8.2 g in PLA (1.0 mm rods, 1.5 mm rings, 1.0 mm motor-pod walls).
+- Top opening: the top is cut open over the square between the motor hubs (`2 × motor_offset` across, 60 mm at 85 mm wheelbase), with a rim rod around it. The props stay covered; the electronics are open from above.
+- Props sit at z = 27–30 mm, 2.75 mm below the top struts, with 20 mm between neighbouring prop tips.
 - For 716 motors, set `motor_len` = 16 and `cage_h` = 30.
 
 ## Flight-controller PCB that fits the cage
