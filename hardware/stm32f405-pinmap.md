@@ -7,139 +7,127 @@ The one item still to verify is DMA stream allocation (see bottom) — pin
 assignment is conflict-free, but F405 DMA sharing must be checked when the
 Betaflight target is built.
 
+This map is for the **1S brushed** board. The earlier 3S–4S brushless
+design (4-in-1 ESC on DShot, DPS368 baro, W25Q128 blackbox flash, GPS and
+ESC-telemetry UARTs) had its own map; it is kept in git history at commit
+`03da4a1` (`git show 03da4a1:hardware/stm32f405-pinmap.md`).
+
 ## Dual-boot signals (the reconciliation)
 
 | Signal | Pin | Direction | Why this pin |
 |---|---|---|---|
 | MODE_SENSE | PC13 | input | Low-drive pin, fine for a passive input. Unused by Betaflight. |
 | ESP_EN | PB12 | output (push-pull) | Full-drive output needed to drive ESP32 EN. Free (SPI2_NSS, unused). |
-| BRIDGE_TX | PA9 | USART1_TX | RC is on UART3, so USART1 is free. |
+| BRIDGE_TX | PA9 | USART1_TX | RC receiver uses USART2, so USART1 is free. |
 | BRIDGE_RX | PA10 | USART1_RX | Pair of USART1. |
-| STM_BOOT0 | BOOT0 | input (dedicated) | Dedicated pin, driven by ESP32 IO25 for OTA. |
-| STM_NRST | NRST | input (dedicated) | Dedicated pin, driven by ESP32 IO26 for OTA. |
+| STM_BOOT0 | BOOT0 | input (dedicated) | Dedicated pin, driven by ESP32-S3 GPIO41 for OTA. |
+| STM_NRST | NRST | input (dedicated) | Dedicated pin, driven by ESP32-S3 GPIO42 for OTA. |
 
 ## Full pin allocation
 
-### Fixed / dedicated
+### Fixed / dedicated (see `hardware/stm32/`, which holds the real LQFP64 pin numbers)
 | Pin | Function |
 |---|---|
-| PA11 / PA12 | USB DM / DP |
-| PA13 / PA14 | SWDIO / SWCLK (programming, keep) |
-| PH0 / PH1 | 8MHz HSE crystal (OSC_IN / OSC_OUT) |
+| PA11 / PA12 | USB DM / DP via the TS3USB221A switch (USB-C goes to the STM32 in Mode A, to the ESP32-S3 in Mode B); VBUS powers the logic via the power block |
+| PA13 / PA14 | SWDIO / SWCLK (SWD pads J91) |
+| PH0 / PH1 | 8MHz HSE crystal (OSC_IN / OSC_OUT), 20pF load caps |
 | NRST | reset (STM_NRST) |
-| BOOT0 | boot select (STM_BOOT0) |
-| VCAP1 / VCAP2 | internal reg caps — 2.2uF each, easy to forget |
-| VDD/VSS/VDDA/VSSA/VBAT | power |
+| BOOT0 | boot select (STM_BOOT0), BOOT button to 3V3 via 1k |
+| PB2 | BOOT1, 10k pull-down |
+| PB9 | LED0 status LED (active low) |
+| VCAP1 / VCAP2 | internal reg caps — 2.2uF each, ESR < 2 ohm |
+| VDD/VSS/VDDA/VSSA/VBAT | power (VDDA, VBAT tied to VDD) |
 
-### Gyro — MPU-6000 on SPI1
+### Gyro — ICM-42688-P on SPI1 (see `hardware/gyro/`)
 | Pin | Function |
 |---|---|
 | PA5 | SPI1_SCK |
 | PA6 | SPI1_MISO |
 | PA7 | SPI1_MOSI |
-| PA4 | SPI1_CS (gyro) |
-| PC4 | gyro INT (EXTI) |
+| PA4 | SPI1_CS (gyro, 10k pull-up) |
+| PC4 | gyro INT (EXTI4) |
 
-### Blackbox flash — W25Q128 on SPI3
+### RC — optional serial ELRS receiver on USART2 (see `hardware/elrs/`)
 | Pin | Function |
 |---|---|
-| PC10 | SPI3_SCK |
-| PC11 | SPI3_MISO |
-| PC12 | SPI3_MOSI |
-| PA15 | FLASH_CS (W25Q128 /CS) |
+| PA2 | USART2_TX -> receiver RX (J60, via 100R) |
+| PA3 | USART2_RX <- receiver TX (J60, via 100R) |
 
-### RC — external CRSF receiver on UART3
+The receiver is an add-on the user buys and solders to J60. Betaflight:
+UART2 = Serial Rx, provider CRSF.
+
+### Baro — SPA06-003 on I2C1, address 0x76 (see `hardware/baro/`)
 | Pin | Function |
 |---|---|
-| PB10 | RX_UART TX (USART3_TX) |
-| PB11 | RX_UART RX (USART3_RX) |
+| PB6 | I2C1_SCL (5.1k pull-up, on the baro block) |
+| PB7 | I2C1_SDA (5.1k pull-up, on the baro block) |
 
-Onboard SPI-ELRS (SX1280) dropped. RC now comes from an external CRSF/ELRS
-receiver wired to UART3 on an expansion header. PB10/PB11 were unassigned.
-PB13/PB14/PB15 (ex RX RESET/BUSY/DIO1) are now spare.
-
-### Baro — DPS368 on I2C1
+### Motors — 4 brushed MOSFET channels, plain PWM, all on TIM3
 | Pin | Function |
 |---|---|
-| PB6 | I2C1_SCL |
-| PB7 | I2C1_SDA |
+| PB0 | M1 rear right (TIM3_CH3) |
+| PB1 | M2 front right (TIM3_CH4) |
+| PB4 | M3 rear left (TIM3_CH1) |
+| PB5 | M4 front left (TIM3_CH2) |
 
-### Motors — 4-in-1 ESC, DSHOT300, all on TIM3
-| Pin | Function |
-|---|---|
-| PB0 | M1 (TIM3_CH3) |
-| PB1 | M2 (TIM3_CH4) |
-| PB4 | M3 (TIM3_CH1) |
-| PB5 | M4 (TIM3_CH2) |
-
-One timer bank for all four keeps DSHOT DMA clean.
+One timer for all four gives one shared brushed PWM frequency. Each pin
+drives an AO3400A gate through 22R, with a 10k pull-down (see
+`hardware/motors/`).
 
 ### Sensing + misc
 | Pin | Function |
 |---|---|
-| PC1 | VBAT sense (ADC) |
-| PC2 | current sense (ADC) |
-| PB8 | buzzer (via FET) |
-| PA8 | LED strip (WS2811, TIM1_CH1) — optional |
+| PC1 | VBAT sense (ADC), 10k/1k divider = vbat_scale 110; also detects 1S vs 2S |
+| PC2 | current sense (ADC) — not fitted (no shunt on the board yet); free |
+| PB8 | buzzer / Betaflight BEEPER (AO3400A low-side, see `hardware/buzzer/`) |
+| PA8 | LED strip (WS2812, TIM1_CH1) -> header J132 |
+
+### Expansion headers (see `hardware/expansion/`)
+| Pin | Function |
+|---|---|
+| PB6 / PB7 | I2C1 SCL / SDA -> SENSOR header J130 (shared with the baro) |
+| PB10 / PB11 | USART3 TX / RX -> UART3 header J131 |
+| PA8 | LED strip -> LED header J132 |
+| PC6 / PC7 / PC8 / PC9 | TIM8_CH1-4 -> PWM header J133 |
+
+All header signals go through 100R series resistors. The ESP32-S3 has two
+more headers (CODE-I2C on GPIO47/48, CODE-IO on GPIO21/38/39/40).
 
 ### Bridge + dual-boot control
 | Pin | Function |
 |---|---|
-| PA9 | BRIDGE_TX (USART1_TX) -> ESP32 IO16 |
-| PA10 | BRIDGE_RX (USART1_RX) <- ESP32 IO17 |
-| PC13 | MODE_SENSE (input) |
+| PA9 | BRIDGE_TX (USART1_TX) -> ESP32-S3 GPIO1 |
+| PA10 | BRIDGE_RX (USART1_RX) <- ESP32-S3 GPIO2 |
+| PC13 | MODE_SENSE (input); the same net steers the USB switch |
 | PB12 | ESP_EN (output) |
 
-### Expansion connectors (Block 7)
-| Pin | Function |
-|---|---|
-| PA2 | GPS_TX (USART2_TX) — J702 GPS header |
-| PA3 | GPS_RX (USART2_RX) — J702 GPS header |
-| PD2 | ESC_TLM (UART5_RX) — 4-in-1 ESC telemetry, RX-only |
-
-PD2 is RX-only here: UART5_TX (PC12) is consumed by SPI3_MOSI (blackbox flash),
-so UART5 can never be a full pair in this design — which is exactly what
-one-wire ESC telemetry needs. RC receiver (J701) is on USART3 (PB10/PB11,
-see RC section); buzzer (PB8) and LED strip (PA8) are in Sensing + misc.
-
-### Free for expansion headers
-PA0, PA1 (UART4 pair), PB9, PB13, PB14, PB15, PC0, PC3, PC5,
-PC6, PC7 (USART6 pair), PC8, PC9, PC14, PC15.
-Remaining full free UART pairs: UART4 (PA0/PA1) and USART6 (PC6/PC7).
-PB13/PB14/PB15 are spare (freed when onboard SPI-ELRS was dropped).
+### Still free
+PA0, PA1, PC0, PC2, PC3 (ADC-capable), PC5, PD2, PB3, PC14, PC15.
+SPI3 is also free now (PC10 SCK, PC11 MISO, PC12 MOSI, plus PA15, PB13,
+PB14, PB15 for chip-selects / interrupts), e.g. for an SPI expansion header.
 Avoid PB2 (BOOT1). PC13/14/15 are low-drive — inputs only.
 
 ## Bus summary (no conflicts)
 - SPI1: gyro
-- SPI3: blackbox flash (W25Q128)
-- I2C1: baro (+ aux I2C header J703, shared, no extra pull-ups)
+- SPI3: free (expansion)
+- I2C1: baro (0x76), shared with the SENSOR header (J130)
 - USART1: ESP32 bridge
-- USART2: GPS header (J702, PA2/PA3)
-- USART3: external CRSF receiver
-- UART5: ESC telemetry, RX-only on PD2 (TX pin PC12 used by SPI3)
-- TIM3: four motors
+- USART2: optional ELRS receiver (serial CRSF)
+- USART3: UART3 expansion header (J131)
+- TIM1: LED strip (PA8); TIM8: PWM header (PC6-PC9)
+- TIM3: four brushed motors (PWM)
 - USB, SWD, crystal: dedicated
 
 ## Open verification item — DMA
 
-Pin assignment is conflict-free. DMA is the remaining check. On the F405,
-DSHOT (TIM3), the SPI buses, and USART1 all request DMA streams, and DMA1/DMA2
-streams are shared. When building the Betaflight target, confirm the target's
-DMA allocation allows TIM3 DSHOT + SPI3 (flash) + SPI1 (gyro) + USART1
-(bridge) + USART3 (CRSF RX) simultaneously. If a stream collides, options
-are: move motors to TIM8 (PC6-9), or move the flash to SPI2. Validate
-against the F405 DMA table and test, do not assume.
+Pin assignment is conflict-free. DMA is the remaining check. With brushed
+motors, TIM3 runs plain PWM and needs no DMA (the old DSHOT design did), so
+the load is lighter. The SPI buses and USART1 still request DMA streams, and
+DMA1/DMA2 streams are shared. When building the Betaflight target, confirm
+the allocation for SPI1 (gyro) + USART1 (bridge) + USART2 (receiver) (+ the LED strip on
+TIM1 if used). Validate against the F405 DMA table and test, do not assume.
 
 ## To do when building the target
 - [ ] Encode this map in the Betaflight custom target (resource assignments).
 - [ ] Run the DMA check above.
 - [ ] Add the MODE_SENSE read + ESP_EN drive to target init (custom code).
-
-## Changelog
-- 2026-09-07 — Block 7 expansion connectors. PA2 = GPS_TX (USART2), PA3 = GPS_RX
-  (USART2) for the J702 GPS header. PD2 = ESC_TLM (UART5_RX), RX-only because
-  UART5_TX/PC12 is consumed by SPI3. Aux I2C header (J703) shares I2C1 with the
-  baro. Remaining full free UART pairs: UART4 (PA0/PA1), USART6 (PC6/PC7).
-- 2026-09-07 — Dropped onboard SPI-ELRS (SX1280). SPI3 + PA15 repurposed for the
-  W25Q128 blackbox flash (FLASH_CS = PA15). RC moved to an external CRSF receiver
-  on UART3 (RX_UART: PB10 TX / PB11 RX). PB13/PB14/PB15 freed to spare.
