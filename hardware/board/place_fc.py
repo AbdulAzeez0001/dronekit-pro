@@ -58,7 +58,7 @@ EDGE_OVERHANG = {"J90": 0.6}        # USB-C shell sticks out past the edge a lit
 # ---------------------------------------------------------------------------
 FIXED = {
     # --- top
-    "U1":   (TOP, 1.0, -1.0, 270),        # STM32: pins 33-48 (USB, ESP, PWM) face J200
+    "U1":   (TOP, 1.0, -2.0, 270),        # STM32: pins 33-48 (USB, ESP, PWM) face J200
     "J90":  (TOP, "edge", "-x", 0.0),      # USB-C, rear edge, centred
     "J130": (TOP, "edge", "+x", -4.1),     # sensor I2C port, front edge
     "J131": (TOP, "edge", "+x", 4.1),      # UART3 port, front edge
@@ -92,6 +92,10 @@ FIXED = {
     # front FETs between the diode and the board edge
     "Q41":  (BOT, 14.1, 3.9, 90),
     "Q43":  (BOT, 14.1, -3.9, 90),
+    # receiver series resistors at U1's UART2 pins: the spots fc was routed
+    # with (before placer.py's order was fixed, they depended on the build)
+    "R60":  (TOP, -6.3, -6.45, 90),
+    "R61":  (TOP, -7.9, -5.9, 0),
 }
 
 # ---------------------------------------------------------------------------
@@ -101,18 +105,23 @@ FIXED = {
 #    shares their first signal net.
 # ---------------------------------------------------------------------------
 NEAR = {
+    # USB path: USB-C -> ESD (U91) -> switch (U92) -> STM32 pins 44/45 / J200
+    # pins 7/8. The switch goes left of the U1-J200 band so the band is free
+    # for the STM32's escape wires; placed first so the caps fit around it.
+    "U92": (TOP, (-4.0, 7.6), True), "U91": (TOP, (-9.5, 7.5), True),
+    # the two VCAP caps (0805) would land in that band too, in front of the
+    # PWM / USART1 pins: VCAP_1 (pin 31) goes round the corner beside U92,
+    # VCAP_2 (pin 47) to the right of the band
+    "C97": (TOP, (-6.4, 6.0), True), "C98": (TOP, (6.0, 7.0), True),
+    "C103": (TOP, "U92.10", True), "C102": (TOP, "U91.5", True),
     # STM32 decoupling: top, at its supply pins (VDD 1/13/19/32/48/64, VCAP 31/47)
-    "C90": (TOP, "U1.1", True), "C99": (TOP, "U1.13", True), "C91": (TOP, "U1.19", True),
+    "C90": (TOP, "U1.1", True), "C99": (TOP, "U1.1", True), "C91": (TOP, "U1.19", True),
     "C92": (TOP, "U1.32", True), "C93": (TOP, "U1.48", True), "C95": (TOP, "U1.64", True),
-    "C98": (TOP, "U1.47", True), "C97": (TOP, "U1.31", True),
     "C96": (TOP, "U1.13", True), "C94": (TOP, "U1.1", True),
     "Y90": (TOP, "U1.5", True), "C100": (TOP, "Y90.1", True), "C101": (TOP, "Y90.3", True),
     "C4":  (TOP, "U1.7", True), "R93": (TOP, "U1.28", True),
     "R92": (TOP, "U1.60", True), "R3": (TOP, "U1.60", True),
     "D90": (TOP, "U1.62", True), "R94": (TOP, "D90.2", True),      # status LED
-    # USB path: USB-C -> ESD (U91) -> switch (U92) -> STM32 pins 44/45 / J200
-    "U92": (TOP, (0.0, 7.5), True), "U91": (TOP, (-9.5, 7.5), True),
-    "C103": (TOP, "U92.10", True), "C102": (TOP, "U91.5", True),
     # gyro parts, bottom, tight
     "C80": (BOT, "U80.8", False), "C81": (BOT, "U80.8", False), "C82": (BOT, "U80.5", False),
     "R80": (BOT, "U80.12", True),
@@ -151,5 +160,27 @@ NEAR = {
 }
 
 
+# ---------------------------------------------------------------------------
+# 3. Turned in place after placement, by this many degrees. 180 deg keeps the
+#    courtyard on the same spot, so no other part moves.
+# ---------------------------------------------------------------------------
+TURN = {
+    # baro cap: at the search's 90 deg its +3V3 / GND pads face U70's GND /
+    # +3V3 pins, the two wires have to cross, and no via fits (J42's pad is
+    # underneath)
+    "C71": 180,
+}
+
+
+def turn(pcb, turns):
+    import pcbnew
+    board = pcbnew.LoadBoard(pcb)
+    for ref, deg in turns.items():
+        fp = board.FindFootprintByReference(ref)
+        fp.SetOrientationDegrees((fp.GetOrientationDegrees() + deg) % 360)
+    board.Save(pcb)
+
+
 if __name__ == "__main__":
     run(PCB, FIXED, NEAR, SILK_LABELS, EDGE_OVERHANG)
+    turn(PCB, TURN)

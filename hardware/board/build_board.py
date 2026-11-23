@@ -261,19 +261,23 @@ BOARD_EXCEPTIONS = {
 # +3V8 feeds the vision board's AP7361C (ESP32-S3 + camera, ~0.5 A peak):
 # three pins. +3V3_SYS is the MODE_SENSE pull-up rail; +3V3_ESP goes back
 # down for the STM32's sensor-I2C port J130. Six GND pins.
+# The signal pins run in the same left-to-right order as the STM32 pins
+# they come from on fc (U1 33 ESP_EN, 37-40 PWM1-4, 41 LED_STRIP, 42/43
+# USART1), so the fc wires between U1 and J200 don't cross. The USB switch
+# sits left of that band, next to pins 7/8.
 B2B_PINOUT = [
     "GND",        "GND",           # 1, 2
     "+3V8",       "+3V8",          # 3, 4
     "+3V8",       "GND",           # 5, 6
-    "+3V3_SYS",   "+3V3_ESP",      # 7, 8
-    "GND",        "GND",           # 9, 10
-    "ESP_USB_DP", "ESP_USB_DN",    # 11, 12  ESP32-S3 native USB (Mode B)
-    "BRIDGE_TX",  "BRIDGE_RX",     # 13, 14  STM32 USART1 <-> ESP32-S3
-    "ESP_EN",     "MODE_SENSE",    # 15, 16
-    "STM_BOOT0",  "STM_NRST",      # 17, 18  ESP32-S3 can flash the STM32
-    "PWM1",       "PWM2",          # 19, 20  STM32 servo/aux outputs -> J133
-    "PWM3",       "PWM4",          # 21, 22
-    "LED_STRIP",  "GND",           # 23, 24  STM32 LED-strip output -> J132
+    "ESP_USB_DP", "ESP_USB_DN",    # 7, 8    ESP32-S3 native USB (Mode B)
+    "ESP_EN",     "MODE_SENSE",    # 9, 10
+    "PWM1",       "PWM2",          # 11, 12  STM32 servo/aux outputs -> J133
+    "PWM3",       "PWM4",          # 13, 14
+    "LED_STRIP",  "GND",           # 15, 16  STM32 LED-strip output -> J132
+    "BRIDGE_TX",  "BRIDGE_RX",     # 17, 18  STM32 USART1 <-> ESP32-S3
+    "GND",        "GND",           # 19, 20
+    "STM_BOOT0",  "STM_NRST",      # 21, 22  ESP32-S3 can flash the STM32
+    "+3V3_SYS",   "+3V3_ESP",      # 23, 24
 ]
 B2B_FOOTPRINT = {
     "fc":     ("J200", "B2B_HEADER_2x12_1.27mm",

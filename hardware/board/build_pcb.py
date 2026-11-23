@@ -247,6 +247,26 @@ def place_b2b(fp, ref):
     raise SystemExit(f"{ref}: no rotation puts every pad on J200's pad positions")
 
 
+# Pads joined inside the part, so DRC counts a connection through them.
+# USBLC6-2SC6: I/O1 is pins 1 and 6, I/O2 pins 3 and 4 (flow-through).
+JUMPER_PADS = {"U91": [("1", "6"), ("3", "4")]}
+
+
+def add_jumper_pads(path):
+    """pcbnew's Python can't set a footprint's jumper pad groups, so write
+    them into the saved file (KiCad keeps them on every later save)."""
+    s = open(path, encoding="utf8").read()
+    for ref, groups in JUMPER_PADS.items():
+        i = s.find(f'(property "Reference" "{ref}"')
+        if i < 0:
+            continue                                # part is on the other board
+        start = s.rfind("\n\t(footprint ", 0, i)
+        line_end = s.find("\n", start + 1)
+        text = " ".join("(" + " ".join(f'"{p}"' for p in g) + ")" for g in groups)
+        s = s[:line_end] + f"\n\t\t(jumper_pad_groups {text})" + s[line_end:]
+    open(path, "w", encoding="utf8", newline="").write(s)
+
+
 def main():
     name = sys.argv[1] if len(sys.argv) > 1 else ""
     if name not in ("fc", "vision"):
@@ -328,6 +348,7 @@ def main():
 
     out = os.path.join(HERE, f"{name}.kicad_pcb")
     board.Save(out)
+    add_jumper_pads(out)
     write_project_rules(name)
     print(f">>> wrote {name}.kicad_pcb: {len(comps)} parts + 4 holes, {len(nets)} nets, "
           f"{BOARD_W:g} x {BOARD_H:g} mm, 4 layers")

@@ -288,8 +288,10 @@ def _place_all(board, pcb, fixed, near, silk_labels, edge_overhang, preplaced):
         if r > 4.0 or s != side:
             far.append(f"{ref} {r:.1f} mm from {anchor} ({s})")
     # everything else: anchor on the pad it serves
+    # by pad count, then reference: the board's own footprint order follows
+    # the random footprint IDs a fresh build_pcb.py gives, so it can't be used
     rest = sorted((r for r in pl.fps if r not in pl.placed),
-                  key=lambda r: -len(pl.fps[r].Pads()))
+                  key=lambda r: (-len(pl.fps[r].Pads()), r))
     for ref in rest:
         a = pl.auto_anchor(ref)
         if a is None:

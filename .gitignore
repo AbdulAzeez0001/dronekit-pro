@@ -52,3 +52,6 @@ Thumbs.db
 
 # Editor local history
 .history/
+
+# Freerouting work files (autoroute.py)
+hardware/board/.routing/

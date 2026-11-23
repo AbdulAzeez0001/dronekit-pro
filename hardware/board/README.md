@@ -10,9 +10,10 @@ board's PCB.
 | `board.kicad_sch`, `board.net` | the whole system on one sheet: 155 parts, 116 nets. Reference only, no PCB | `build_board.py` |
 | `fc.kicad_pro` / `.kicad_sch` / `.net` | flight-controller board: 105 parts incl. header J200 | `build_board.py` |
 | `vision.kicad_pro` / `.kicad_sch` / `.net` | vision board: 52 parts incl. socket J201 | `build_board.py` |
-| `fc.kicad_pcb`, `vision.kicad_pcb` | 4-layer 32 × 30 mm boards, all footprints, parts not placed yet | `build_pcb.py` |
+| `fc.kicad_pcb`, `vision.kicad_pcb` | 4-layer 32 × 30 mm boards. fc is placed and routed; vision is placed, not routed | `build_pcb.py`, then the scripts below |
 | `place_fc.py`, `place_vision.py` | each board's part placement (fixed spots + anchors) | by hand |
 | `placer.py` | the placement engine both use | by hand |
+| `route_setup.py`, `autoroute.py`, `fanout.py`, `handroute.py` | routing: net classes and pours, Freerouting, ground stitching, the rip-up router for what's left | by hand |
 | `renders/` | KiCad 3D views of both sides of both boards | `kicad-cli pcb render` |
 | `dronekit.pretty/` | custom footprints KiCad doesn't ship (TPS63070, M1.4 hole, wire pads, board-edge ESP32-S3) | `make_footprints.py` |
 | `fp-lib-table` | points KiCad at `dronekit.pretty` (shared by both projects) | by hand |
@@ -231,7 +232,10 @@ more than 4 mm from the pin it serves.
 - **Clock and boot:** the 8 MHz crystal at pins 5–6; the BOOT0, BOOT1, NRST
   and status-LED parts at their pins.
 - **USB:** USB-C on the rear edge. The USBLC6 ESD chip sits between it and
-  the TS3USB221A switch, which is between the STM32 and J200.
+  the TS3USB221A switch. The switch sits left of the band between the STM32
+  and J200, next to J200's USB pins (7/8), so the band stays free for the
+  STM32's escape wires. The two VCAP caps sit at the sides of that band for
+  the same reason.
 - **Front edge:** the sensor-I²C (J130) and UART3 (J131) JST-SH ports, with
   their series resistors.
 - **Rear-left corner:** the RT9013 3.3 V LDO and the SPA06 baro.
@@ -259,11 +263,76 @@ so every wire pad is here.
 warnings are all silkscreen: text clipped at the edge or overlapping a
 neighbour's outline. Only the parts a builder solders or plugs into keep
 their reference on the silkscreen; every other reference stays on the fab
-layer. Nothing is routed yet (274 connections).
+layer. Routing: see "fc routing" below.
 
 **Gyro orientation:** U80 sits at rotation 0 on the bottom. Betaflight's
 `gyro_1_sensor_align` must be set from that (bottom-mounted, so flipped)
 before first flight.
+
+## fc routing (2026-11-23)
+
+```
+"C:\Program Files\KiCad.0in\python.exe" route_setup.py fc            # classes, pours, edge keep-out
+"C:\Program Files\KiCad.0in\python.exe" autoroute.py fc start --inner2  # Freerouting, detached
+"C:\Program Files\KiCad.0in\python.exe" autoroute.py fc finish         # once .routing/fc.ses exists
+"C:\Program Files\KiCad.0in\python.exe" fanout.py fc                   # a GND via in every floating ground island
+"C:\Program Files\KiCad.0in\python.exe" handroute.py fc                # rip-up router for what's left
+```
+
+**Result:** KiCad DRC reports 0 errors, 0 unconnected and 0 schematic-parity
+issues. The 45 warnings are all silkscreen. The board has 1890 track segments
+and 190 vias, about 1.4 m of track: 577 mm on F.Cu, 489 mm on B.Cu and 361 mm
+on In2.Cu. In1.Cu is a solid GND plane. In2.Cu is the +3V3_SYS pour, which
+signals also cross where they have to.
+
+**How it got there:**
+
+- **Freerouting:** gets 180 of the 181 connections. It runs to pass 999 and
+  ignores its pass and time limits.
+- **`fanout.py`:** puts a GND via in each ground-fill island on F.Cu and B.Cu
+  that has no other way down to In1.
+- **`handroute.py`:** a grid maze router (0.05 mm grid, F.Cu / In2.Cu / B.Cu)
+  for the rest.
+  - It can rip up and re-route other nets' wires.
+  - The battery, motor, supply and USB-in nets are never ripped up.
+  - Each round runs in a fresh process, it keeps the best round, and it
+    saves every round in `.routing/`.
+- **The last few connections were closed by hand.** The fixes are recorded
+  in the build scripts, so a rebuild keeps them.
+
+**What it took:**
+
+- **J200 pinout:** reordered to match the STM32's pins (see "Two boards").
+  With the first pinout every U1-J200 wire crossed all the others, and the
+  best result was 24 unconnected.
+- **C99** (100 nF on VBAT, pin 1): `place_fc.py` had it anchored to pin 13,
+  which put it in the densest corner, over the buck-boost inductor. It is now
+  at pin 1.
+- **C71** (the baro's cap): `place_fc.py` turns it 180° in place after the
+  anchor search (`TURN`), so its pads face U70's matching pins. Otherwise
+  the two wires have to cross, and no via fits there because J42's pad is
+  underneath.
+- **Placement is now repeatable.** `placer.py` used to place the parts with
+  no anchor in the board file's footprint order, which follows the random
+  footprint IDs of each fresh build. It now orders them by pad count, then
+  reference. R60/R61 are pinned at the spots fc was routed with. Two fresh
+  `build_pcb.py fc` + `place_fc.py` runs give exactly the routed board's
+  part positions.
+- **USBLC6 (U91):** pins 3/4 (and 1/6) are one I/O line, joined inside the
+  chip so the signal flows straight through it. `build_pcb.py` writes them
+  as a jumper pad group into the footprint, so DRC counts that connection.
+- **Solid pour connections:** the GND and +3V3 pins of J200 and the USB-C
+  shell pins join their pours solid. On the 1.27 mm grid the neighbouring
+  tracks leave too little room for thermal spokes.
+
+**Before ordering:**
+
+- **Look over the routing in KiCad.** It is machine-routed.
+- **Small parts.** Some tracks are 0.12 mm and some ground pins reach their
+  plane through a short stub. That is inside JLCPCB's 4-layer limits but
+  tighter than hand routing would be.
+- **USB pairs.** They are routed at 0.2 mm but not length-matched. That is
+  fine at full speed (12 Mb/s).
 
 ## vision placement (`place_vision.py`, 2026-11-23)
 
@@ -328,16 +397,21 @@ The pinout (`B2B_PINOUT` in `build_board.py`) carries 17 nets:
 
 | Pins | Net | Why it crosses |
 |---|---|---|
-| 1, 2, 6, 9, 10, 24 | GND | |
+| 1, 2, 6, 16, 19, 20 | GND | |
 | 3, 4, 5 | +3V8 | feeds the vision board's AP7361C (ESP32-S3 + camera, about 0.5 A peak) |
-| 7 | +3V3_SYS | the boot-mode switch's pull-up |
-| 8 | +3V3_ESP | back down to the fc sensor-I²C port J130 |
-| 11, 12 | ESP_USB_DP/DN | USB-C → TS3USB221A (fc) → ESP32-S3 native USB |
-| 13, 14 | BRIDGE_TX/RX | STM32 USART1 ↔ ESP32-S3 |
-| 15, 16 | ESP_EN, MODE_SENSE | STM32 gates the ESP32-S3; the mode switch steers USB |
-| 17, 18 | STM_BOOT0, STM_NRST | the ESP32-S3 can flash the STM32 |
-| 19–22 | PWM1–4 | STM32 outputs → PWM port J133 |
-| 23 | LED_STRIP | STM32 output → LED-strip port J132 |
+| 7, 8 | ESP_USB_DP/DN | USB-C → TS3USB221A (fc) → ESP32-S3 native USB |
+| 9, 10 | ESP_EN, MODE_SENSE | STM32 gates the ESP32-S3; the mode switch steers USB |
+| 11–14 | PWM1–4 | STM32 outputs → PWM port J133 |
+| 15 | LED_STRIP | STM32 output → LED-strip port J132 |
+| 17, 18 | BRIDGE_TX/RX | STM32 USART1 ↔ ESP32-S3 |
+| 21, 22 | STM_BOOT0, STM_NRST | the ESP32-S3 can flash the STM32 |
+| 23 | +3V3_SYS | the boot-mode switch's pull-up |
+| 24 | +3V3_ESP | back down to the fc sensor-I²C port J130 |
+
+The signal pins run left to right in the same order as the STM32 pins they
+come from (pin 33 ESP_EN, 37–40 PWM1–4, 41 LED_STRIP, 42/43 USART1), so on
+fc the wires between U1 and J200 don't cross. The first pinout had them in
+reverse order, and fc couldn't be routed with it.
 
 **Stack height.** The header + socket pair sets the gap between the boards,
 about 5–6 mm depending on the exact parts. Keep fc's top-side parts under
