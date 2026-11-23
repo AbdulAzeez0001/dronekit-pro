@@ -1,4 +1,4 @@
-# Barometer block (BMP280)
+# Barometer block (SPA06-003)
 
 Circuit as code. `baro.py` is the source of truth; `baro.net` is the
 generated KiCad netlist. Design notes: `baro-design.md`.
@@ -16,6 +16,6 @@ every block into one schematic, `hardware/board/board.kicad_sch`, with the real
 STM32 and ESP32-S3 pin numbers. See `hardware/board/README.md`.
 
 ## What NOT to change without re-reading the design doc
-- CSB stays tied to +3V3_SYS (a low edge locks the BMP280 into SPI mode).
+- CSB stays tied to +3V3_SYS (VDDIO): I2C mode only.
 - SDO stays on GND (address 0x76, Betaflight's default).
-- R70/R71 are the I2C1 bus's only pull-ups.
+- R70/R71 (5.1k) are the I2C1 bus's only pull-ups; the datasheet minimum is 5k.

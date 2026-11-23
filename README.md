@@ -27,7 +27,7 @@ DroneKit Pro is two drones in one body:
 | Flight MCU | STM32F405RGT6 |
 | Programmable MCU | ESP32-S3-WROOM-1-N8R2 (PSRAM, for the camera) |
 | Camera | 24-pin DVP module (OV2640-class) on the ESP32-S3, WiFi video in Mode B |
-| IMU / Baro | ICM-42688-P (SPI) / BMP280 (I2C) |
+| IMU / Baro | ICM-42688-P (SPI) / SPA06-003 (I2C) |
 | Motors | 4x 720 brushed coreless (7 x 20mm) |
 | Motor drive | 4x AO3400A low-side MOSFET + SS34 flyback, brushed PWM (no ESC) |
 | RX | Optional: any small serial ELRS receiver (user-supplied), CRSF on UART2 pads |

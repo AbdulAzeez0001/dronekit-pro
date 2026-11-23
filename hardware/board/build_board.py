@@ -44,7 +44,7 @@ BLOCKS = [
     ("stm32",     "stm32/stm32.py",         "FLIGHT MCU: STM32F405 + crystal, USB-C, boot, SWD"),
     ("dual-boot", "dual-boot/dual_boot.py", "DUAL-BOOT: ESP32-S3 gating, bridge UART, straps"),
     ("gyro",      "gyro/gyro.py",           "GYRO: ICM-42688-P on SPI1"),
-    ("baro",      "baro/baro.py",           "BARO: BMP280 on I2C1"),
+    ("baro",      "baro/baro.py",           "BARO: SPA06-003 on I2C1"),
     ("motors",    "motors/motors.py",       "MOTORS: 4 x brushed low-side MOSFET"),
     ("camera",    "camera/camera.py",       "CAMERA: 24-pin DVP on the ESP32-S3"),
     ("elrs",      "elrs/elrs.py",           "RC RECEIVER PORT (optional ELRS add-on)"),

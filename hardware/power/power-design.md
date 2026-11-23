@@ -15,7 +15,7 @@ Source of truth: `power.py`, which generates `power.net` (ERC clean).
   └─ Q10 AO3401A P-FET (reverse polarity + USB auto-select) ─> VBAT
 USB-C VBUS (5 V) ─ D10 B5819W Schottky ─> VBAT     (and VBUS ─ 1k ─> Q10 gate)
 VBAT ─ TPS63070 buck-boost ─> +3V8
-        ├─ RT9013-33  ─> +3V3_SYS   STM32, ICM-42688-P, BMP280
+        ├─ RT9013-33  ─> +3V3_SYS   STM32, ICM-42688-P, SPA06-003
         └─ AP7361C-33 ─> +3V3_ESP   ESP32-S3, camera (2V8/1V2 LDOs)
 ```
 
@@ -39,7 +39,7 @@ VBAT ─ TPS63070 buck-boost ─> +3V8
 
 | Rail | Loads | Typical | Peak |
 |---|---|---|---|
-| +3V3_SYS | STM32F405, ICM-42688-P, BMP280 | ~150 mA | ~180 mA |
+| +3V3_SYS | STM32F405, ICM-42688-P, SPA06-003 | ~150 mA | ~180 mA |
 | +3V8 direct | optional ELRS receiver (J60) + buzzer (J120) + UART/LED/PWM headers | ~50 mA | ~240 mA |
 | +3V3_ESP | ESP32-S3 (+ camera ~100 mA, Mode B) + 3V3 header modules (~100 mA budget) | ~220 mA | ~700 mA (TX burst) |
 | +3V8 total | both LDOs + receiver, buzzer and headers | ~420 mA | ~1.1 A |

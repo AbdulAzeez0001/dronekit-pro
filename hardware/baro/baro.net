@@ -2,7 +2,7 @@
   (version "D")
   (design
     (source "baro.py")
-    (date "11/22/2026 10:24 PM")
+    (date "11/23/2026 10:20 AM")
     (tool "SKiDL (2.2.3)")
     (sheet
       (number 1)
@@ -55,16 +55,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "33YBF25j7f")
+          (name "SKiDL Tag") "149zaEpgas")
         (field
-          (name "SKiDL Line") "baro.py:58"))
+          (name "SKiDL Line") "baro.py:73"))
       (libsource
         (lib "NO_LIB")
         (part "C"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "629423b9-b64b-56cd-9004-51e747b43f9e"))
+      (tstamps "e12403f2-e71a-5d0b-b566-afe4aeaae0bb"))
     (comp
       (ref "C71")
       (value "100nF")
@@ -78,19 +78,19 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "9Ot0myNXs_")
+          (name "SKiDL Tag") "AMlMzMj85t")
         (field
-          (name "SKiDL Line") "baro.py:58"))
+          (name "SKiDL Line") "baro.py:73"))
       (libsource
         (lib "NO_LIB")
         (part "C"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "9254d3e0-b5e7-5292-9b08-97ac74e51077"))
+      (tstamps "2501a28b-309e-5a14-b07b-5749aa765fba"))
     (comp
       (ref "R70")
-      (value "4.7k")
+      (value "5.1k")
       (description "")
       (footprint "Resistor_SMD:R_0402_1005Metric")
       (fields
@@ -101,19 +101,19 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "PlZgB1t8rd")
+          (name "SKiDL Tag") "qVShGTMp7y")
         (field
-          (name "SKiDL Line") "baro.py:55"))
+          (name "SKiDL Line") "baro.py:70"))
       (libsource
         (lib "NO_LIB")
         (part "R"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "e9286ea9-6c8b-598f-8c45-2d36f4c57bb6"))
+      (tstamps "b0f4b8a2-9231-584b-9c6d-94d613c51d87"))
     (comp
       (ref "R71")
-      (value "4.7k")
+      (value "5.1k")
       (description "")
       (footprint "Resistor_SMD:R_0402_1005Metric")
       (fields
@@ -124,16 +124,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "dVkSHbbBj8")
+          (name "SKiDL Tag") "QRQeU9GbxS")
         (field
-          (name "SKiDL Line") "baro.py:55"))
+          (name "SKiDL Line") "baro.py:70"))
       (libsource
         (lib "NO_LIB")
         (part "R"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "eb4efdc9-3699-5a95-a76d-1665fe432160"))
+      (tstamps "eca57c54-1a25-5ffd-8c95-168ecc785a4d"))
     (comp
       (ref "U1")
       (value "STM32F405RGT6")
@@ -147,19 +147,19 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "YWjG3l6gdb")
+          (name "SKiDL Tag") "SKWCN4YF0d")
         (field
-          (name "SKiDL Line") "baro.py:77"))
+          (name "SKiDL Line") "baro.py:94"))
       (libsource
         (lib "NO_LIB")
         (part "STM32F405RGT6"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "95fc4f39-65cc-5710-b9a5-bd954df2fb39"))
+      (tstamps "3c21fa84-72df-5583-aa40-f3ba40b72b54"))
     (comp
       (ref "U70")
-      (value "BMP280")
+      (value "SPA06-003")
       (description "")
       (footprint "Package_LGA:Bosch_LGA-8_2x2.5mm_P0.65mm_ClockwisePinNumbering")
       (fields
@@ -170,16 +170,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "YZQSU5Tl49")
+          (name "SKiDL Tag") "HLU1aGNYad")
         (field
-          (name "SKiDL Line") "baro.py:63"))
+          (name "SKiDL Line") "baro.py:80"))
       (libsource
         (lib "NO_LIB")
-        (part "BMP280"))
+        (part "SPA06-003"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "b70363be-7f45-5a4a-be1d-8824a45896c8")))
+      (tstamps "61edd41e-d94e-5af2-9f3e-e76f9a893347")))
   (nets
     (net
       (code 1)

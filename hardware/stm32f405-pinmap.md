@@ -51,11 +51,11 @@ Betaflight target is built.
 The receiver is an add-on the user buys and solders to J60. Betaflight:
 UART2 = Serial Rx, provider CRSF.
 
-### Baro — BMP280 on I2C1, address 0x76 (see `hardware/baro/`)
+### Baro — SPA06-003 on I2C1, address 0x76 (see `hardware/baro/`)
 | Pin | Function |
 |---|---|
-| PB6 | I2C1_SCL (4.7k pull-up, on the baro block) |
-| PB7 | I2C1_SDA (4.7k pull-up, on the baro block) |
+| PB6 | I2C1_SCL (5.1k pull-up, on the baro block) |
+| PB7 | I2C1_SDA (5.1k pull-up, on the baro block) |
 
 ### Motors — 4 brushed MOSFET channels, plain PWM, all on TIM3
 | Pin | Function |

@@ -16,7 +16,7 @@ doc that explains its choices:
 | `stm32/` | STM32F405 flight MCU: supplies, crystal, USB-C, boot, SWD (master pin map) |
 | `dual-boot/` | ESP32-S3-WROOM-1 gating, bridge UART, strapping pins |
 | `gyro/` | ICM-42688-P on SPI1 |
-| `baro/` | BMP280 on I2C1 |
+| `baro/` | SPA06-003 barometer on I2C1 |
 | `motors/` | 4 x brushed low-side MOSFET drivers |
 | `camera/` | 24-pin DVP camera on the ESP32-S3 + its 2.8V/1.2V rails |
 | `elrs/` | optional serial ELRS receiver port |

@@ -42,7 +42,7 @@ STM32** (flight side: Betaflight in Mode A). **Two connect to the ESP32-S3**
   wiring mistakes and hot-plugging. The resistors can be 4 × 0402 arrays at
   layout to save space.
 - **I2C pull-ups:**
-  - J130 shares I2C1, whose 4.7k pull-ups are in the baro block. Don't add
+  - J130 shares I2C1, whose 5.1k pull-ups are in the baro block. Don't add
     more.
   - J134 has its own 4.7k pull-ups to `+3V3_ESP`.
   - Qwiic boards often carry their own pull-ups too. Cut their jumper if
