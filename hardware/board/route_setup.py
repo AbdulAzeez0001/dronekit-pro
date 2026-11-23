@@ -177,7 +177,7 @@ def add_edge_keepout(board):
         board.Add(z)
 
 
-PLANE_NETS = {"/GND", "/+3V3_SYS"}
+PLANE_NETS = {"/GND", "/+3V3_SYS", "/+3V3_ESP"}    # the pour nets of fc and vision
 
 
 def solid_b2b_gnd(board):

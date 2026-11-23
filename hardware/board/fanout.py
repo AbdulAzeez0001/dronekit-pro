@@ -102,15 +102,13 @@ def inside(x, y):
 
 
 def keepout(board, x, y):
-    """Inside any rule area (the ESP32-S3 antenna keep-out)."""
+    """A via here would touch a rule area (the ESP32-S3 antenna keep-out):
+    its centre is within the via radius + 0.05 mm of the area, not just in it."""
     pt = pcbnew.VECTOR2I(int(x), int(y))
-    for z in board.Zones():
-        if z.GetIsRuleArea() and z.Outline().Contains(pt):
+    reach = mm(VIA_D) // 2 + mm(0.05)
+    for z in list(board.Zones()) + [z for fp in board.GetFootprints() for z in fp.Zones()]:
+        if z.GetIsRuleArea() and z.Outline().Contains(pt, -1, reach):
             return True
-    for fp in board.GetFootprints():
-        for z in fp.Zones():
-            if z.GetIsRuleArea() and z.Outline().Contains(pt):
-                return True
     return False
 
 

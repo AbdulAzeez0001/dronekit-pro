@@ -10,7 +10,7 @@ board's PCB.
 | `board.kicad_sch`, `board.net` | the whole system on one sheet: 155 parts, 116 nets. Reference only, no PCB | `build_board.py` |
 | `fc.kicad_pro` / `.kicad_sch` / `.net` | flight-controller board: 105 parts incl. header J200 | `build_board.py` |
 | `vision.kicad_pro` / `.kicad_sch` / `.net` | vision board: 52 parts incl. socket J201 | `build_board.py` |
-| `fc.kicad_pcb`, `vision.kicad_pcb` | 4-layer 32 × 30 mm boards. fc is placed and routed; vision is placed, not routed | `build_pcb.py`, then the scripts below |
+| `fc.kicad_pcb`, `vision.kicad_pcb` | 4-layer 32 × 30 mm boards, both placed and routed | `build_pcb.py`, then the scripts below |
 | `place_fc.py`, `place_vision.py` | each board's part placement (fixed spots + anchors) | by hand |
 | `placer.py` | the placement engine both use | by hand |
 | `route_setup.py`, `autoroute.py`, `fanout.py`, `handroute.py` | routing: net classes and pours, Freerouting, ground stitching, the rip-up router for what's left | by hand |
@@ -334,6 +334,7 @@ signals also cross where they have to.
 - **USB pairs.** They are routed at 0.2 mm but not length-matched. That is
   fine at full speed (12 Mb/s).
 
+
 ## vision placement (`place_vision.py`, 2026-11-23)
 
 ![vision top](renders/vision_top.png) ![vision bottom](renders/vision_bottom.png)
@@ -386,7 +387,7 @@ bottom-contact 24-pin connector so its contacts face the ribbon's exposed
 side.
 
 **Checks:** KiCad DRC reports 0 errors and 0 schematic-parity issues; the
-24 warnings are all silkscreen. Nothing is routed yet (141 connections).
+24 warnings are all silkscreen. Routing: see "vision routing" below.
 
 **Connector:** a 2 × 12, 1.27 mm through-hole pair. J200 is a male header on
 top of fc. It plugs into J201, a female socket on the underside of vision.
@@ -450,3 +451,25 @@ The symbols are plain generated boxes, not KiCad library symbols. They're
 electrically complete, but not pretty. Swapping in library symbols would
 break the "generated from code" flow, so keep them unless the project moves
 to a hand-drawn schematic.
+
+## vision routing (2026-11-23)
+
+These are the same steps as for fc (see "fc routing"), with `vision` in
+place of `fc`. In2.Cu carries the +3V3_ESP pour here.
+
+**Result:** KiCad DRC reports 0 errors, 0 unconnected and 0 schematic-parity
+issues. The 24 warnings are all silkscreen. The board has 1770 track
+segments and 177 vias, about 1.2 m of track: 419 mm on F.Cu, 523 mm on B.Cu
+and 302 mm on In2.Cu. Freerouting got all but 1 of the 141 connections, and
+`handroute.py` closed the rest. No copper or via is inside the ESP32-S3
+antenna keep-out, on any layer.
+
+**What it took:**
+
+- **`fanout.py` keep-out check:** it used to test only a via's centre
+  against the antenna keep-out, which let 11 ground vias overlap the edge
+  of it. It now keeps the whole via plus 0.05 mm out. Those 11 vias were
+  removed, and the ground pours stay connected without them.
+- **J201's +3V3_ESP pin** joins the In2 pour solid, like J200's plane pins
+  on fc.
+- **Cleanup:** duplicate track segments and one dangling stub were removed.
