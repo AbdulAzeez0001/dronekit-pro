@@ -7,6 +7,11 @@ The one item still to verify is DMA stream allocation (see bottom) — pin
 assignment is conflict-free, but F405 DMA sharing must be checked when the
 Betaflight target is built.
 
+This map is for the **1S brushed** board. The earlier 3S–4S brushless
+design (4-in-1 ESC on DShot, DPS368 baro, W25Q128 blackbox flash, GPS and
+ESC-telemetry UARTs) had its own map; it is kept in git history at commit
+`03da4a1` (`git show 03da4a1:hardware/stm32f405-pinmap.md`).
+
 ## Dual-boot signals (the reconciliation)
 
 | Signal | Pin | Direction | Why this pin |

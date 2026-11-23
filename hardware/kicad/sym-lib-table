@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+
+  (lib (name "dronekit-pro") (type "KiCad") (uri "${KIPRJMOD}/dronekit-pro-lib.kicad_sym") (options "") (descr "")))
