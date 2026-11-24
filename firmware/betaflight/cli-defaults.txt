@@ -79,6 +79,11 @@ serial 0 1 115200 57600 0 115200
 serial 1 64 115200 57600 0 115200
 set serialrx_provider = CRSF
 
+# ARM on AUX1 high (1700-2100), in both modes. The ESP32-S3 firmware sends
+# its arm switch on AUX1 (firmware/esp32/src/flight_link.cpp); set the radio
+# to match for Fly mode.
+aux 0 0 0 1700 2100 0 0
+
 # Receiver: keep the ELRS serial receiver as the saved choice. In Code mode
 # the dual-boot code switches to MSP (from the ESP32-S3 on UART1) for that
 # boot only, and drives ESP_EN (PB12) high. Nothing to set here.
