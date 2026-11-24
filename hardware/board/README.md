@@ -14,6 +14,7 @@ board's PCB.
 | `place_fc.py`, `place_vision.py` | each board's part placement (fixed spots + anchors) | by hand |
 | `placer.py` | the placement engine both use | by hand |
 | `route_setup.py`, `autoroute.py`, `fanout.py`, `handroute.py` | routing: net classes and pours, Freerouting, ground stitching, the rip-up router for what's left | by hand |
+| `preroute_power.py`, `power_pour.py` | fc only: the battery and motor paths routed wide before everything else, then widened with pours and extra vias | by hand |
 | `renders/` | KiCad 3D views of both sides of both boards | `kicad-cli pcb render` |
 | `dronekit.pretty/` | custom footprints KiCad doesn't ship (TPS63070, M1.4 hole, wire pads, board-edge ESP32-S3) | `make_footprints.py` |
 | `fp-lib-table` | points KiCad at `dronekit.pretty` (shared by both projects) | by hand |
@@ -269,26 +270,115 @@ layer. Routing: see "fc routing" below.
 `gyro_1_sensor_align` must be set from that (bottom-mounted, so flipped)
 before first flight.
 
-## fc routing (2026-11-23)
+## fc routing (2026-11-23, power paths redone 2026-11-24)
 
 ```
 "C:\Program Files\KiCad.0in\python.exe" route_setup.py fc            # classes, pours, edge keep-out
+"C:\Program Files\KiCad.0in\python.exe" preroute_power.py fc         # battery and motor paths first, wide
 "C:\Program Files\KiCad.0in\python.exe" autoroute.py fc start --inner2  # Freerouting, detached
 "C:\Program Files\KiCad.0in\python.exe" autoroute.py fc finish         # once .routing/fc.ses exists
 "C:\Program Files\KiCad.0in\python.exe" fanout.py fc                   # a GND via in every floating ground island
 "C:\Program Files\KiCad.0in\python.exe" handroute.py fc                # rip-up router for what's left
+"C:\Program Files\KiCad.0in\python.exe" power_pour.py fc               # pours and extra vias along the power paths
 ```
 
 **Result:** KiCad DRC reports 0 errors, 0 unconnected and 0 schematic-parity
-issues. The 45 warnings are all silkscreen. The board has 1890 track segments
-and 190 vias, about 1.4 m of track: 577 mm on F.Cu, 489 mm on B.Cu and 361 mm
-on In2.Cu. In1.Cu is a solid GND plane. In2.Cu is the +3V3_SYS pour, which
-signals also cross where they have to.
+issues. The 45 silkscreen warnings are the same as before. There are also 3
+"dangling track" warnings: short stubs that the I2C clock line runs through,
+so removing them breaks it. The board has 2852 track segments and 312 vias,
+about 1.6 m of track: 736 mm on F.Cu, 417 mm on B.Cu and 450 mm on In2.Cu.
+In1.Cu is a solid GND plane. In2.Cu is the +3V3_SYS pour, which signals also
+cross where they have to.
+
+### Power paths
+
+The motors run straight off the battery: about 2.5 A per motor at full
+throttle, about 10 A in all at the battery pads. The first routing left the
+power nets the 0.8 mm the signals left free. One side's battery feed ran on
+In2.Cu (0.5 oz, about 0.9 A at 0.8 mm) through a single via, which would have
+overheated.
+
+The power nets are now routed **first**, on the empty board
+(`preroute_power.py`):
+
+- **Layers and vias:** they use F.Cu and B.Cu only, since In2 is priced out.
+  A layer change costs as much as 10 mm of track, and a path that needs more
+  than 3 vias drops to the next narrower width.
+- **Widths:**
+  - the battery to J43: 2.0 mm;
+  - then on to J42: 1.6 mm. That path runs down the right edge and around
+    the bottom, and the other two motors branch off it (see the table
+    below);
+  - each motor's own branch and its negative to the FET: 1.0 mm (2.5 A);
+  - the reverse-polarity FET and the buck-boost input: 0.8 mm.
+- **Wider on the first try:** 2.5 mm everywhere left Freerouting 26
+  connections short.
+
+After the signals are routed, `power_pour.py` lays a copper pour along every
+power track on F.Cu and B.Cu. The pours are wider than the track wherever
+there is room. It also adds up to 6 more 0.6 / 0.3 mm vias around every power
+via (17 in all), so no layer change carries the whole current through one
+via.
+
+The battery feed is a chain, not a star. From the battery pad (J10) it
+runs down the right side to J43, down the right edge to J41, along the bottom
+to J40 and up the left side to J42. Each stretch carries the motors still
+ahead of it. The right edge, which carries three motors, has a second path
+beside it: a 1.2 mm F.Cu track (19.5 mm) from the J43 junction to the J41
+junction. It joins B.Cu through 2 vias at the top end and 3 at the bottom, and
+takes about 2.9 A of the 7.5 A (the split follows the two paths' copper
+resistance). A separate feed from the battery to the left motors doesn't fit:
+the buck-boost on B.Cu and the parts on F.Cu leave no outer-layer path across
+the top, even with signals ripped up, only one that runs 13 mm on In2. The copper width along each stretch is the track, or the pour
+around it where that is wider (IPC-2221 temperature rise, all four motors at
+2.5 A):
+
+| Stretch | Carries | Narrowest copper | Rise, 1 oz outer | Rise, 2 oz outer |
+|---|---|---|---|---|
+| J10 pad to the J43 junction (B.Cu) | 10 A | 3.2 mm | about 38 °C | about 12 °C |
+| right edge, J43 to J41 (B.Cu) | 4.6 A of the 7.5 A | 1.6 mm | about 20 °C | about 7 °C |
+| right edge, parallel path (F.Cu) | 2.9 A of the 7.5 A | 1.1 mm | about 13 °C | about 4 °C |
+| bottom, J41 to J40 (B.Cu) | 5 A | 1.77 mm | about 21 °C | about 7 °C |
+| left side, J40 to J42 (F.Cu) | 2.5 A | 1.5 mm | about 6 °C | about 2 °C |
+| each motor's negative, M1–M4_NEG | 2.5 A | 0.9 mm or more | about 13 °C | about 4 °C |
+
+At JLCPCB's default 1 oz, every stretch but the first stays at about a
+20 °C rise or less with all four motors at full throttle. The hottest is now
+the 10 A stretch from the battery pad (about 38 °C). **2 oz outer copper**
+brings every stretch to about 12 °C or less. IPC-2221 is cautious for
+stretches this short, which shed heat into the pads and pours around them,
+and 0802-size brushed motors usually draw less than 2.5 A.
+
+**Fixes after the power pre-route:**
+
+- **R15 battery-sense line:** Freerouting gave it the full VBAT_RAW width
+  (0.8 mm), in a loop around the top of the STM32 that walled off the crystal
+  and I2C pins. It carries no current, so it was ripped up and re-routed
+  thin.
+- **C16** (buck-boost VAUX cap): `place_fc.py` now turns it 180° (`TURN`),
+  so its VAUX pad faces U10.3.
+- **U10's VBAT feed:** it ran 0.15 mm under the BB_EN pin, so BB_EN could
+  not get out. The feed was re-routed at 0.8 mm from the battery side.
+- **Swapped rip-ups:** I2C1_SDA vs M4_PWM, and BEEPER vs LED0_K, kept
+  ripping each other up. Each pair was closed by routing one with the other
+  held fixed.
+- **Right-edge parallel path** (added after the rest was routed): it ripped
+  up BRIDGE_TX, ESP_USB_DP, I2C1_SCL, STM_BOOT0 and some GND stitching, and
+  `handroute.py` re-routed them (LED_STRIP too, ripped on the way). The
+  second via at its top end has a 1.45 mm B.Cu stub to the trunk: no spot
+  near there has the net's pour on both layers.
+- **Cleanup:** duplicate and overlapping copper left over from the
+  hand-router rounds was removed, each piece only if DRC stayed clean
+  without it.
+
+The placement still rebuilds exactly (`build_pcb.py fc` + `place_fc.py`). The
+routing doesn't: Freerouting isn't deterministic, and the fixes above were
+made on the routed board.
 
 **How it got there:**
 
-- **Freerouting:** gets 180 of the 181 connections. It runs to pass 999 and
-  ignores its pass and time limits.
+- **Freerouting:** with the power paths routed first, it leaves 4
+  connections. It runs to pass 999 and ignores its pass and time limits.
 - **`fanout.py`:** puts a GND via in each ground-fill island on F.Cu and B.Cu
   that has no other way down to In1.
 - **`handroute.py`:** a grid maze router (0.05 mm grid, F.Cu / In2.Cu / B.Cu)

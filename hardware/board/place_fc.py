@@ -169,6 +169,10 @@ TURN = {
     # +3V3 pins, the two wires have to cross, and no via fits (J42's pad is
     # underneath)
     "C71": 180,
+    # buck-boost VAUX cap: at 90 deg its VAUX pad faces U10's GND / PG pins
+    # and its GND pad faces VAUX (U10.3); with the power tracks routed first
+    # there is no way round
+    "C16": 180,
 }
 
 
