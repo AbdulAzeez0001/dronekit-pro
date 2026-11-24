@@ -548,9 +548,9 @@ These are the same steps as for fc (see "fc routing"), with `vision` in
 place of `fc`. In2.Cu carries the +3V3_ESP pour here.
 
 **Result:** KiCad DRC reports 0 errors, 0 unconnected and 0 schematic-parity
-issues. The 24 warnings are all silkscreen. The board has 1770 track
-segments and 177 vias, about 1.2 m of track: 419 mm on F.Cu, 523 mm on B.Cu
-and 302 mm on In2.Cu. Freerouting got all but 1 of the 141 connections, and
+issues. The 24 warnings are all silkscreen. The board has 2062 track
+segments and 193 vias, about 1.3 m of track: 441 mm on F.Cu, 544 mm on B.Cu
+and 305 mm on In2.Cu. Freerouting got all but 1 of the 141 connections, and
 `handroute.py` closed the rest. No copper or via is inside the ESP32-S3
 antenna keep-out, on any layer.
 
@@ -563,3 +563,10 @@ antenna keep-out, on any layer.
 - **J201's +3V3_ESP pin** joins the In2 pour solid, like J200's plane pins
   on fc.
 - **Cleanup:** duplicate track segments and one dangling stub were removed.
+- **+3V8 widened (2026-11-24):** it was routed at 0.4 mm, partly on In2.Cu
+  (0.5 oz) through one via, about 0.5 A at a 20 °C rise against the ESP32-S3's
+  WiFi bursts of up to 0.5 A plus whatever J132 / J133 draw. It was ripped up
+  and re-routed at 0.8 mm on F.Cu and B.Cu only, with 7 power vias, J201's
+  three +3V8 pins tied together on both layers. `handroute.py` re-routed the 7
+  signals that had to move (camera I2C, CAM_Y3 / Y4, +2V8_CAM, a +3V3_ESP
+  link, STM_BOOT0).
