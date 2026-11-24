@@ -6,9 +6,11 @@ The STM32 only powers the ESP32-S3 in that mode (see
 
 What it does:
 - **Wi-Fi access point** `DroneKit-XXXX` at `192.168.4.1`, at most 2 clients.
-- **Bench-test page** at `http://192.168.4.1/`: arm, disarm, kill, throttle
-  and stick sliders, live telemetry. The full control panel belongs in
-  `software/control-panel/`.
+- **Control panel** at `http://192.168.4.1/`: `software/control-panel/`,
+  uploaded to the ESP32's flash with `pio run -t uploadfs`.
+- **Bench-test page** at `http://192.168.4.1/bench` (built into the
+  firmware, and at `/` too until the panel is uploaded): arm, disarm, kill,
+  sliders, live telemetry.
 - **WebSocket JSON API v1** at `ws://192.168.4.1/ws`. The message list is in
   `src/api.h`; `software/dronekit_pcb` should talk to this.
 - **MSP link to Betaflight** on UART1 (GPIO1 RX, GPIO2 TX, 115200): RC
@@ -27,7 +29,7 @@ alone), and OTA updates of this firmware.
 | `src/msp.*` | MSP v1 framing and parser |
 | `src/flight_link.*` | RC out, telemetry in, arming rules |
 | `src/api.h` | WebSocket API v1 |
-| `src/index_html.h` | Bench-test page |
+| `src/index_html.h` | Bench-test page (`/bench`) |
 | `src/main.cpp` | Wi-Fi, web server, pilot handling |
 
 ## Build and flash
@@ -36,7 +38,8 @@ Install [PlatformIO](https://platformio.org/) (VS Code extension or
 `pip install platformio`). Put the drone in Code mode, connect USB-C, then:
 
 ```
-pio run -t upload
+pio run -t upload        # the firmware
+pio run -t uploadfs      # the control panel (software/control-panel)
 pio device monitor
 ```
 
@@ -69,7 +72,7 @@ A disarm in the air drops the drone. That's the intended outcome for a
 
 1. Betaflight: paste `firmware/betaflight/cli-defaults.txt`, `save`. This
    maps ARM to AUX1, which this firmware uses.
-2. Code mode, power up. Join `DroneKit-XXXX`, open `http://192.168.4.1/`.
+2. Code mode, power up. Join `DroneKit-XXXX`, open `http://192.168.4.1/bench`.
 3. Check: FC link true, battery voltage right, roll/pitch follow the drone
    when you tilt it.
 4. Throttle up, press Arm: refused ("throttle must be at the bottom").

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DroneKit Pro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="mock-banner" id="mockBanner" hidden>Pretend drone: nothing here reaches real hardware.</div>
+<header class="bar">
+  <h1>DroneKit Pro</h1>
+  <span class="pill" id="pLink">Connecting</span>
+  <span class="pill" id="pBatt">-- V</span>
+  <span class="pill" id="pArmed">Disarmed</span>
+  <span class="pill" id="pPilot">Watching</span>
+  <span class="spacer"></span>
+  <button class="icon-btn" id="settingsBtn" aria-label="Settings">Settings</button>
+</header>
+
+<main>
+  <div class="stick-wrap left">
+    <div class="stick" id="leftStick" aria-label="Throttle and yaw stick"><div class="knob"></div></div>
+    <div class="stick-label" id="leftLabel">Throttle 0% · Yaw 0</div>
+  </div>
+
+  <section class="center">
+    <div class="attitude">
+      <svg viewBox="-100 -100 200 200" role="img" aria-label="Attitude indicator">
+        <defs><clipPath id="dial"><circle r="96"/></clipPath></defs>
+        <g clip-path="url(#dial)">
+          <g id="horizon">
+            <rect x="-300" y="-300" width="600" height="300" fill="var(--sky)"/>
+            <rect x="-300" y="0" width="600" height="300" fill="var(--ground)"/>
+            <line x1="-300" x2="300" y1="0" y2="0" stroke="#fff" stroke-width="2"/>
+            <g stroke="#fff" stroke-width="1.5" opacity=".8">
+              <line x1="-20" x2="20" y1="-30" y2="-30"/><line x1="-20" x2="20" y1="30" y2="30"/>
+              <line x1="-30" x2="30" y1="-60" y2="-60"/><line x1="-30" x2="30" y1="60" y2="60"/>
+            </g>
+          </g>
+        </g>
+        <circle r="96" fill="none" stroke="var(--line)" stroke-width="4"/>
+        <g stroke="#ffd400" stroke-width="5" stroke-linecap="round" fill="none">
+          <path d="M-55 0 H-20 L-10 10"/><path d="M55 0 H20 L10 10"/>
+        </g>
+        <circle r="3" fill="#ffd400"/>
+      </svg>
+    </div>
+    <div class="readouts">
+      <div><b id="rRoll">0°</b><span>Roll</span></div>
+      <div><b id="rPitch">0°</b><span>Pitch</span></div>
+      <div><b id="rHead">0°</b><span>Heading</span></div>
+    </div>
+    <div class="actions">
+      <button class="btn arm" id="armBtn">Arm</button>
+      <button class="btn" id="disarmBtn">Disarm</button>
+      <button class="btn kill" id="killBtn">KILL</button>
+    </div>
+    <div class="why" id="why"></div>
+    <div class="chips" id="chips"></div>
+    <div class="log" id="log" aria-live="polite"></div>
+  </section>
+
+  <div class="stick-wrap right">
+    <div class="stick" id="rightStick" aria-label="Roll and pitch stick"><div class="knob"></div></div>
+    <div class="stick-label" id="rightLabel">Roll 0 · Pitch 0</div>
+  </div>
+</main>
+
+<dialog id="settings">
+  <form method="dialog">
+    <strong>Settings</strong>
+    <label for="maxThr">Max throttle: <span id="maxThrVal"></span></label>
+    <input id="maxThr" type="range" min="0.2" max="1" step="0.05">
+    <label for="theme">Theme</label>
+    <select id="theme"><option value="">Match the device</option><option value="light">Light</option><option value="dark">Dark</option></select>
+    <p style="font-size:13px;color:var(--mut)">Kill: the red button or the space bar. Switching away from this page also stops the drone.</p>
+    <button class="btn" value="close">Done</button>
+  </form>
+</dialog>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

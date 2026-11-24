@@ -1,0 +1,138 @@
+/* DroneKit Pro control panel (MIT). */
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --fg: #15181d; --mut: #5d6673; --line: #dde1e7;
+  --accent: #1f6feb; --ok: #1a7f37; --warn: #b26a00; --bad: #c62828; --on-bad: #ffffff;
+  --sky: #5aa9e6; --ground: #9a6b3f; --knob: #15181d;
+  --radius: 14px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1116; --panel: #171b22; --fg: #e8ebf0; --mut: #9aa4b2; --line: #2a313c;
+    --accent: #4c8dff; --ok: #3fb950; --warn: #d29922; --bad: #f85149; --on-bad: #ffffff;
+    --sky: #2f6f9f; --ground: #6b4a2c; --knob: #e8ebf0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1116; --panel: #171b22; --fg: #e8ebf0; --mut: #9aa4b2; --line: #2a313c;
+  --accent: #4c8dff; --ok: #3fb950; --warn: #d29922; --bad: #f85149; --on-bad: #ffffff;
+  --sky: #2f6f9f; --ground: #6b4a2c; --knob: #e8ebf0;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--bg); color: var(--fg);
+  font: 15px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  display: flex; flex-direction: column;
+  touch-action: none; user-select: none; -webkit-user-select: none;
+  overscroll-behavior: none;
+}
+button { font: inherit; color: inherit; }
+
+/* ---- top bar ---- */
+.bar {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 8px 16px; border-bottom: 1px solid var(--line); background: var(--panel);
+}
+.bar h1 { font-size: 16px; margin: 0 8px 0 0; font-weight: 650; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px;
+  border-radius: 999px; border: 1px solid var(--line); font-size: 13px; color: var(--mut);
+  font-variant-numeric: tabular-nums;
+}
+.pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.pill.ok { color: var(--ok); } .pill.warn { color: var(--warn); } .pill.bad { color: var(--bad); }
+.bar .spacer { flex: 1; }
+.icon-btn {
+  border: 1px solid var(--line); background: none; border-radius: 10px;
+  padding: 4px 10px; cursor: pointer;
+}
+
+/* ---- layout ---- */
+main {
+  flex: 1; min-height: 0; display: grid; gap: 16px; padding: 16px;
+  grid-template-columns: 1fr minmax(220px, 320px) 1fr;
+  grid-template-areas: "left center right";
+  align-items: center;
+}
+.stick-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.stick-wrap.left { grid-area: left; } .stick-wrap.right { grid-area: right; }
+.center { grid-area: center; display: flex; flex-direction: column; gap: 12px; align-items: stretch; }
+
+@media (max-width: 720px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "center center" "left right";
+    align-items: start;
+  }
+}
+
+/* ---- sticks ---- */
+.stick {
+  position: relative; width: min(42vw, 240px, calc(100dvh - 150px)); aspect-ratio: 1;
+  border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel);
+  touch-action: none; cursor: grab;
+}
+.stick::before, .stick::after { content: ""; position: absolute; background: var(--line); }
+.stick::before { left: 50%; top: 10%; bottom: 10%; width: 1px; }
+.stick::after { top: 50%; left: 10%; right: 10%; height: 1px; }
+.knob {
+  position: absolute; left: 0; top: 0; width: 22%; aspect-ratio: 1; border-radius: 50%;
+  background: var(--knob); opacity: .85; pointer-events: none; z-index: 1;
+}
+.stick-label { font-size: 12px; color: var(--mut); text-align: center; font-variant-numeric: tabular-nums; }
+
+/* ---- attitude ---- */
+.attitude { display: flex; justify-content: center; }
+.attitude svg { width: min(100%, 220px, 34dvh); height: auto; }
+.readouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; text-align: center; }
+.readouts div { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 6px 4px; }
+.readouts b { display: block; font-size: 17px; font-variant-numeric: tabular-nums; }
+.readouts span { font-size: 11px; color: var(--mut); }
+
+/* ---- buttons ---- */
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.btn {
+  border: 1px solid var(--line); background: var(--panel); border-radius: 12px;
+  padding: 12px; font-size: 16px; font-weight: 600; cursor: pointer;
+}
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.arm { border-color: var(--ok); color: var(--ok); }
+.kill {
+  grid-column: 1 / -1; background: var(--bad); color: var(--on-bad); border: 0;
+  padding: 16px; font-size: 20px; letter-spacing: .06em;
+}
+.why { font-size: 13px; color: var(--warn); min-height: 1.4em; text-align: center; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+.chip { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--panel); border: 1px solid var(--warn); color: var(--warn); }
+
+/* ---- log + settings ---- */
+.log {
+  font-size: 12px; color: var(--mut); max-height: 4.6em; overflow: hidden;
+  display: flex; flex-direction: column-reverse;
+}
+.log .error { color: var(--bad); }
+dialog {
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); color: var(--fg);
+  width: min(92vw, 380px);
+}
+dialog label { display: block; margin: 12px 0 4px; color: var(--mut); font-size: 13px; }
+dialog input[type=range] { width: 100%; }
+.mock-banner { background: var(--warn); color: #000; text-align: center; font-size: 13px; padding: 4px 16px; }
+
+/* Short screens (a phone on its side): everything must fit, KILL included. */
+@media (max-height: 500px) {
+  .mock-banner { padding: 2px 16px; font-size: 12px; }
+  .bar { padding: 4px 12px; }
+  main { padding: 8px 12px; gap: 12px; }
+  .center { gap: 6px; }
+  .readouts b { font-size: 14px; }
+  .readouts div { padding: 2px; }
+  .btn { padding: 8px; }
+  .kill { padding: 10px; font-size: 18px; }
+  .log { display: none; }
+  .stick { width: min(42vw, 240px, calc(100dvh - 120px)); }
+}

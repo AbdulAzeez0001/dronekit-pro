@@ -7,6 +7,7 @@
 #include <ArduinoJson.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include <LittleFS.h>
 #include <Preferences.h>
 #include <WiFi.h>
 
@@ -227,10 +228,24 @@ void setup()
 
     ws.onEvent(onWsEvent);
     server.addHandler(&ws);
-    server.on("/", HTTP_GET, [](AsyncWebServerRequest *req) {
+
+    // The bench page is built into the firmware and always at /bench.
+    // The full control panel (software/control-panel) lives in LittleFS,
+    // uploaded with `pio run -t uploadfs`. Until it's uploaded, / shows the
+    // bench page.
+    server.on("/bench", HTTP_GET, [](AsyncWebServerRequest *req) {
         req->send(200, "text/html", INDEX_HTML);
     });
+    const bool panel = LittleFS.begin(false) && LittleFS.exists("/index.html");
+    if (panel) {
+        server.serveStatic("/", LittleFS, "/").setDefaultFile("index.html");
+    } else {
+        server.on("/", HTTP_GET, [](AsyncWebServerRequest *req) {
+            req->send(200, "text/html", INDEX_HTML);
+        });
+    }
     server.begin();
+    Serial.println(panel ? "Control panel: from LittleFS" : "Control panel: not uploaded, serving the bench page");
 
     printWifi();
 }
