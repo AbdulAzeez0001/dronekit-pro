@@ -605,3 +605,60 @@ antenna keep-out, on any layer.
   three +3V8 pins tied together on both layers. `handroute.py` re-routed the 7
   signals that had to move (camera I2C, CAM_Y3 / Y4, +2V8_CAM, a +3V3_ESP
   link, STM_BOOT0).
+
+## Ordering from JLCPCB (`make_fab.py`, 2026-11-24)
+
+```
+"C:\Program Files\KiCad\10.0\bin\python.exe" make_fab.py      # both boards
+```
+
+This writes `fab/fc/` and `fab/vision/` (not committed; rerun it before
+each order). It stops unless DRC is clean with schematic parity.
+
+| File | Upload as |
+|---|---|
+| `<board>_gerbers.zip` | the PCB (Gerbers + PTH/NPTH drill) |
+| `<board>_bom.csv` | assembly BOM (Comment, Designator, Footprint, LCSC) |
+| `<board>_cpl.csv` | assembly placement (Designator, Mid X/Y, Layer, Rotation) |
+
+**Order options** (one drone, so 5 bare boards and 2 assembled of each):
+
+| | fc | vision |
+|---|---|---|
+| Layers | 4 | 4 |
+| Thickness | 1.6 mm | 1.0 mm |
+| Size | 32 × 30 mm | 32 × 30 mm |
+| Assembly | standard, both sides (48 top, 49 bottom) | standard, both sides (25 top, 25 bottom) |
+
+**What's left out of the BOM/CPL:**
+- Solder-pad "connectors" (battery, motors, receiver, SWD, buzzer,
+  ESP UART0). They're bare copper.
+- **J30, the camera FPC: on hold.** The connector's contact side has to
+  match the ribbon of the camera being bought (OV2640, 75 mm ribbon).
+  Confirm that on the real part, add J30 to `LCSC` in `make_fab.py`,
+  remove it from `ON_HOLD`, and rerun. Don't order vision until then.
+
+**LCSC numbers.** The ICs, transistors, diodes, USB-C, JST SH 4-pin, the
+B2B pair and the 100 nF 0402 are filled in from checked listings. The other
+passives, the LED, crystal, inductor, switches and JST SH 3/6-pin are
+**blank on purpose**: they couldn't be checked (jlcpcb.com and lcsc.com
+block automated fetches). JLCPCB's BOM step asks for each blank line.
+Prefer Basic parts, and match:
+- capacitors: value, package, and at least the voltage in the Comment
+  (X5R/X7R);
+- resistors: 1 %;
+- Y90: 8 MHz 3225, CL 20 pF;
+- L10: 1.5 µH shielded, Isat ≥ 2 A, about 4 × 4 mm;
+- SW1: Copal CHS-01A;
+- SW90/SW2: C&K KMR2.
+
+Once chosen, add them to `LCSC` so the next order is one upload.
+
+**Check JLCPCB's placement preview, part by part.** KiCad and JLCPCB
+don't always agree on a footprint's zero rotation. The usual suspects here
+are the SOT-23/SOT-223/SOT-23-5/6 parts, the LGA sensors (U70, U80), the
+QFN/UQFN (U10, U92), the LQFP STM32, USB-C (J90) and the ESP32 module (U2).
+Fix any that look wrong in the preview: pin 1 must sit on the pad marked 1.
+J200 and J201 are placed by the centre of their pins (their KiCad origin
+is pin 1). They land at the same XY on both boards, which is the stack
+check.

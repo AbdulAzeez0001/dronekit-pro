@@ -13,6 +13,7 @@ fp-info-cache
 # If you want to commit gerbers for a release, do it deliberately, not by default.
 hardware/gerbers/
 hardware/**/*.zip
+hardware/board/fab/
 
 # ---------- Python ----------
 __pycache__/
