@@ -411,6 +411,17 @@ made on the routed board.
 - **USBLC6 (U91):** pins 3/4 (and 1/6) are one I/O line, joined inside the
   chip so the signal flows straight through it. `build_pcb.py` writes them
   as a jumper pad group into the footprint, so DRC counts that connection.
+- **Datasheet pin check (2026-11-24):**
+  - **AP7361C-33E (vision U12):** Diodes DS37274 (Oct 2020) lists two
+    SOT-223 pinouts. Suffix **E** (`AP7361C-33E-13`) is pin 1 IN, pin 2
+    GND (and the tab), pin 3 OUT. That matches the footprint: pin 1 is
+    +3V8, pins 2 and tab are GND, pin 3 is +3V3_ESP. Suffix **ER** (SOT223R)
+    is reversed (1 GND, 2 OUT, 3 IN). **Order -33E-13, not -33ER-13**; the
+    ER part would short +3V8 to ground.
+  - **USBLC6-2SC6 (fc U91):** pin 1 I/O1, 2 GND, 3 I/O2, 4 I/O2, 5 VBUS,
+    6 I/O1. That matches the board: 1/6 are USB_DP, 3/4 are USB_DN, 2 is
+    GND and 5 is VBUS. ST's PDF could not be fetched here, so this was
+    checked against KiCad's own `Power_Protection` symbol, which cites it.
 - **Solid pour connections:** the GND and +3V3 pins of J200 and the USB-C
   shell pins join their pours solid. On the 1.27 mm grid the neighbouring
   tracks leave too little room for thermal spokes.
