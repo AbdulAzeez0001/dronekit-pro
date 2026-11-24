@@ -65,8 +65,9 @@ Values are from the Goertek SPA06-003 datasheet (Ver 2.0, 2023-12-05):
 - [ ] Check the footprint: it's the same 2.0 × 2.5 mm, 0.65 mm-pitch LGA-8
       as the BMP280, but check the land pattern against Goertek's outline
       drawing (datasheet section 8.2).
-- [ ] Betaflight target: `BARO_I2C_INSTANCE` I2C1, baro hardware DPS310.
-      Check the driver probes 0x76, or set `baro_i2c_address` = 118 (0x76).
+- [x] Betaflight target: `BARO_I2C_INSTANCE` I2C1, baro hardware DPS310
+      (`firmware/betaflight/config/DRONEKITPRO/config.h`).
+      `baro_i2c_address` = 118 (0x76) is set in `cli-defaults.txt`.
 - [ ] Confirm the Betaflight version in use includes the DPS310 driver.
       From 4.5, only the baro drivers built into the firmware are available.
 - [ ] Place it with the foam cover in mind: free air above the vent, and

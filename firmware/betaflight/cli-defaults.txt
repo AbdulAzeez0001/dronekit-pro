@@ -47,3 +47,38 @@ resource GYRO_EXTI 1 C04
 set gyro_1_bustype = SPI
 set gyro_1_spibus = 1
 set gyro_1_sensor_align = CW180FLIP
+
+# --- The rest of the board ---------------------------------------------------
+# Pins come from config/DRONEKITPRO/config.h. These are the settings that go
+# with them, in case a build or a `defaults nosave` leaves them different.
+
+# Motors: 4 brushed channels on TIM3 (PB0, PB1, PB4, PB5), plain PWM.
+# 16 kHz is Betaflight's brushed default; try 32 kHz later if the motors whine.
+set motor_pwm_protocol = BRUSHED
+set motor_pwm_rate = 16000
+
+# Beeper on PB8 through a low-side MOSFET: high = beep.
+set beeper_inversion = ON
+set beeper_od = OFF
+
+# Battery on PC1 through a 10k / 1k divider. No current sensor.
+set vbat_scale = 110
+set battery_meter = ADC
+set current_meter = NONE
+
+# Baro: SPA06-003 on I2C1 at 0x76 (118), read by the DPS310 driver.
+set baro_hardware = DPS310
+set baro_i2c_device = 1
+set baro_i2c_address = 118
+
+# Serial ports. Function mask 1 = MSP, 64 = serial receiver.
+#   UART1 (index 0): ESP32-S3 bridge, MSP at 115200
+#   UART2 (index 1): ELRS receiver, CRSF
+#   UART3 (index 2): expansion header J131, unused by default
+serial 0 1 115200 57600 0 115200
+serial 1 64 115200 57600 0 115200
+set serialrx_provider = CRSF
+
+# ESP32-S3 power switch (ESP_EN, PB12) on PINIO1, toggled by USER1 (box 40).
+# Assign USER1 to an AUX switch in the Modes tab. Off at boot.
+set pinio_box = 40,255,255,255

@@ -128,6 +128,8 @@ the allocation for SPI1 (gyro) + USART1 (bridge) + USART2 (receiver) (+ the LED 
 TIM1 if used). Validate against the F405 DMA table and test, do not assume.
 
 ## To do when building the target
-- [ ] Encode this map in the Betaflight custom target (resource assignments).
+- [x] Encode this map in the Betaflight custom target: `firmware/betaflight/config/DRONEKITPRO/config.h`
+      (pins checked against `fc.kicad_pcb` on 2026-11-24; not compiled yet).
 - [ ] Run the DMA check above.
 - [ ] Add the MODE_SENSE read + ESP_EN drive to target init (custom code).
+      Until then, ESP_EN is PINIO1 on a USER1 switch.
