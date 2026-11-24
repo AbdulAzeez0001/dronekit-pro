@@ -90,7 +90,9 @@ This must be decided before layout because it changes the power section.
 ## Firmware implications (not free, flag for planning)
 
 - Betaflight needs a small custom target change: read MODE_SENSE at init, drive
-  ESP_EN, and select RC source (ELRS vs MSP-over-UART) by mode.
+  ESP_EN, and select RC source (ELRS vs MSP-over-UART) by mode. **Written:**
+  `firmware/betaflight/src/dual_boot.c` (not compiled yet; build steps in
+  `firmware/betaflight/README.md`). Switch closed = low = Fly, open = high = Code.
 - The ESP32 -> STM32 OTA flash path implements the STM32 system bootloader
   protocol over the bridge UART (toggle BOOT0 high, pulse NRST, send firmware).
 

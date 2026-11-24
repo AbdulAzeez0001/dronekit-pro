@@ -79,6 +79,7 @@ serial 0 1 115200 57600 0 115200
 serial 1 64 115200 57600 0 115200
 set serialrx_provider = CRSF
 
-# ESP32-S3 power switch (ESP_EN, PB12) on PINIO1, toggled by USER1 (box 40).
-# Assign USER1 to an AUX switch in the Modes tab. Off at boot.
-set pinio_box = 40,255,255,255
+# Receiver: keep the ELRS serial receiver as the saved choice. In Code mode
+# the dual-boot code switches to MSP (from the ESP32-S3 on UART1) for that
+# boot only, and drives ESP_EN (PB12) high. Nothing to set here.
+feature RX_SERIAL

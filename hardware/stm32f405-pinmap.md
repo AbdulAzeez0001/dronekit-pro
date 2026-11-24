@@ -131,5 +131,5 @@ TIM1 if used). Validate against the F405 DMA table and test, do not assume.
 - [x] Encode this map in the Betaflight custom target: `firmware/betaflight/config/DRONEKITPRO/config.h`
       (pins checked against `fc.kicad_pcb` on 2026-11-24; not compiled yet).
 - [ ] Run the DMA check above.
-- [ ] Add the MODE_SENSE read + ESP_EN drive to target init (custom code).
-      Until then, ESP_EN is PINIO1 on a USER1 switch.
+- [x] Add the MODE_SENSE read + ESP_EN drive to target init (custom code):
+      `firmware/betaflight/src/dual_boot.c`, not compiled yet.

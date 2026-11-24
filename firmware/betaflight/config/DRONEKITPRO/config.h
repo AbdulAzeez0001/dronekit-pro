@@ -11,11 +11,12 @@
  * against the routed board (hardware/board/fc.kicad_pcb) on 2026-11-24.
  *
  * NOT YET COMPILED. Define names change between Betaflight releases; check
- * them against the release you build. Not done here:
- *   - the dual-boot logic (read MODE_SENSE on PC13 at boot, pick the RC
- *     source) needs custom code, see hardware/dual-boot/;
- *   - the DMA check in hardware/stm32f405-pinmap.md (run `dma show` and
- *     `timer show` in the CLI on the first board).
+ * them against the release you build. Still to do: the DMA check in
+ * hardware/stm32f405-pinmap.md (run `dma show` and `timer show` in the CLI
+ * on the first board).
+ *
+ * Needs ../../src/dual_boot.c added to the Betaflight build; see
+ * ../../README.md.
  */
 
 #pragma once
@@ -132,13 +133,16 @@
 #define DEFAULT_CURRENT_METER_SOURCE    CURRENT_METER_NONE
 #define DEFAULT_VOLTAGE_METER_SCALE     110
 
-/* --- ESP32-S3 power (ESP_EN on PB12) ------------------------------------
- * Until the dual-boot code exists, PINIO1 lets a switch turn the ESP32-S3
- * on: USER1 (box 40) on an AUX channel. Off by default; the 10k pull-down
- * on ESP_EN keeps it off while the STM32 boots.
+/* --- Dual boot (../../src/dual_boot.c) ----------------------------------
+ * At boot, read the mode switch on PC13:
+ *   LOW (switch closed) = Fly: configured receiver, ESP32-S3 kept off;
+ *   HIGH (switch open) = Code: RC from the ESP32-S3 over MSP on UART1,
+ *     and ESP_EN (PB12) driven high to start the ESP32-S3.
+ * The 10k pull-down on ESP_EN keeps the ESP32-S3 off until then.
  */
-#define PINIO1_PIN              PB12
-#define PINIO1_BOX              40
+#define USE_DRONEKIT_DUAL_BOOT
+#define DUAL_BOOT_SENSE_PIN     PC13
+#define DUAL_BOOT_ESP_EN_PIN    PB12
 
-/* Not connected: PC13 (MODE_SENSE, read by the future dual-boot code),
- * PB2 (BOOT1), PA11/PA12 (USB via the TS3USB221A switch), PA13/PA14 (SWD). */
+/* Not used by Betaflight: PB2 (BOOT1), PA11/PA12 (USB via the TS3USB221A
+ * switch), PA13/PA14 (SWD). */
