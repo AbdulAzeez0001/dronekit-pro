@@ -1,0 +1,28 @@
+# DroneKit Pro - Betaflight CLI defaults (GPLv3, see ../README.md)
+#
+# Paste into the Betaflight CLI, then `save`. The custom target will carry
+# the same values as #defines once it exists.
+
+# --- Gyro: ICM-42688-P (fc U80) on SPI1, CS PA4, EXTI PC4 -----------------
+#
+# U80 sits on the BOTTOM of the fc board (KiCad rotation 0, flipped), so
+# the chip's top faces down. Pin 1 is at the board's rear-right corner as
+# seen from below (KiCad pad 1 at x -1.16, y +0.75 mm from the part's
+# centre; +x = forward, +y = the quad's right).
+#
+# With InvenSense's usual axis layout (top view, pin 1 top-left: +X right,
+# +Y towards the pin-1 edge, +Z out of the top), the chip's axes on the
+# quad are:
+#   chip +X -> forward    chip +Y -> right    chip +Z -> down
+# Betaflight's frame is X forward, Y left, Z up, so body = (x, -y, -z):
+# a 180 deg roll flip, which is CW180_DEG_FLIP.
+# (Target equivalent: #define GYRO_1_ALIGN CW180_DEG_FLIP)
+#
+# BENCH-CHECK BEFORE THE FIRST FLIGHT (props off). In the Configurator's
+# Setup tab, with the quad level:
+#   - tilt the nose down: the model's nose goes down;
+#   - roll right side down: the model rolls right;
+#   - yaw the nose right: the heading increases.
+# If any axis is wrong, try CW0FLIP (a pitch flip) and check again.
+# Do not arm until all three match.
+set gyro_1_sensor_align = CW180FLIP

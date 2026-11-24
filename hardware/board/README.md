@@ -266,9 +266,14 @@ neighbour's outline. Only the parts a builder solders or plugs into keep
 their reference on the silkscreen; every other reference stays on the fab
 layer. Routing: see "fc routing" below.
 
-**Gyro orientation:** U80 sits at rotation 0 on the bottom. Betaflight's
-`gyro_1_sensor_align` must be set from that (bottom-mounted, so flipped)
-before first flight.
+**Gyro orientation:** U80 sits at rotation 0 on the bottom, chip top facing
+down, pin 1 at the rear-right corner seen from below. That puts the chip's
++X forward, +Y right and +Z down: a 180° roll flip from Betaflight's frame,
+so `gyro_1_sensor_align = CW180FLIP`
+(`firmware/betaflight/cli-defaults.txt`). This assumes InvenSense's usual
+axis figure (pin 1 top-left, +X right, +Y up); TDK's datasheet could not be
+fetched to confirm it. Bench-check the three axes in the Configurator before
+the first flight (steps in that file).
 
 ## fc routing (2026-11-23, power paths redone 2026-11-24)
 
