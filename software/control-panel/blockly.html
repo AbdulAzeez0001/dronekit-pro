@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DroneKit Blocks</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { touch-action: manipulation; user-select: auto; }
+  .toolbar { display: flex; gap: 8px; padding: 8px 16px; flex-wrap: wrap; align-items: center;
+             border-bottom: 1px solid var(--line); background: var(--panel); }
+  .toolbar .btn { padding: 8px 16px; }
+  .toolbar .run { border-color: var(--ok); color: var(--ok); }
+  .toolbar .stop { background: var(--bad); color: var(--on-bad); border: 0; min-width: 120px; letter-spacing: .05em; }
+  .work { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 280px; }
+  #workspace { min-height: 0; }
+  .side { border-left: 1px solid var(--line); background: var(--panel); display: flex; flex-direction: column; min-height: 0; }
+  .side h2 { font-size: 13px; color: var(--mut); margin: 8px 12px 4px; font-weight: 600; }
+  #out { flex: 1; overflow: auto; padding: 0 12px 12px; font-size: 13px; }
+  #out div { padding: 2px 0; border-bottom: 1px solid var(--line); }
+  #out .error { color: var(--bad); }
+  #code { display: none; margin: 0; padding: 12px; font: 12px/1.4 ui-monospace, Consolas, monospace;
+          white-space: pre-wrap; overflow: auto; max-height: 40%; border-top: 1px solid var(--line); }
+  #code.show { display: block; }
+  nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
+  @media (max-width: 720px) {
+    .work { grid-template-columns: 1fr; grid-template-rows: 1fr 30%; }
+    .side { border-left: 0; border-top: 1px solid var(--line); }
+  }
+</style>
+<script src="vendor/blockly/blockly_compressed.js"></script>
+<script src="vendor/blockly/blocks_compressed.js"></script>
+<script src="vendor/blockly/javascript_compressed.js"></script>
+<script src="vendor/blockly/msg/en.js"></script>
+</head>
+<body>
+<div class="mock-banner" id="mockBanner" hidden>Pretend drone: nothing here reaches real hardware.</div>
+<header class="bar">
+  <h1>DroneKit Blocks</h1>
+  <span class="pill" id="pLink">Connecting</span>
+  <span class="pill" id="pBatt">-- V</span>
+  <span class="pill" id="pArmed">Disarmed</span>
+  <span class="spacer"></span>
+  <nav><a id="sticksLink" href="index.html">Sticks</a></nav>
+</header>
+<div class="toolbar">
+  <button class="btn run" id="runBtn">▶ Run</button>
+  <button class="btn stop" id="stopBtn">STOP</button>
+  <span class="spacer" style="flex:1"></span>
+  <button class="btn" id="codeBtn">Show code</button>
+  <button class="btn" id="saveBtn">Save</button>
+  <button class="btn" id="openBtn">Open</button>
+  <input type="file" id="openFile" accept=".json,application/json" hidden>
+</div>
+<div class="work">
+  <div id="workspace" aria-label="Block workspace"></div>
+  <aside class="side">
+    <h2>Messages</h2>
+    <div id="out" aria-live="polite"></div>
+    <pre id="code"></pre>
+  </aside>
+</div>
+<script type="module" src="blockly-app.js"></script>
+</body>
+</html>

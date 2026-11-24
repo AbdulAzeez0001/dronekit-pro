@@ -25,6 +25,7 @@ if (useMock) {
   window.mockDrone = mock;          // for poking at it from the console
   openSocket = () => mock.connect();
   $('mockBanner').hidden = false;
+  $('blocksLink').href = 'blockly.html?mock';
 }
 const link = new DroneLink({ openSocket, maxThrottle: Number(store.get('dk.maxThrottle', 0.7)) });
 
