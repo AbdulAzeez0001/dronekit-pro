@@ -1,7 +1,7 @@
 # DroneKit Pro - Betaflight CLI defaults (GPLv3, see ../README.md)
 #
-# Paste into the Betaflight CLI, then `save`. The custom target will carry
-# the same values as #defines once it exists.
+# Paste into the Betaflight CLI, then `save`. config/DRONEKITPRO/config.h
+# carries the same values as #defines (gyro block so far).
 
 # --- Gyro: ICM-42688-P (fc U80) on SPI1, CS PA4, EXTI PC4 -----------------
 #
@@ -25,4 +25,25 @@
 #   - yaw the nose right: the heading increases.
 # If any axis is wrong, try CW0FLIP (a pitch flip) and check again.
 # Do not arm until all three match.
+#
+# Wiring (checked against fc.kicad_pcb, 2026-11-24):
+#   U80 pin 13 SCLK  -> PA5  SPI1_SCK
+#   U80 pin 1  SDO   -> PA6  SPI1_SDI (MISO)
+#   U80 pin 14 SDI   -> PA7  SPI1_SDO (MOSI)
+#   U80 pin 12 CS    -> PA4  (10k pull-up)
+#   U80 pin 4  INT1  -> PC4  (EXTI4, data ready)
+# SPI1 carries only the gyro. Betaflight 4.4+ names the SPI data pins
+# SDI/SDO (from the STM32's side) instead of MISO/MOSI.
+#
+# These resource lines only take effect on a build that includes the
+# ICM-42688-P driver (the DRONEKITPRO config in config/, or a cloud build
+# with that driver ticked). The config's defines set the same pins, so on
+# that build these lines simply restate them.
+resource SPI_SCK 1 A05
+resource SPI_SDI 1 A06
+resource SPI_SDO 1 A07
+resource GYRO_CS 1 A04
+resource GYRO_EXTI 1 C04
+set gyro_1_bustype = SPI
+set gyro_1_spibus = 1
 set gyro_1_sensor_align = CW180FLIP

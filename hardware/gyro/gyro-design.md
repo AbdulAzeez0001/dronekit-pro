@@ -78,7 +78,10 @@ revision (1.8) before layout.
 - [ ] Re-check pins and parts against the current datasheet revision (1.8).
 - [ ] Check the KiCad footprint `LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y`
       against the ICM-42688-P land pattern in the datasheet.
-- [ ] Betaflight target: `GYRO_1_SPI_INSTANCE` SPI1, CS PA4, EXTI PC4.
+- [x] Betaflight target: `GYRO_1_SPI_INSTANCE` SPI1, CS PA4, EXTI PC4.
+      Wiring checked on the fc board; see
+      `firmware/betaflight/config/DRONEKITPRO/config.h` and the matching
+      CLI lines in `firmware/betaflight/cli-defaults.txt`.
 - [x] Sensor alignment from the layout: `CW180FLIP` (bottom-mounted,
       rotation 0). See `firmware/betaflight/cli-defaults.txt`.
 - [ ] Confirm the axis figure in the datasheet (pin 1 top-left, +X right,
