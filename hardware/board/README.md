@@ -476,7 +476,7 @@ between the two rear holes, on every layer. Use nylon screws at H1/H4.
 Check the cage clears the antenna, which ends 1.4 mm past the board's rear
 edge (x = −17.4 mm).
 
-**Heights between the boards.** The header + socket gap is about 5 mm.
+**Heights between the boards.** The header + socket gap is 5.5 mm (set by the spacers, see below).
 
 | vision bottom | over fc top | total |
 |---|---|---|
@@ -487,6 +487,25 @@ edge (x = −17.4 mm).
 
 **The FPC stack (4.95 mm) is the tightest.** Pick a header + socket pair
 that gives at least 5.5 mm between the boards.
+
+**Chosen pair (2026-11-24), same footprints, so no re-routing:**
+
+| Ref | Part | Checked |
+|---|---|---|
+| J201 (socket, vision underside) | HCTL PM127-2-12-Z-4.3-G0, JLCPCB/LCSC C5380281: 2 × 12, 1.27 mm, through-hole, 4.3 mm insulator | JLCPCB part page |
+| J200 (header, fc top) | HCTL PZ127-2-12-Z, JLCPCB/LCSC C5372816: 2 × 12, 1.27 mm, through-hole, 1.0 mm insulator, 3.8 mm mating pin, 2.4 mm tail | JLCPCB part page (261 in stock, $0.28) |
+
+JLCPCB has no 1.27 mm 2 × 12 header with a 1.5 mm insulator. With this one
+fully seated, the gap is 4.3 + 1.0 = 5.3 mm, which leaves only 0.35 mm over
+the FPC stack. So **the spacers on H1–H4 are 5.5 mm**:
+
+- the gap is 5.5 mm, leaving 0.55 mm over the FPC stack;
+- the header pins sit 0.2 mm short of fully seated, so 3.6 of the 3.8 mm
+  mating length is in the socket;
+- the header's 2.4 mm tail pokes about 0.8 mm out of fc's underside (1.6 mm
+  board), so trim it flush if it gets in the way of the frame.
+
+Both parts are from HCTL, so they're meant to mate.
 
 **Camera ribbon:** the FPC is now on the underside. Choose a top- or
 bottom-contact 24-pin connector so its contacts face the ribbon's exposed
@@ -520,12 +539,12 @@ come from (pin 33 ESP_EN, 37–40 PWM1–4, 41 LED_STRIP, 42/43 USART1), so on
 fc the wires between U1 and J200 don't cross. The first pinout had them in
 reverse order, and fc couldn't be routed with it.
 
-**Stack height.** The header + socket pair sets the gap between the boards,
-about 5–6 mm depending on the exact parts. Keep fc's top-side parts under
+**Stack height.** The gap between the boards is 5.5 mm (the spacers; see "Chosen pair"),
+so keep fc's top-side parts under
 about 4.5 mm (USB-C is 3.3 mm) and only small passives on vision's
 underside. Above fc, the stack needs roughly gap + 1.0 mm board + 3.1 mm
-ESP32-S3 module ≈ 9.5–10 mm, against the 4.4 mm the cage leaves under the
-battery now. **The cage's `fc_clear` has to grow by about 5–6 mm** (see
+ESP32-S3 module = 9.6 mm, against the 4.4 mm the cage leaves under the
+battery now. **The cage's `fc_clear` has to grow by about 5.2 mm** (see
 `hardware/mechanical/README.md`).
 
 **Weight:** about +3 g: the second board, the connector pair and spacers,
