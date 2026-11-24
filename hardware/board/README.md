@@ -638,21 +638,27 @@ each order). It stops unless DRC is clean with schematic parity.
   Confirm that on the real part, add J30 to `LCSC` in `make_fab.py`,
   remove it from `ON_HOLD`, and rerun. Don't order vision until then.
 
-**LCSC numbers.** The ICs, transistors, diodes, USB-C, JST SH 4-pin, the
-B2B pair and the 100 nF 0402 are filled in from checked listings. The other
-passives, the LED, crystal, inductor, switches and JST SH 3/6-pin are
-**blank on purpose**: they couldn't be checked (jlcpcb.com and lcsc.com
-block automated fetches). JLCPCB's BOM step asks for each blank line.
-Prefer Basic parts, and match:
-- capacitors: value, package, and at least the voltage in the Comment
-  (X5R/X7R);
-- resistors: 1 %;
-- Y90: 8 MHz 3225, CL 20 pF;
-- L10: 1.5 µH shielded, Isat ≥ 2 A, about 4 × 4 mm;
-- SW1: Copal CHS-01A;
-- SW90/SW2: C&K KMR2.
-
-Once chosen, add them to `LCSC` so the next order is one upload.
+**LCSC numbers: every BOM line has one** (except J30, on hold). They're
+in the `LCSC` table in `make_fab.py`, checked on 2026-11-24 against a copy of
+JLCPCB's in-stock catalogue (the community cdfer database): part number,
+package, rating and stock. Stock moves, so JLCPCB's BOM step has the final
+word. Points to know:
+- **U1 is the STM32F405RGT6TR (C2054141).** It's the same chip on a reel.
+  The usual C15742 wasn't in stock, and this one had 110. That's enough for
+  2 boards, but check it when ordering.
+- **Low stock:** AP7361C (C500795, about 585) and ICM-42688-P (C1850418,
+  about 1.2k). Both are fine for 2 boards.
+- **L10 is the Coilcraft XFL4020-152MEC** (C3033018), the part its
+  footprint was drawn for: 1.5 µH, 4.6 A saturation.
+- **J132 is a JST SH 3-pin clone** (HC-1.0-3PWT, C2845362). The genuine
+  SM03B-SRSS-TB wasn't in stock. The other JST SH parts are genuine.
+- **SW1 is the Copal CHS-01TA** (C2921603, J-lead), and SW90/SW2 are the
+  C&K KMR221NGLFS (C269272, 4.2 × 2.8 mm).
+- The capacitors are Samsung and the resistors UniOhm 1 %, all JLCPCB Basic
+  except the 374k. Each capacitor is rated at or above the voltage on its
+  schematic value.
+- **Extended parts** (JLCPCB charges a loading fee for each unique one):
+  about 15 on fc and 10 on vision.
 
 **Check JLCPCB's placement preview, part by part.** KiCad and JLCPCB
 don't always agree on a footprint's zero rotation. The usual suspects here

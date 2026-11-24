@@ -50,7 +50,7 @@ is now fixed in the design (`hardware/baro/`); the gyro is still open:
 
 | Ref | Part | LCSC | Qty | Unit ≈ | Line ≈ | Stock / note |
 |---|---|---|---|---|---|---|
-| U1 | STM32F405RGT6 | C15742 | 1 | 4.51–5.05 | 5.00 | ~1.8k–3k; several snapshots |
+| U1 | STM32F405RGT6 (TR reel C2054141 when C15742 is out of stock) | C15742 | 1 | 4.51–5.05 | 5.00 | ~1.8k–3k; several snapshots |
 | U2 | ESP32-S3-WROOM-1-N8R2 | C2913204 | 1 | 2.99–3.16 | 3.00 | ~2.8k–9.4k |
 | U80 | ICM-42688-P | C1850418 | 1 | 16.30 | 16.30 | ~3.1k–6.2k. **Cost driver**, see above |
 | U70 | SPA06-003 (Goertek) | C30589048 | 1 | 0.43 | 0.43 | ~36k–72k. Replaces the BMP280 (C83291: discontinued, ~$10.59) |
