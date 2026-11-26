@@ -627,17 +627,26 @@ each order). It stops unless DRC is clean with schematic parity.
 | Layers | 4 | 4 |
 | Thickness | 1.6 mm | 1.0 mm |
 | Size | 32 × 30 mm | 32 × 30 mm |
-| Assembly | standard, both sides (48 top, 49 bottom) | standard, both sides (25 top, 25 bottom) |
+| Assembly | standard, both sides (48 top, 49 bottom) | standard, both sides (25 top, 26 bottom) |
 
 **What's left out of the BOM/CPL:**
 - Solder-pad "connectors" (battery, motors, receiver, SWD, buzzer,
   ESP UART0). They're bare copper.
-- **J30, the camera FPC: on hold.** The connector's contact side has to
-  match the ribbon of the camera being bought (OV2640, 75 mm ribbon).
-  Confirm that on the real part, add J30 to `LCSC` in `make_fab.py`,
-  remove it from `ON_HOLD`, and rerun. Don't order vision until then.
 
-**LCSC numbers: every BOM line has one** (except J30, on hold). They're
+**J30, the camera FPC: Hirose FH12-24S-0.5SH(55), C202112, bottom
+contact** (decided 2026-11-26 from the OV2640 module drawing). The
+ribbon's contacts are on the side away from the lens. J30 sits on vision's
+underside with pin 1 (Y0) toward +Y, so the ribbon must go in with its
+contacts facing the board; a top-contact part would mirror all 24 pins.
+All 24 signals match the drawing (J30 pin n = module pin 25 − n). The
+drawing is for the 21 mm / 66° version; when the 75 mm camera arrives,
+check that its contacts are also on the side away from the lens. Mount the
+camera with the ribbon leaving its bottom edge and run it back under the
+camera and up into J30; flip the image in the firmware if needed. In
+JLCPCB's placement preview, check J30's latch faces the board's front
+edge.
+
+**LCSC numbers: every BOM line has one.** They're
 in the `LCSC` table in `make_fab.py`, checked on 2026-11-24 against a copy of
 JLCPCB's in-stock catalogue (the community cdfer database): part number,
 package, rating and stock. Stock moves, so JLCPCB's BOM step has the final

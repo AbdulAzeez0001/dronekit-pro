@@ -67,6 +67,7 @@ LCSC = {
     "CODE_I2C": "C160404",
     "B2B_HEADER_2x12_1.27mm": "C5372816",   # HCTL PZ127-2-12-Z
     "B2B_SOCKET_2x12_1.27mm": "C5380281",   # HCTL PM127-2-12-Z-4.3-G0
+    "CAM_FPC_24P": "C202112",         # Hirose FH12-24S-0.5SH(55), bottom contact (camera ribbon contacts face the board)
     "LED_STRIP": "C2845362",          # HC-1.0-3PWT, JST SH 3-pin clone (genuine SM03B not in stock)
     "PWM": "C160405",                 # JST SM06B-SRSS-TB (2.3k in stock)
     "CODE_IO": "C160405",
@@ -101,7 +102,6 @@ LCSC = {
 
 # Parts that must not be ordered yet, with the reason.
 ON_HOLD = {
-    "J30": "camera FPC: contact side not confirmed (hardware/camera/camera-design.md)",
 }
 
 

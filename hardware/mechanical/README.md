@@ -60,7 +60,7 @@ or nylon is tougher for the same shape, at about the same weight
   the plate, lying along Y, below the fc board).
 - Motor wires drop through the holder bases at the four corners
   (motors at x, y = ±26.5 mm) — put the four motor pads near the board corners.
-- Camera 24-pin FPC connector (J30) on top at the +X edge, x = 11.5–15.5 mm, 16 mm wide, 2 mm tall (placeholder in Fusion); ToF / optical-flow header toward −X.
+- Camera 24-pin FPC connector (J30, Hirose FH12) on the **vision** board's underside at the +X edge, x = 8–16 mm, about 17 mm wide, 2 mm tall, opening toward the camera (the Fusion placeholder still shows it on fc's top from the one-board layout); ToF / optical-flow header toward −X.
 - Battery lead comes from the side (±Y).
 
 Verified in Fusion: the board does not touch the cage, and a 3 mm parts zone

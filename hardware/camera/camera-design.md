@@ -97,7 +97,7 @@ Nothing above touches GPIO3/45/46. Strap resistors are in `hardware/dual-boot/`
 
 | Ref | Part | Note |
 |---|---|---|
-| J30 | 24-pin 0.5 mm FPC, flip-lock | footprint: Hirose FH12-24S-0.5SH, on the vision board's underside at the front edge (`hardware/board/README.md`, "vision placement"); pick the LCSC part with its contacts facing the ribbon's exposed side |
+| J30 | 24-pin 0.5 mm FPC, flip-lock | footprint: Hirose FH12-24S-0.5SH, on the vision board's underside at the front edge (`hardware/board/README.md`, "vision placement"); **Hirose FH12-24S-0.5SH(55), LCSC C202112, bottom contact** (2026-11-26, from the module drawing: the ribbon's contacts face away from the lens, and must face the board at J30) |
 | U30 | XC6206P282MR, SOT-23 | 2.8 V, e.g. LCSC C347374 (250 mA) |
 | U31 | XC6206P122MR, SOT-23 | 1.2 V, e.g. LCSC C2827649 (200 mA). Not the Torex "-G" C424699, which is 60 mA |
 | C30–C33 | 1 µF 0402 | LDO in/out |
@@ -125,7 +125,8 @@ the same connector the other way round (pin 1 = NC … pin 24 = Y0). The
 signal order is the same either way. What matters is which end of the
 connector the ribbon's pin 1 lands on, so check the chosen connector against
 the module before layout: AGND and DGND ring through to the module's metal
-shield.
+shield. **Checked 2026-11-26** against the OV2640-DVP module drawing (pin 1 =
+STROBE … pin 24 = Y0): J30 pin n = module pin 25 − n for all 24 pins.
 
 ### 5. Mechanical
 
