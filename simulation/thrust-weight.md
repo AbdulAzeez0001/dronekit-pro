@@ -19,7 +19,7 @@ Thinner parts (`rod_w` 1.4 → 1.0 mm, `ring_w` 2.0 → 1.5 mm, `pod_wall`
 the centre opening with its rim took off 0.05 g. The quad
 most like it that actually flew (BetaFPV's Beta75: same 7 × 20 mm motors,
 40 mm props, 75 mm frame) weighed about **39 g** ready to fly. DroneKit
-comes out at about **48 g** with a 300 mAh pack, or **52 g** with the
+comes out at about **46.6 g** with a 300 mAh pack, or **51 g** with the
 450 mAh pack. That includes the second board of the two-board electronics
 stack (2026-11-23, see `hardware/board/README.md`), which added about 3 g:
 the 1.0 mm vision PCB and the board-to-board header pair and standoffs.
@@ -29,9 +29,9 @@ the prop area is the same.
 
 | Scenario | All-up weight | Thrust/weight (low–mid–high) | Hover current | Flight time |
 |---|---|---|---|---|
-| Current design (two-board stack), 450 mAh | 52.4 g | 1.3 – **1.7** – 1.9 | 4.1 A | ~3.9 min |
-| Current design (two-board stack), 300 mAh | 48.0 g | 1.5 – **1.8** – 2.1 | 3.6 A | ~2.9 min |
-| 0.8 mm FC PCB (−1.4 g), 300 mAh | 46.6 g | 1.5 – **1.9** – 2.2 | 3.5 A | ~3.1 min |
+| Current design (two-board stack, 0.8 mm fc), 450 mAh | 51.0 g | 1.4 – **1.7** – 2.0 | 4.0 A | ~4.1 min |
+| Current design (two-board stack, 0.8 mm fc), 300 mAh | 46.6 g | 1.5 – **1.8** – 2.1 | 3.5 A | ~3.1 min |
+| 1.6 mm fc PCB instead (+1.4 g), 300 mAh | 48.0 g | 1.5 – **1.8** – 2.1 | 3.6 A | ~3.0 min |
 | BetaFPV Beta75 (reference, flew) | 39.0 g | 1.8 – 2.2 – 2.6 | 2.6 A | 3.5 min (stated) |
 
 **How to read thrust/weight:**
@@ -52,10 +52,10 @@ flight.
 |---|---|---|
 | Cage, PLA, covered with an open centre, 108 × 108 × 34 mm, battery holder under the plate, 1.5 mm motor pods, 3 mm arms (85 mm wheelbase) | 10.3 | Fusion model volume (8.27 cm³) × 1.24 g/cm³ |
 | 4 × 7×20 motors | 14.0 | BetaFPV 7×20 listing: ~3.5 g each (some generic 720s are up to ~5 g) |
-| Flight controller (PCB 2.9 + ESP32-S3 module ~3 + parts ~2.5) | 8.4 | estimate |
+| Flight controller (0.8 mm PCB 1.5 + ESP32-S3 module ~3 + parts ~2.5) | 7.0 | estimate |
 | Second board: vision PCB 1.0 mm (1.8) + header pair and standoffs (0.8) | 2.6 | estimate |
 | Props, camera, wiring, foam | 4.4 | estimate |
-| **Dry** | **39.7** | |
+| **Dry** | **38.3** | |
 | Battery: 450 mAh / 300 mAh | 12.7 / 8.3 | BetaFPV BT2.0 listings |
 
 **The cage was the biggest thing to cut.** Moulded whoop frames are a few
@@ -68,7 +68,7 @@ about 2.3 cm³, the sensor bay 0.35 cm³, the camera cradle 0.37 cm³ and the
 battery cage 0.14 cm³.
 
 **The flight controller** is heavier than a typical whoop board, because of
-the 1.6 mm PCB, the ESP32-S3 module and six connectors. That's the cost of
+the ESP32-S3 module and six connectors (the fc PCB is 0.8 mm since 2026-11-26). That's the cost of
 the dual-boot and expansion features.
 
 ## How the model works
@@ -104,9 +104,10 @@ In order of impact:
    the props unguarded at their own height.
 2. **Fly a 300 mAh pack, not 450.** It's 4.4 g lighter. Flight time
    barely changes, because the drone hovers more efficiently.
-3. **Use a 0.8 mm PCB instead of 1.6 mm.** It saves about 1.4 g, and whoop
-   flight controllers normally use 0.8–1.0 mm. Check the stiffness against
-   the four-screw mount.
+3. **Use a 0.8 mm PCB instead of 1.6 mm. Done (2026-11-26):** it saves
+   about 1.4 g (mid thrust/weight 1.79 → 1.85), and whoop flight controllers
+   normally use 0.8–1.0 mm. Check the stiffness against the four-screw mount
+   on the first board.
 4. **If that's not enough, step up the motors.** BetaFPV's own answer was
    the Beta75S with **8 × 20 mm motors** on the same 40 mm props. The cage's
    motor holders follow `motor_d`, so that's a parameter change (7 → 8 mm)

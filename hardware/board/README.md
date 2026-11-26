@@ -134,8 +134,8 @@ Both boards get the same:
   front, on the camera side.
 - **Holes:** H1–H4, M1.4 (1.6 mm, not plated), on a 25.5 mm square. Each has
   a 3.6 mm keep-out on both sides for the standoffs.
-- **Stackup:** 4 copper layers. fc is 1.6 mm thick and vision 1.0 mm
-  (lighter; it carries no motor current). The plan is In1 = GND and
+- **Stackup:** 4 copper layers. fc is 0.8 mm thick (was 1.6 mm until
+  2026-11-26; 0.8 mm saves 1.4 g, like most whoop FCs) and vision 1.0 mm. The plan is In1 = GND and
   In2 = power; neither plane is poured yet.
 - **Rules:** set for JLCPCB's standard 4-layer process. Clearance and the
   smallest track are 0.1 mm, the default track is 0.15 mm, and vias are
@@ -195,7 +195,7 @@ four M1.4 holes and are joined by one connector pair.
 
 | Board | Where | What's on it | Parts' area |
 |---|---|---|---|
-| **fc** | bottom, 1.6 mm | power (battery, buck-boost, RT9013), STM32 + crystal, USB-C + ESD + USB switch, BOOT button, SWD, gyro, baro, motor drivers, buzzer, receiver port, the STM32's sensor-I²C and UART3 ports, the STM32 BOOT0/NRST parts | 1,150 mm² |
+| **fc** | bottom, 0.8 mm | power (battery, buck-boost, RT9013), STM32 + crystal, USB-C + ESD + USB switch, BOOT button, SWD, gyro, baro, motor drivers, buzzer, receiver port, the STM32's sensor-I²C and UART3 ports, the STM32 BOOT0/NRST parts | 1,150 mm² |
 | **vision** | top, 1.0 mm | ESP32-S3-WROOM-1 + its AP7361C LDO, camera FPC and camera LDOs, boot-mode switch, ESP program button and UART0 pads, PWM and LED-strip ports, the ESP32-S3's I²C and IO ports | 1,206 mm² |
 
 Each board has about 1,840 mm² on its two sides, so each is about 63 %
@@ -502,8 +502,9 @@ the FPC stack. So **the spacers on H1–H4 are 5.5 mm**:
 - the gap is 5.5 mm, leaving 0.55 mm over the FPC stack;
 - the header pins sit 0.2 mm short of fully seated, so 3.6 of the 3.8 mm
   mating length is in the socket;
-- the header's 2.4 mm tail pokes about 0.8 mm out of fc's underside (1.6 mm
-  board), so trim it flush if it gets in the way of the frame.
+- the header's 2.4 mm tail pokes about 1.6 mm out of fc's underside (0.8 mm
+  board). There's 2.4 mm to the cage plate below, so it clears; trim it
+  flush if it gets in the way.
 
 Both parts are from HCTL, so they're meant to mate.
 
@@ -625,7 +626,7 @@ each order). It stops unless DRC is clean with schematic parity.
 | | fc | vision |
 |---|---|---|
 | Layers | 4 | 4 |
-| Thickness | 1.6 mm | 1.0 mm |
+| Thickness | 0.8 mm | 1.0 mm |
 | Size | 32 × 30 mm | 32 × 30 mm |
 | Assembly | standard, both sides (48 top, 49 bottom) | standard, both sides (25 top, 26 bottom) |
 

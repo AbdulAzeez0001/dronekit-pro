@@ -18,7 +18,7 @@ centre. Import into KiCad as **Edge.Cuts** (File → Import → Graphics, units 
 
 | | |
 |---|---|
-| Board | 32 × 30 mm (X × Y), 1.6 mm thick, 2 mm corner radius |
+| Board | 32 × 30 mm (X × Y), 0.8 mm thick (fc; vision is 1.0 mm), 2 mm corner radius |
 | Mounting holes | 4 × Ø1.6 mm (M1.4) on a 25.5 mm square, centred |
 | Orientation | +X = front (camera side), −X = rear (sensor bay) |
 | Board sits at | 5.6 mm above cage floor (on 4 mm standoffs) |

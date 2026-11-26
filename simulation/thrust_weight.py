@@ -66,11 +66,10 @@ DERATE = BETA75_MIN / ideal_minutes(BETA75_DRY + BETA75_BATT_G, BETA75_BATT_MAH)
 # --- DroneKit weight build-up (grams) --------------------------------------
 # source tags: [F] Fusion model, [D] datasheet/listing, [E] estimate
 WEIGHTS = {
-    "cage (PLA, 108x108x34, 85 mm wb)": (8.2,  "[F] DroneKit Cage 6.60 cm3 x 1.24 g/cm3 (covered, open centre, rod_w 1.0)"),
-    "FC PCB 32x30x1.6 mm, 4-layer":     (2.9,  "[E] FR4 volume x ~1.9 g/cm3"),
+    "cage (PLA, 108x108x34, 85 mm wb)": (10.3, "[F] DroneKit Cage 8.27 cm3 x 1.24 g/cm3 (1.5 mm pods, 3 mm arms, 2 mm battery holder under the plate)"),
+    "FC PCB 32x30x0.8 mm, 4-layer":     (1.5,  "[E] FR4 volume x ~1.9 g/cm3 (was 1.6 mm, 2.9 g)"),
     "vision PCB 32x30x1.0 mm, 4-layer": (1.8,  "[E] FR4 volume x ~1.9 g/cm3 (second board of the stack)"),
     "B2B header + socket, 4 standoffs": (0.8,  "[E] 2x12 1.27 mm pair + M1.4 nylon spacers"),
-    "cage +5 mm taller for the stack":  (0.4,  "[E] longer struts/posts, not yet modelled in Fusion"),
     "ESP32-S3-WROOM-1 module":          (3.0,  "[E] 18x25.5x3.1 mm shielded module"),
     "other FC parts + 6 JST-SH + USB-C": (2.5, "[E] STM32, regulators, connectors"),
     "4x 7x20 motors (17500 kV)":        (14.0, "[D] BetaFPV 7x20: ~3.5 g each (generic 720: up to ~5 g)"),
@@ -87,7 +86,7 @@ SCENARIOS = [
     # name, dry weight change (g), battery mAh
     ("Current design, 450 mAh",                       0.0, 450),
     ("Current design, 300 mAh",                       0.0, 300),
-    ("0.8 mm PCB (-1.4 g), 300 mAh",                 -1.4, 300),
+    ("1.6 mm FC PCB instead (+1.4 g), 300 mAh",       +1.4, 300),
     ("BetaFPV Beta75 reference (32 g dry, 260 mAh)", 32.0 - DRY - 7.0 + 7.0, 260),
 ]
 

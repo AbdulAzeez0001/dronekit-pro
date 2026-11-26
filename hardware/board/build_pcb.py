@@ -11,7 +11,7 @@ build_board.py), so net names, symbol links and fields are exactly what
 KiCad's "Update PCB from Schematic" and DRC parity check expect, then writes
 <board>.kicad_pcb with:
 
-  - 4 copper layers (F.Cu, In1.Cu GND, In2.Cu power, B.Cu); fc 1.6 mm, vision 1.0 mm.
+  - 4 copper layers (F.Cu, In1.Cu GND, In2.Cu power, B.Cu); fc 0.8 mm, vision 1.0 mm.
   - Edge.Cuts: 32 x 30 mm, 2 mm corner radius, centred on ORIGIN
     (same as hardware/mechanical/fc_pcb_outline.dxf; +X = front/camera).
   - H1-H4: M1.4 mounting holes on a 25.5 mm square (board-only parts).
@@ -182,7 +182,7 @@ DEFAULT_CLASS = {"name": "Default", "clearance": 0.1, "track_width": 0.15,
                  "schematic_color": "rgba(0, 0, 0, 0.000)", "priority": 2147483647}
 
 
-THICKNESS = {"fc": 1.6, "vision": 1.0}     # mm; vision is lighter, carries no motor current
+THICKNESS = {"fc": 0.8, "vision": 1.0}     # mm; fc 0.8 like most whoop FCs (-1.4 g, 2026-11-26)
 
 
 def design_rules(board, thickness):
