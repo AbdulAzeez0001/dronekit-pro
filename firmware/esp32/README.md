@@ -20,7 +20,10 @@ Not done yet: the camera (waits for J30, whose pin order isn't confirmed),
 flashing the STM32 from the ESP32-S3 (BOOT0/NRST are wired but left
 alone), and OTA updates of this firmware.
 
-**Nothing here has been compiled or run yet.**
+**Compiled on 2026-11-25** with PlatformIO 6.2.0 (espressif32 6.9.0,
+Arduino core): no errors, and no warnings from `src/`. It uses 843 KB of
+flash (25%) and 43 KB of RAM (13.5%); `pio run -t buildfs` also builds the
+file image with the control panel. Not yet run on a board.
 
 | File | What |
 |---|---|

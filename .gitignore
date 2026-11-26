@@ -56,3 +56,6 @@ Thumbs.db
 
 # Freerouting work files (autoroute.py)
 hardware/board/.routing/
+
+# ---------- PlatformIO ----------
+.pio/

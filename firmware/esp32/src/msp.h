@@ -8,7 +8,7 @@ namespace msp {
 // Betaflight MSP command ids used here.
 constexpr uint8_t API_VERSION = 1;
 constexpr uint8_t ATTITUDE = 108;
-constexpr uint8_t ANALOG = 110;
+constexpr uint8_t ANALOG_DATA = 110;   // MSP_ANALOG (Arduino already #defines ANALOG)
 constexpr uint8_t STATUS_EX = 150;
 constexpr uint8_t SET_RAW_RC = 200;
 

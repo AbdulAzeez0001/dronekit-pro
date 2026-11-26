@@ -121,7 +121,7 @@ void FlightLink::sendRc()
 
 void FlightLink::requestTelemetry()
 {
-    static const uint8_t cycle[] = {msp::ATTITUDE, msp::ANALOG, msp::STATUS_EX};
+    static const uint8_t cycle[] = {msp::ATTITUDE, msp::ANALOG_DATA, msp::STATUS_EX};
     port_.send(cycle[tlmStep_]);
     tlmStep_ = uint8_t((tlmStep_ + 1) % sizeof(cycle));
     if (tlm_.apiMajor == 0 && tlmStep_ == 0) {
@@ -151,7 +151,7 @@ void FlightLink::handle(const msp::Frame &f)
             tlm_.heading = msp::i16(p + 4);
         }
         break;
-    case msp::ANALOG:
+    case msp::ANALOG_DATA:
         // vbat (0.1 V), mAh drawn, RSSI, amperage, then vbat (0.01 V) from
         // API 1.41 on. Use the finer one when it's there.
         if (f.size >= 9) {

@@ -6,12 +6,19 @@
 | `cli-defaults.txt` | Matching CLI settings, and the gyro alignment derivation |
 | `src/dual_boot.c`, `src/dual_boot.h` | Dual-boot mode select (Fly / Code) |
 
-Nothing here has been compiled yet.
+**Compiled on 2026-11-25** against Betaflight 4.5.1 with GNU Arm GCC
+10.3.1 (the version 4.5.1 asks for), built in WSL Ubuntu 22.04: no errors,
+no warnings from these files. `betaflight_4.5.1_STM32F405_DRONEKITPRO.hex`
+uses 446,669 bytes of flash (of 1 MB) and about 79 KB of RAM. Every
+`#define` in `config.h` and every name in `cli-defaults.txt` was checked to
+exist in 4.5.1. Not yet run on a board.
 
 ## Building
 
-1. Clone Betaflight and its config repository at the same release (4.5.x).
-2. Copy `config/DRONEKITPRO/` into the config repository's `configs/`.
+1. Clone Betaflight at the release this was checked with: tag `4.5.1`.
+2. Copy `config/DRONEKITPRO/` to `src/config/configs/DRONEKITPRO/` in the
+   Betaflight tree. (The full config repository isn't needed for this
+   board.)
 3. Copy `src/dual_boot.c` and `src/dual_boot.h` into Betaflight's
    `src/main/fc/`.
 4. Add `fc/dual_boot.c` to `COMMON_SRC` in `mk/source.mk`. The file
@@ -30,7 +37,8 @@ Nothing here has been compiled yet.
 
      By then the saved config has been read (so the receiver choice is
      known) and the receiver hasn't started yet.
-6. `make CONFIG=DRONEKITPRO`.
+6. `make CONFIG=DRONEKITPRO`. It needs `arm-none-eabi-gcc` 10.3.1 on the
+   PATH, or `make arm_sdk_install` to fetch it.
 
 ## Dual boot
 

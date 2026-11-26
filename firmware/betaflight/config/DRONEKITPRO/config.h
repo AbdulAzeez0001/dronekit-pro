@@ -10,8 +10,8 @@
  * Source of truth: hardware/stm32f405-pinmap.md. Every pin here was checked
  * against the routed board (hardware/board/fc.kicad_pcb) on 2026-11-24.
  *
- * NOT YET COMPILED. Define names change between Betaflight releases; check
- * them against the release you build. Still to do: the DMA check in
+ * Compiled against Betaflight 4.5.1 (2026-11-25). Define names change
+ * between releases; check them again if you build another. Still to do: the DMA check in
  * hardware/stm32f405-pinmap.md (run `dma show` and `timer show` in the CLI
  * on the first board).
  *
@@ -73,7 +73,9 @@
     TIMER_PIN_MAP( 7, PC9 , 2, -1) \
     TIMER_PIN_MAP( 8, PA8 , 1,  0)
 
-#define DEFAULT_MOTOR_PROTOCOL  MOTOR_PROTOCOL_BRUSHED
+/* Brushed defaults (4.5.1, pg/motor.c): PWM_TYPE_BRUSHED at 16 kHz,
+ * minthrottle 1000, unsynced PWM. */
+#define BRUSHED_MOTORS
 
 /* --- Gyro + accelerometer: TDK ICM-42688-P (U80) on SPI1 ---------------
  * SCLK pin 13 -> PA5, SDO pin 1 -> PA6, SDI pin 14 -> PA7,
