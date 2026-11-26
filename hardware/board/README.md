@@ -543,9 +543,8 @@ reverse order, and fc couldn't be routed with it.
 so keep fc's top-side parts under
 about 4.5 mm (USB-C is 3.3 mm) and only small passives on vision's
 underside. Above fc, the stack needs roughly gap + 1.0 mm board + 3.1 mm
-ESP32-S3 module = 9.6 mm, against the 4.4 mm the cage leaves under the
-battery now. **The cage's `fc_clear` has to grow by about 5.2 mm** (see
-`hardware/mechanical/README.md`).
+ESP32-S3 module = 9.6 mm, and the battery now hangs under the cage's centre plate, so the space
+above fc is open (see `hardware/mechanical/README.md`).
 
 **Weight:** about +3 g: the second board, the connector pair and spacers,
 and a taller cage. On a 300 mAh pack the quad goes from about 43 g to

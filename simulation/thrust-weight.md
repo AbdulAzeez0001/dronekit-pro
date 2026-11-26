@@ -9,27 +9,29 @@ is the 720 motor's thrust on a 40 mm prop, so a bench test of one motor
 
 **With a 300 mAh pack the drone should fly as a docile whoop, a little
 heavier than the Beta75.** The cage is fully covered (top ring and top
-struts) on an 85 mm wheelbase, about 108 × 108 × 34 mm. The top is cut open over
+struts) on an 85 mm wheelbase, about 108 × 108 × 34 mm, with the battery under the centre plate. The top is cut open over
 the square between the motor hubs, with a 1 mm rim rod around the
 opening, so the props stay covered while the electronics are open from
-above. It weighs **8.2 g**. It started at 10.8 g on a 75 mm wheelbase.
+above. It weighs **10.3 g** since the motor pods, arms and battery holder
+were made stronger (2026-11-26: +2.1 g; it was 8.2 g). It started at 10.8 g on a 75 mm wheelbase.
 Thinner parts (`rod_w` 1.4 → 1.0 mm, `ring_w` 2.0 → 1.5 mm, `pod_wall`
 1.2 → 1.0 mm) brought it to 7.9 g. The wider wheelbase added 0.4 g, and
 the centre opening with its rim took off 0.05 g. The quad
 most like it that actually flew (BetaFPV's Beta75: same 7 × 20 mm motors,
 40 mm props, 75 mm frame) weighed about **39 g** ready to fly. DroneKit
-comes out at about **46 g** with a 300 mAh pack, or **51 g** with the
+comes out at about **48 g** with a 300 mAh pack, or **52 g** with the
 450 mAh pack. That includes the second board of the two-board electronics
 stack (2026-11-23, see `hardware/board/README.md`), which added about 3 g:
-the 1.0 mm vision PCB, the board-to-board header pair and standoffs, and a
-taller cage. The wider wheelbase doesn't change the thrust model, because
+the 1.0 mm vision PCB and the board-to-board header pair and standoffs.
+The battery hangs under the centre plate, so the cage didn't need to grow
+taller for the stack. The wider wheelbase doesn't change the thrust model, because
 the prop area is the same.
 
 | Scenario | All-up weight | Thrust/weight (low–mid–high) | Hover current | Flight time |
 |---|---|---|---|---|
-| Current design (two-board stack), 450 mAh | 50.7 g | 1.4 – **1.7** – 2.0 | 3.9 A | ~4.1 min |
-| Current design (two-board stack), 300 mAh | 46.3 g | 1.5 – **1.9** – 2.2 | 3.4 A | ~3.1 min |
-| 0.8 mm FC PCB (−1.4 g), 300 mAh | 44.9 g | 1.6 – **1.9** – 2.2 | 3.3 A | ~3.3 min |
+| Current design (two-board stack), 450 mAh | 52.4 g | 1.3 – **1.7** – 1.9 | 4.1 A | ~3.9 min |
+| Current design (two-board stack), 300 mAh | 48.0 g | 1.5 – **1.8** – 2.1 | 3.6 A | ~2.9 min |
+| 0.8 mm FC PCB (−1.4 g), 300 mAh | 46.6 g | 1.5 – **1.9** – 2.2 | 3.5 A | ~3.1 min |
 | BetaFPV Beta75 (reference, flew) | 39.0 g | 1.8 – 2.2 – 2.6 | 2.6 A | 3.5 min (stated) |
 
 **How to read thrust/weight:**
@@ -48,13 +50,12 @@ flight.
 
 | Item | g | Source |
 |---|---|---|
-| Cage, PLA, covered with an open centre, 108 × 108 × 34 mm (85 mm wheelbase) | 8.2 | Fusion model volume (6.60 cm³) × 1.24 g/cm³ |
+| Cage, PLA, covered with an open centre, 108 × 108 × 34 mm, battery holder under the plate, 1.5 mm motor pods, 3 mm arms (85 mm wheelbase) | 10.3 | Fusion model volume (8.27 cm³) × 1.24 g/cm³ |
 | 4 × 7×20 motors | 14.0 | BetaFPV 7×20 listing: ~3.5 g each (some generic 720s are up to ~5 g) |
 | Flight controller (PCB 2.9 + ESP32-S3 module ~3 + parts ~2.5) | 8.4 | estimate |
 | Second board: vision PCB 1.0 mm (1.8) + header pair and standoffs (0.8) | 2.6 | estimate |
-| Cage made ~5 mm taller for the board stack | 0.4 | estimate, not yet in Fusion |
 | Props, camera, wiring, foam | 4.4 | estimate |
-| **Dry** | **38.0** | |
+| **Dry** | **39.7** | |
 | Battery: 450 mAh / 300 mAh | 12.7 / 8.3 | BetaFPV BT2.0 listings |
 
 **The cage was the biggest thing to cut.** Moulded whoop frames are a few
@@ -95,9 +96,10 @@ possible, which would make things slightly worse.
 
 In order of impact:
 
-1. **Lighten the cage.** The rods are now 1.0 mm, the rings 1.5 mm and
-   the pod walls 1.0 mm. The top is open over the centre square and
-   covered over the props, and the cage is 8.2 g on an 85 mm wheelbase.
+1. **Lighten the cage.** The rods are 1.0 mm and the rings 1.5 mm; the
+   motor pods (1.5 mm), arms (3 mm) and battery holder (2 mm) were made
+   thicker for strength, so the cage is 10.3 g on an 85 mm wheelbase.
+   Of the +2.1 g: pod walls 0.8 g, battery holder 0.8 g, arms 0.55 g.
    Removing the whole top would save roughly another 1.5 g (estimate), but it leaves
    the props unguarded at their own height.
 2. **Fly a 300 mAh pack, not 450.** It's 4.4 g lighter. Flight time
