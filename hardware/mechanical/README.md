@@ -5,11 +5,11 @@ edit sizes under Modify → Change Parameters).
 
 ## Frame at default parameters
 
-- Motors: **720 brushed** (7 × 20 mm), 40 mm props, 85 mm wheelbase.
-- Cage: top ring and struts over the props, about 108 × 108 × 34 mm (46 mm with the battery holder under the plate), about 10.3 g in PLA (1.0 mm rods, 1.5 mm rings, 1.5 mm motor-pod walls with a 10 mm grip, 3 mm arms, 2 mm battery holder).
+- Motors: **8×20 brushed** (8 × 20 mm, BetaFPV 15000 KV; 7×20 until 2026-11-26), 40 mm props, 85 mm wheelbase. `motor_d` = 8 mm.
+- Cage: top ring and struts over the props, about 108 × 108 × 34 mm (46 mm with the battery holder under the plate), about 10.3 g in PLA (1.0 mm rods, 1.5 mm rings, 1.5 mm motor-pod walls with a 10 mm grip, 3 mm arms, 2 mm battery holder sized for the BetaFPV BT2.0 300 mAh pack).
 - Top opening: the top is cut open over the square between the motor hubs (`2 × motor_offset` across, 60 mm at 85 mm wheelbase), with a rim rod around it. The props stay covered; the electronics are open from above.
 - Props sit at z = 27–30 mm, 2.75 mm below the top struts, with 20 mm between neighbouring prop tips.
-- For 716 motors, set `motor_len` = 16 and `cage_h` = 30.
+- For 7×20 motors, set `motor_d` = 7. For 7×16 motors, also set `motor_len` = 16 and `cage_h` = 30.
 
 ## Flight-controller PCB that fits the cage
 
@@ -34,11 +34,14 @@ centre. Import into KiCad as **Edge.Cuts** (File → Import → Graphics, units 
   (5.5 mm gap + 1.0 mm vision board + 3.1 mm ESP32-S3 module = 9.6 mm, top
   at z = 16.8 mm) has the open top above it, and the props start 10 mm out
   to the side at z = 27 mm. `fc_clear` (11.7 mm) no longer drives anything.
-- **Battery:** z = −10 to −2 mm, under the plate, in a holder of 2 mm
+- **Battery:** BetaFPV BT2.0 300 mAh, 67.3 × 11.8 × 6.1 mm, lying along Y.
+  The holder is `bat_w` 12.5 × `bat_h` 6.5 mm (0.7 / 0.4 mm clearance); it
+  was 19 × 8 mm for a 450 mAh pack until 2026-11-26. z = −8.5 to −2 mm,
+  under the plate, in a holder of 2 mm
   rods (`bat_rod`): four posts, two rails across the battery top and
   bottom, and two side rails that close the bottom into a frame. `bat_z` =
   −(`bat_h` + `bat_rod`). It is 29 mm below the props, and the holder's
-  bottom frame (z = −12 mm) is the drone's lowest point and takes the
+  bottom frame (z = −10.5 mm) is the drone's lowest point and takes the
   landings. Checked in Fusion with a stand-in for the vision board and
   module: no clash with the cage, props, camera, motors or battery, and the
   battery and holder are outside a 25° cone below the flow/ToF sensor.

@@ -23,8 +23,8 @@ Decisions encoded here:
   2. A flyback Schottky across every motor. Brushed motors are inductive; at
      each PWM turn-off the motor current must keep flowing somewhere. Without
      the diode it avalanches the FET. Do NOT omit.
-  3. Everything rated for 2S: AO3400A (Vds 30V) and SS34 (40V, 3A), so the
-     board survives a 2S pack (8.4V) even though the 716/720 motors are 1S.
+  3. Everything rated for 2S: AO3400A (Vds 30V) and SS54 (40V, 5A), so the
+     board survives a 2S pack (8.4V) even though the 8x20 motors are 1S.
   4. Motors run from VBAT_RAW (before the reverse-polarity FET): motor
      current is several amps, far more than the logic-side AO3401A carries.
      That means a reversed battery shorts through the FET body diodes and the
@@ -74,12 +74,12 @@ def NFET(ref):
     p.ref = ref
     return p
 
-# SS34 Schottky  SMA: 1 K  2 A.  40V, 3A - rated for motor stall current.
+# SS54 Schottky  SMA: 1 K  2 A.  40V, 5A - margin over the 8x20 motor stall current (was SS34, 3A).
 def SCHOTTKY(ref):
-    p = Part(name="SS34", tool=SKIDL, ref_prefix="D", dest=TEMPLATE,
+    p = Part(name="SS54", tool=SKIDL, ref_prefix="D", dest=TEMPLATE,
              pins=[Pin(num=1, name="K", func=T.PASSIVE),
                    Pin(num=2, name="A", func=T.PASSIVE)]
-             )(value="SS34", footprint="Diode_SMD:D_SMA")
+             )(value="SS54", footprint="Diode_SMD:D_SMA")
     p.ref = ref
     return p
 

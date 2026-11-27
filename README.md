@@ -28,8 +28,8 @@ DroneKit Pro is two drones in one body:
 | Programmable MCU | ESP32-S3-WROOM-1-N8R2 (PSRAM, for the camera) |
 | Camera | 24-pin DVP module (OV2640-class) on the ESP32-S3, WiFi video in Mode B |
 | IMU / Baro | ICM-42688-P (SPI) / SPA06-003 (I2C) |
-| Motors | 4x 720 brushed coreless (7 x 20mm) |
-| Motor drive | 4x AO3400A low-side MOSFET + SS34 flyback, brushed PWM (no ESC) |
+| Motors | 4x 8x20 brushed coreless (8 x 20mm, 15000 KV) |
+| Motor drive | 4x AO3400A low-side MOSFET + SS54 flyback, brushed PWM (no ESC) |
 | RX | Optional: any small serial ELRS receiver (user-supplied), CRSF on UART2 pads |
 | Battery | 1S or 2S LiPo (board runs from either; 1S for the brushed whoop) |
 | Build time | 3-4 hours (first build) |

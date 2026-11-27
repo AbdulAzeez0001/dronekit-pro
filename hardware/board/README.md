@@ -245,7 +245,7 @@ more than 4 mm from the pin it serves.
 so every wire pad is here.
 
 - **Motors:** the four motor pad pairs sit at the corners, beside the
-  mounting holes, where the wires come up from the pods. Each has its SS34
+  mounting holes, where the wires come up from the pods. Each has its SS54
   diode and AO3400A FET right beside it:
   - the front diodes stand upright;
   - the rear ones lie flat, to clear the USB-C shell pins.

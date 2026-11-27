@@ -10960,7 +10960,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "SS34"
+		(property "Value" "SS54"
 			(at 0 -2.6 180)
 			(layer "B.Fab")
 			(uuid "3aecf409-87d3-4337-bebd-164922726261")
@@ -14859,7 +14859,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "SS34"
+		(property "Value" "SS54"
 			(at 0 -2.6 270)
 			(layer "B.Fab")
 			(uuid "7c770a59-e2a0-43db-b0a0-8ef63d38e553")
@@ -15646,7 +15646,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "SS34"
+		(property "Value" "SS54"
 			(at 0 -2.6 180)
 			(layer "B.Fab")
 			(uuid "67bdb5d4-3651-4b1a-b2ad-0580f50d9264")
@@ -20530,7 +20530,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "SS34"
+		(property "Value" "SS54"
 			(at 0 -2.6 270)
 			(layer "B.Fab")
 			(uuid "3401ca4c-15b0-4122-8b81-dd680e6eaf86")

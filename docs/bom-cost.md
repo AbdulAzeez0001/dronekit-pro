@@ -68,7 +68,7 @@ is now fixed in the design (`hardware/baro/`); the gyro is still open:
 |---|---|---|---|---|---|---|
 | Q40–43, Q120 | AO3400A | C20917 | 5 | 0.046 | 0.23 | 500k+ |
 | Q10 | AO3401A | C15127 | 1 | 0.046 | 0.05 | 600k+ |
-| D40–43 | SS34 | C8678 | 4 | 0.035 | 0.14 | 2.9M |
+| D40–43 | SS54 (5 A, for 8×20 motors) | C22452 | 4 | 0.036 | 0.15 | 2.2M |
 | D10, D120 | B5819W | C8598 | 2 | 0.016 | 0.03 | 223k |
 | J90 | USB-C TYPE-C-31-M-12 | C165948 | 1 | 0.17 | 0.17 | 200k |
 | J30 | 24-pin 0.5 mm flip FPC, e.g. AFC01-S24FCC-00 | C262276 | 1 | 0.07 | 0.07 | ~4k. Pick one whose contact side matches the camera ribbon |
@@ -143,7 +143,7 @@ are PCB pads and cost nothing.
 [XC6206P122MR](https://www.lcsc.com/product-detail/C2827649.html) ·
 [USBLC6-2SC6](https://www.lcsc.com/product-detail/C7519.html) ·
 [AO3400A](https://www.lcsc.com/product-detail/C20917.html) ·
-[SS34](https://www.lcsc.com/product-detail/C8678.html) ·
+[SS54](https://www.lcsc.com/product-detail/C22452.html) ·
 [B5819W](https://www.lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_Jiangsu-Changjing-Electronics-Technology-Co-Ltd-B5819W-SL_C8598.html) ·
 [TYPE-C-31-M-12](https://www.lcsc.com/product-detail/C165948.html) ·
 [AFC01-S24FCC-00](https://www.lcsc.com/product-detail/C262276.html) ·

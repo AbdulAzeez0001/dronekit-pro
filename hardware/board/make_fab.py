@@ -59,7 +59,7 @@ LCSC = {
     "USBLC6-2SC6": "C7519",
     "AO3400A": "C20917",
     "AO3401A": "C15127",
-    "SS34": "C8678",
+    "SS54": "C22452",                 # MDD SS54, 5 A 40 V, SMA: same footprint as SS34, for 8x20 motors
     "B5819W": "C8598",
     "USB-C": "C165948",
     "SENSOR_I2C": "C160404",          # JST SM04B-SRSS-TB

@@ -90,7 +90,7 @@
       (tstamps "a1eb4b16-6ad5-5f27-8b22-6ff66714f90a"))
     (comp
       (ref "D40")
-      (value "SS34")
+      (value "SS54")
       (description "")
       (footprint "Diode_SMD:D_SMA")
       (fields
@@ -106,14 +106,14 @@
           (name "SKiDL Line") "motors.py:79"))
       (libsource
         (lib "NO_LIB")
-        (part "SS34"))
+        (part "SS54"))
       (sheetpath
         (names "/")
         (tstamps "/"))
       (tstamps "799be330-e426-50eb-90f4-e8fccdb96370"))
     (comp
       (ref "D41")
-      (value "SS34")
+      (value "SS54")
       (description "")
       (footprint "Diode_SMD:D_SMA")
       (fields
@@ -129,14 +129,14 @@
           (name "SKiDL Line") "motors.py:79"))
       (libsource
         (lib "NO_LIB")
-        (part "SS34"))
+        (part "SS54"))
       (sheetpath
         (names "/")
         (tstamps "/"))
       (tstamps "fb5df79f-1f8c-53f5-849c-fa346e291bf1"))
     (comp
       (ref "D42")
-      (value "SS34")
+      (value "SS54")
       (description "")
       (footprint "Diode_SMD:D_SMA")
       (fields
@@ -152,14 +152,14 @@
           (name "SKiDL Line") "motors.py:79"))
       (libsource
         (lib "NO_LIB")
-        (part "SS34"))
+        (part "SS54"))
       (sheetpath
         (names "/")
         (tstamps "/"))
       (tstamps "a14c09fc-4981-5ae3-86f1-cce0971d3a51"))
     (comp
       (ref "D43")
-      (value "SS34")
+      (value "SS54")
       (description "")
       (footprint "Diode_SMD:D_SMA")
       (fields
@@ -175,7 +175,7 @@
           (name "SKiDL Line") "motors.py:79"))
       (libsource
         (lib "NO_LIB")
-        (part "SS34"))
+        (part "SS54"))
       (sheetpath
         (names "/")
         (tstamps "/"))

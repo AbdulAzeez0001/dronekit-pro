@@ -27,11 +27,15 @@ ETA_TOTAL = 0.22          # electrical power -> ideal induced power (motor x pro
 V_AVG = 3.7               # average 1S voltage under load
 USABLE = 0.80             # fraction of rated mAh used before landing
 
-# Max electrical power per 7x20 brushed motor at full throttle on 1S.
-# No bench data was found for 720 + 40 mm props, so this is a RANGE:
-# ~2-2.7 A at ~3.5 V under load. Stall is far higher (one 720 datasheet:
-# 6.7 A at 3 V), but props unload the motor well below stall.
-P_MAX_PER_MOTOR = {"low": 6.0, "mid": 8.0, "high": 10.0}   # W
+# Max electrical power per motor at full throttle on 1S. No bench data was
+# found for either motor on 40 mm props, so these are RANGES (estimates).
+# 7x20 (17500 kV): ~2-2.7 A at ~3.5 V under load.
+# 8x20 (BetaFPV 15000 kV, chosen 2026-11-26): a bigger can with more copper
+# and magnet, so it holds speed better under load; assumed ~2-3.1 A. This is
+# the motor BetaFPV moved the Beta75 to (Beta75S) for more thrust.
+# Stall is far higher, but props unload the motor well below stall.
+P_MAX_7X20 = {"low": 6.0, "mid": 8.0, "high": 10.0}    # W
+P_MAX_PER_MOTOR = {"low": 7.0, "mid": 9.0, "high": 11.0}   # W, 8x20 (design)
 
 
 def area_total():
@@ -66,13 +70,13 @@ DERATE = BETA75_MIN / ideal_minutes(BETA75_DRY + BETA75_BATT_G, BETA75_BATT_MAH)
 # --- DroneKit weight build-up (grams) --------------------------------------
 # source tags: [F] Fusion model, [D] datasheet/listing, [E] estimate
 WEIGHTS = {
-    "cage (PLA, 108x108x34, 85 mm wb)": (10.3, "[F] DroneKit Cage 8.27 cm3 x 1.24 g/cm3 (1.5 mm pods, 3 mm arms, 2 mm battery holder under the plate)"),
+    "cage (PLA, 108x108x34, 85 mm wb)": (10.3, "[F] DroneKit Cage 8.29 cm3 x 1.24 g/cm3 (8 mm pods, 3 mm arms, holder for the 300 mAh pack)"),
     "FC PCB 32x30x0.8 mm, 4-layer":     (1.5,  "[E] FR4 volume x ~1.9 g/cm3 (was 1.6 mm, 2.9 g)"),
     "vision PCB 32x30x1.0 mm, 4-layer": (1.8,  "[E] FR4 volume x ~1.9 g/cm3 (second board of the stack)"),
     "B2B header + socket, 4 standoffs": (0.8,  "[E] 2x12 1.27 mm pair + M1.4 nylon spacers"),
     "ESP32-S3-WROOM-1 module":          (3.0,  "[E] 18x25.5x3.1 mm shielded module"),
     "other FC parts + 6 JST-SH + USB-C": (2.5, "[E] STM32, regulators, connectors"),
-    "4x 7x20 motors (17500 kV)":        (14.0, "[D] BetaFPV 7x20: ~3.5 g each (generic 720: up to ~5 g)"),
+    "4x 8x20 motors (15000 kV)":        (14.0, "[D] BetaFPV 8x20 15000KV: ~3.5 g each"),
     "4x 40 mm 4-blade props":           (1.4,  "[E] ~0.35 g each"),
     "camera module (OV2640 + FPC)":     (1.5,  "[E]"),
     "wiring, screws, foam":             (1.5,  "[E]"),
@@ -87,6 +91,7 @@ SCENARIOS = [
     ("Current design, 450 mAh",                       0.0, 450),
     ("Current design, 300 mAh",                       0.0, 300),
     ("1.6 mm FC PCB instead (+1.4 g), 300 mAh",       +1.4, 300),
+    ("7x20 motors instead (old range), 300 mAh",      0.0, 300),
     ("BetaFPV Beta75 reference (32 g dry, 260 mAh)", 32.0 - DRY - 7.0 + 7.0, 260),
 ]
 
@@ -101,7 +106,9 @@ def main():
     print()
     print(f"Calibration: Beta75 model/real flight-time factor = {DERATE:.2f}")
     t_lo, t_mid, t_hi = (max_thrust_g(P_MAX_PER_MOTOR[k]) for k in ("low", "mid", "high"))
-    print(f"Max total thrust, 4x 720 + 40 mm: {t_lo:.0f} / {t_mid:.0f} / {t_hi:.0f} g "
+    o_lo, o_mid, o_hi = (max_thrust_g(P_MAX_7X20[k]) for k in ("low", "mid", "high"))
+    print(f"Max total thrust, 4x 7x20 + 40 mm (old):  {o_lo:.0f} / {o_mid:.0f} / {o_hi:.0f} g")
+    print(f"Max total thrust, 4x 8x20 + 40 mm: {t_lo:.0f} / {t_mid:.0f} / {t_hi:.0f} g "
           f"(at {P_MAX_PER_MOTOR['low']:.0f} / {P_MAX_PER_MOTOR['mid']:.0f} / "
           f"{P_MAX_PER_MOTOR['high']:.0f} W per motor)")
     print()
@@ -111,7 +118,8 @@ def main():
             auw = BETA75_DRY + BETA75_BATT_G
         else:
             auw = DRY + delta + BATTERIES[mah][0]
-        tw = "-".join(f"{t / auw:.1f}" for t in (t_lo, t_mid, t_hi))
+        ts = (o_lo, o_mid, o_hi) if name.startswith(("7x20", "BetaFPV")) else (t_lo, t_mid, t_hi)
+        tw = "-".join(f"{t / auw:.1f}" for t in ts)
         amps = hover_power_w(auw) / V_AVG
         mins = ideal_minutes(auw, mah) * DERATE
         print(f"{name:47} {auw:5.1f}g {tw:>20} {amps:7.1f}A {mins:6.1f}min")

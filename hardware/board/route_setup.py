@@ -9,7 +9,7 @@ Run with KiCad's own Python, after placement:
 1. Net classes (written into <board>.kicad_pro, where KiCad keeps them):
 
    class   track  via        nets                       why
-   Motor   0.80   0.60/0.30  battery input, motor M-    ~2.5 A per 720 motor, ~10 A total
+   Motor   0.80   0.60/0.30  battery input, motor M-    ~3 A per 8x20 motor, ~12 A total
    Power   0.40   0.60/0.30  VBAT, +3V8, VBUS, L1/L2,   up to ~1.5 A (buck-boost, USB in)
                              ground stubs
    Rail    0.30   0.45/0.20  3.3 V / camera rails       < 0.5 A
