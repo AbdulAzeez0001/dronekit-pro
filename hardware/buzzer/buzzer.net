@@ -2,7 +2,7 @@
   (version "D")
   (design
     (source "buzzer.py")
-    (date "11/22/2026 10:49 PM")
+    (date "11/23/2026 12:50 PM")
     (tool "SKiDL (2.2.3)")
     (sheet
       (number 1)
@@ -55,7 +55,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "CKLTPf3HKQ")
+          (name "SKiDL Tag") "0w7dZxjEDB")
         (field
           (name "SKiDL Line") "buzzer.py:55"))
       (libsource
@@ -64,7 +64,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "0e84f79d-e103-53ff-aa5d-e58d2d836257"))
+      (tstamps "6189e873-12b3-55cc-ac2e-65634a5202f1"))
     (comp
       (ref "D120")
       (value "B5819W")
@@ -78,7 +78,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "jiC8pmNtUL")
+          (name "SKiDL Tag") "LPh0D8WHqU")
         (field
           (name "SKiDL Line") "buzzer.py:66"))
       (libsource
@@ -87,21 +87,21 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "d9821995-81e0-5705-9932-79f6eb79023f"))
+      (tstamps "c0c791f6-bc3c-5820-84d5-35d36330da44"))
     (comp
       (ref "J120")
       (value "BUZZER")
       (description "")
-      (footprint "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+      (footprint "dronekit:SolderPads_1x02_P2mm_1.3x2mm")
       (fields
         (field
           (name "Description"))
         (field
-          (name "Footprint") "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+          (name "Footprint") "dronekit:SolderPads_1x02_P2mm_1.3x2mm")
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "5QmcEq_nlr")
+          (name "SKiDL Tag") "RARwRtIl9P")
         (field
           (name "SKiDL Line") "buzzer.py:73"))
       (libsource
@@ -110,7 +110,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "acdc3be0-e711-59d0-957c-38f2b1d96a90"))
+      (tstamps "25ee2911-bf8c-59b9-b7c7-22f21666aae6"))
     (comp
       (ref "Q120")
       (value "AO3400A")
@@ -124,7 +124,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "yB3aMJPOYb")
+          (name "SKiDL Tag") "277d92kViE")
         (field
           (name "SKiDL Line") "buzzer.py:58"))
       (libsource
@@ -133,7 +133,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "d50ac6b1-0ea4-5347-951a-d0860cb482a0"))
+      (tstamps "23efc63a-dadd-53dd-8893-512b4cc495fb"))
     (comp
       (ref "R120")
       (value "22R")
@@ -147,7 +147,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "HFe6SRcwdB")
+          (name "SKiDL Tag") "c8fMfbFg5R")
         (field
           (name "SKiDL Line") "buzzer.py:52"))
       (libsource
@@ -156,7 +156,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "fe26b9b4-3617-58f0-8e0c-046aa609a6b1"))
+      (tstamps "81a7f70d-e0f6-5cf6-9e49-2cd21d6e8a11"))
     (comp
       (ref "R121")
       (value "10k")
@@ -170,7 +170,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "GpKrbfi3vt")
+          (name "SKiDL Tag") "IT9LDcYS0k")
         (field
           (name "SKiDL Line") "buzzer.py:52"))
       (libsource
@@ -179,7 +179,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "0dae6d3e-ba88-5222-ad26-489c631caef1"))
+      (tstamps "a0b68b82-e54f-5a73-b0cc-9e1cf68ff782"))
     (comp
       (ref "U1")
       (value "STM32F405RGT6")
@@ -193,7 +193,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "vwBGVuADeC")
+          (name "SKiDL Tag") "kGp8QithrL")
         (field
           (name "SKiDL Line") "buzzer.py:80"))
       (libsource
@@ -202,7 +202,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "5f88a0c0-3f3b-5471-a469-4b9ac03fb691")))
+      (tstamps "806ab868-a6d7-51c1-9eb5-07172d141f4e")))
   (nets
     (net
       (code 1)

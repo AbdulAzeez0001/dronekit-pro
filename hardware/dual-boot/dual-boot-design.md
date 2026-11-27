@@ -39,7 +39,7 @@ Dark-by-default is the correct failure state for a flying machine.
 
 | Net | From | To | Components | Notes |
 |---|---|---|---|---|
-| MODE_SENSE | Boot switch | STM32 GPIO (in) | 10k pull + 100nF debounce | Proposed pin PC4. Read once at init. |
+| MODE_SENSE | Boot switch | STM32 GPIO (in) | 10k pull + 100nF debounce | PC13 (`hardware/stm32f405-pinmap.md`; PC4 is the gyro interrupt). Read once at init. |
 | ESP_EN | STM32 GPIO (out, push-pull) | ESP32 EN | 10k pulldown to GND, 100nF to GND | Default OFF. STM32 drives HIGH for Mode B. |
 | BRIDGE_TX | STM32 USART TX | ESP32-S3 GPIO1 (UART1 RX) | series 100R optional | UART1 routed by the GPIO matrix; keep UART0 for the console. |
 | BRIDGE_RX | STM32 USART RX | ESP32-S3 GPIO2 (UART1 TX) | series 100R optional | Non-strapping on the S3. |
@@ -90,7 +90,9 @@ This must be decided before layout because it changes the power section.
 ## Firmware implications (not free, flag for planning)
 
 - Betaflight needs a small custom target change: read MODE_SENSE at init, drive
-  ESP_EN, and select RC source (ELRS vs MSP-over-UART) by mode.
+  ESP_EN, and select RC source (ELRS vs MSP-over-UART) by mode. **Written:**
+  `firmware/betaflight/src/dual_boot.c` (not compiled yet; build steps in
+  `firmware/betaflight/README.md`). Switch closed = low = Fly, open = high = Code.
 - The ESP32 -> STM32 OTA flash path implements the STM32 system bootloader
   protocol over the bridge UART (toggle BOOT0 high, pulse NRST, send firmware).
 

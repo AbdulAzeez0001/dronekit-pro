@@ -10,7 +10,7 @@ Source of truth: `power.py`, which generates `power.net` (ERC clean).
 
 ```
 1S/2S LiPo (VBAT_RAW, 3.0–8.4 V)
-  ├─ motors (hardware/motors/: 4 × AO3400A + SS34, straight off the battery)
+  ├─ motors (hardware/motors/: 4 × AO3400A + SS54, straight off the battery)
   ├─ 10k/1k divider ─> VBAT_SENSE (STM32 PC1)
   └─ Q10 AO3401A P-FET (reverse polarity + USB auto-select) ─> VBAT
 USB-C VBUS (5 V) ─ D10 B5819W Schottky ─> VBAT     (and VBUS ─ 1k ─> Q10 gate)
@@ -127,7 +127,7 @@ battery. It does this without back-feeding the LiPo.
 
 ## What 2S means for the motors (read this)
 
-The power tree handles 2S. **The 716/720 brushed motors don't: they're 1S
+The power tree handles 2S. **The 8×20 brushed motors don't: they're 1S
 motors.** On 2S:
 
 - **Firmware has to cap motor output.** Betaflight `motor_output_limit`

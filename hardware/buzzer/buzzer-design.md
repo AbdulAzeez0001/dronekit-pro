@@ -48,7 +48,7 @@ C120 1 µF on +3V8 at the pads
 | Setting | Value |
 |---|---|
 | `resource BEEPER 1` | B08 |
-| `beeper_inversion` | OFF (PB8 high = FET on = beep) |
+| `beeper_inversion` | ON (PB8 high = FET on = beep; Betaflight's non-inverted beeper drives the pin low to beep) |
 | `beeper_od` | OFF (push-pull drive into the gate) |
 
 Beeper conditions (arming, low battery, RX lost, and so on) are set in the

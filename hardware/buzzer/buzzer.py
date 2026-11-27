@@ -73,7 +73,7 @@ d120.ref = "D120"
 j120 = Part(name="Buzzer_Pads", tool=SKIDL, ref_prefix="J", dest=TEMPLATE,
             pins=[Pin(num=1, name="BZ+", func=T.PASSIVE),
                   Pin(num=2, name="BZ-", func=T.PASSIVE)]
-            )(value="BUZZER", footprint="Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+            )(value="BUZZER", footprint="dronekit:SolderPads_1x02_P2mm_1.3x2mm")
 j120.ref = "J120"
 
 # STM32F405 (same part as the stm32 block's U1) - PB8 only. Local pin numbers.

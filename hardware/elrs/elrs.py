@@ -60,13 +60,13 @@ def Cn(ref, value, footprint=None):
     p.ref = ref
     return p
 
-# Receiver solder pads (placeholder footprint: 4 pads at 1.27 mm).
+# Receiver solder pads: 4 SMD wire pads at 1.5 mm.
 j60 = Part(name="RC_RX_Pads", tool=SKIDL, ref_prefix="J", dest=TEMPLATE,
            pins=[Pin(num=1, name="GND",   func=T.PASSIVE),
                  Pin(num=2, name="PWR",   func=T.PASSIVE),
                  Pin(num=3, name="FC_TX", func=T.PASSIVE),
                  Pin(num=4, name="FC_RX", func=T.PASSIVE)]
-           )(value="ELRS_RX", footprint="Connector_PinHeader_1.27mm:PinHeader_1x04_P1.27mm_Vertical")
+           )(value="ELRS_RX", footprint="dronekit:SolderPads_1x04_P1.5mm_1x1.8mm")
 j60.ref = "J60"
 
 # STM32F405 (same part as dual-boot U1) - USART2 only. Local pin numbers.

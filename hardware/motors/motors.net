@@ -2,7 +2,7 @@
   (version "D")
   (design
     (source "motors.py")
-    (date "11/22/2026 10:12 PM")
+    (date "11/23/2026 12:50 PM")
     (tool "SKiDL (2.2.3)")
     (sheet
       (number 1)
@@ -55,7 +55,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "FRKmS5r5ss")
+          (name "SKiDL Tag") "1ByXM_Y4qI")
         (field
           (name "SKiDL Line") "motors.py:64"))
       (libsource
@@ -64,7 +64,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "aa0632bc-b535-5168-9788-7fa88a3a3e55"))
+      (tstamps "06bf49a4-cdbb-5269-abdb-bf827f7e7e9b"))
     (comp
       (ref "C41")
       (value "22uF/25V")
@@ -78,7 +78,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "jq78KiFgT5")
+          (name "SKiDL Tag") "hX6KxUwprD")
         (field
           (name "SKiDL Line") "motors.py:64"))
       (libsource
@@ -87,10 +87,10 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "219ee575-db5d-5b84-bad1-d5c85d5991d5"))
+      (tstamps "a1eb4b16-6ad5-5f27-8b22-6ff66714f90a"))
     (comp
       (ref "D40")
-      (value "SS34")
+      (value "SS54")
       (description "")
       (footprint "Diode_SMD:D_SMA")
       (fields
@@ -101,19 +101,19 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "tI1b7R54Df")
+          (name "SKiDL Tag") "doUpm50VCw")
         (field
           (name "SKiDL Line") "motors.py:79"))
       (libsource
         (lib "NO_LIB")
-        (part "SS34"))
+        (part "SS54"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "fdf5fdb5-689a-5093-a1b2-0a0d1a3389f6"))
+      (tstamps "799be330-e426-50eb-90f4-e8fccdb96370"))
     (comp
       (ref "D41")
-      (value "SS34")
+      (value "SS54")
       (description "")
       (footprint "Diode_SMD:D_SMA")
       (fields
@@ -124,19 +124,19 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "xJShCvCZUL")
+          (name "SKiDL Tag") "K20EKFQBTQ")
         (field
           (name "SKiDL Line") "motors.py:79"))
       (libsource
         (lib "NO_LIB")
-        (part "SS34"))
+        (part "SS54"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "47a032ac-f6cf-5080-8554-dd7bc02cd394"))
+      (tstamps "fb5df79f-1f8c-53f5-849c-fa346e291bf1"))
     (comp
       (ref "D42")
-      (value "SS34")
+      (value "SS54")
       (description "")
       (footprint "Diode_SMD:D_SMA")
       (fields
@@ -147,19 +147,19 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "liOfqZfzdC")
+          (name "SKiDL Tag") "FwSRmGJnOy")
         (field
           (name "SKiDL Line") "motors.py:79"))
       (libsource
         (lib "NO_LIB")
-        (part "SS34"))
+        (part "SS54"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "830134de-fb6c-52ea-b6c9-01a507a616fc"))
+      (tstamps "a14c09fc-4981-5ae3-86f1-cce0971d3a51"))
     (comp
       (ref "D43")
-      (value "SS34")
+      (value "SS54")
       (description "")
       (footprint "Diode_SMD:D_SMA")
       (fields
@@ -170,108 +170,108 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "l2xfB23F3_")
+          (name "SKiDL Tag") "IaGYG8Eo7j")
         (field
           (name "SKiDL Line") "motors.py:79"))
       (libsource
         (lib "NO_LIB")
-        (part "SS34"))
+        (part "SS54"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "3b1c1bae-c9e2-5ac1-8d04-394241ed78a2"))
+      (tstamps "76e4ad4d-cb59-5473-bcfd-9af85428f833"))
     (comp
       (ref "J40")
       (value "M1")
       (description "")
-      (footprint "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+      (footprint "dronekit:SolderPads_1x02_P2mm_1.3x2mm")
       (fields
         (field
           (name "Description"))
         (field
-          (name "Footprint") "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+          (name "Footprint") "dronekit:SolderPads_1x02_P2mm_1.3x2mm")
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "NtoOS5GJnU")
+          (name "SKiDL Tag") "_aF8JylflI")
         (field
-          (name "SKiDL Line") "motors.py:88"))
+          (name "SKiDL Line") "motors.py:89"))
       (libsource
         (lib "NO_LIB")
         (part "Motor_Pads"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "65622064-4b0f-5e2e-b4ee-6228421ecfdd"))
+      (tstamps "10a41635-3deb-582f-b44c-e5890fde1d13"))
     (comp
       (ref "J41")
       (value "M2")
       (description "")
-      (footprint "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+      (footprint "dronekit:SolderPads_1x02_P2mm_1.3x2mm")
       (fields
         (field
           (name "Description"))
         (field
-          (name "Footprint") "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+          (name "Footprint") "dronekit:SolderPads_1x02_P2mm_1.3x2mm")
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "4pEZAjNyWX")
+          (name "SKiDL Tag") "p_FFaEjHSW")
         (field
-          (name "SKiDL Line") "motors.py:88"))
+          (name "SKiDL Line") "motors.py:89"))
       (libsource
         (lib "NO_LIB")
         (part "Motor_Pads"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "20df7b62-ed39-5b1f-9cff-fe6504778748"))
+      (tstamps "67990aee-2dc9-5870-a308-0fe8ce08acb1"))
     (comp
       (ref "J42")
       (value "M3")
       (description "")
-      (footprint "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+      (footprint "dronekit:SolderPads_1x02_P2mm_1.3x2mm")
       (fields
         (field
           (name "Description"))
         (field
-          (name "Footprint") "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+          (name "Footprint") "dronekit:SolderPads_1x02_P2mm_1.3x2mm")
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "9ZMAAu9T2r")
+          (name "SKiDL Tag") "G6jECMfp81")
         (field
-          (name "SKiDL Line") "motors.py:88"))
+          (name "SKiDL Line") "motors.py:89"))
       (libsource
         (lib "NO_LIB")
         (part "Motor_Pads"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "48b5702a-be02-5040-9e8a-79ea939da4a8"))
+      (tstamps "1372cdd0-dbe7-54ad-8d96-e322080a149b"))
     (comp
       (ref "J43")
       (value "M4")
       (description "")
-      (footprint "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+      (footprint "dronekit:SolderPads_1x02_P2mm_1.3x2mm")
       (fields
         (field
           (name "Description"))
         (field
-          (name "Footprint") "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical")
+          (name "Footprint") "dronekit:SolderPads_1x02_P2mm_1.3x2mm")
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "NT7u4qcZU5")
+          (name "SKiDL Tag") "TaRXZ7Oa98")
         (field
-          (name "SKiDL Line") "motors.py:88"))
+          (name "SKiDL Line") "motors.py:89"))
       (libsource
         (lib "NO_LIB")
         (part "Motor_Pads"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "ac3510b3-1d07-552d-ba97-ef419dde1046"))
+      (tstamps "c5d2fc28-df6c-5e3d-9836-c2c62e2be0f3"))
     (comp
       (ref "Q40")
       (value "AO3400A")
@@ -285,7 +285,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "VU9hLv6iJX")
+          (name "SKiDL Tag") "OW7xTjSUns")
         (field
           (name "SKiDL Line") "motors.py:69"))
       (libsource
@@ -294,7 +294,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "1e04e059-6183-50e3-945d-3ff578246fac"))
+      (tstamps "20f8550a-076e-5ed6-a952-05348a0269aa"))
     (comp
       (ref "Q41")
       (value "AO3400A")
@@ -308,7 +308,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "ehcSN94gtL")
+          (name "SKiDL Tag") "KBpy6HdYoa")
         (field
           (name "SKiDL Line") "motors.py:69"))
       (libsource
@@ -317,7 +317,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "495634df-9cb9-5f57-9254-573537568fa3"))
+      (tstamps "09455b5a-c8d2-5d13-b20b-2078f52eeee8"))
     (comp
       (ref "Q42")
       (value "AO3400A")
@@ -331,7 +331,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "y3Qr5uAtyv")
+          (name "SKiDL Tag") "8B5mizSTaU")
         (field
           (name "SKiDL Line") "motors.py:69"))
       (libsource
@@ -340,7 +340,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "d482497b-1e9a-5fbf-995b-45f140d37489"))
+      (tstamps "3c4542cd-3b00-543a-b296-7f19a7754706"))
     (comp
       (ref "Q43")
       (value "AO3400A")
@@ -354,7 +354,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "O9VLPUHVOV")
+          (name "SKiDL Tag") "MPqP0QJJQA")
         (field
           (name "SKiDL Line") "motors.py:69"))
       (libsource
@@ -363,7 +363,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "006bd129-241d-5f14-89bb-b038ce2e8294"))
+      (tstamps "1fd304cf-07d5-5936-b50f-317fdd8d19a2"))
     (comp
       (ref "R40")
       (value "22R")
@@ -377,7 +377,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "dPi6eXt0F3")
+          (name "SKiDL Tag") "7c2_sTjIch")
         (field
           (name "SKiDL Line") "motors.py:61"))
       (libsource
@@ -386,7 +386,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "4e5317b0-b2f8-5302-a900-fa9d09af748e"))
+      (tstamps "d6549d36-fdc5-5587-a7ad-5189a647e498"))
     (comp
       (ref "R41")
       (value "22R")
@@ -400,7 +400,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "e4Rfy1FCec")
+          (name "SKiDL Tag") "oc9bwoNqpt")
         (field
           (name "SKiDL Line") "motors.py:61"))
       (libsource
@@ -409,7 +409,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "44ca0ca8-5d63-5ccd-85bc-41d5b7236a93"))
+      (tstamps "ba764a4b-3d33-54b0-8c2c-1cd4fe4b1cf1"))
     (comp
       (ref "R42")
       (value "22R")
@@ -423,7 +423,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "FzSNIEP1j8")
+          (name "SKiDL Tag") "nmZwl0iNVm")
         (field
           (name "SKiDL Line") "motors.py:61"))
       (libsource
@@ -432,7 +432,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "804eb81c-8e42-5d60-b7dc-eaed14940315"))
+      (tstamps "0339181c-b8dd-5c5f-8e04-11e0ebe1fe51"))
     (comp
       (ref "R43")
       (value "22R")
@@ -446,7 +446,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "Hu4nsL977C")
+          (name "SKiDL Tag") "F9ticN1T1R")
         (field
           (name "SKiDL Line") "motors.py:61"))
       (libsource
@@ -455,7 +455,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "d0987eb6-bcc7-5737-9340-e0bbffb2830a"))
+      (tstamps "e8ff29c2-f933-59d3-8eb9-7faa10d04db0"))
     (comp
       (ref "R44")
       (value "10k")
@@ -469,7 +469,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "IdKkH2OPLr")
+          (name "SKiDL Tag") "OkGzyiDsRe")
         (field
           (name "SKiDL Line") "motors.py:61"))
       (libsource
@@ -478,7 +478,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "4cae7e53-2ce2-5514-8b2e-e208d9e58d46"))
+      (tstamps "0d39214f-e612-5ed9-81fb-3062f5d459c3"))
     (comp
       (ref "R45")
       (value "10k")
@@ -492,7 +492,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "L9QNgiItfZ")
+          (name "SKiDL Tag") "L0lzxBrmAq")
         (field
           (name "SKiDL Line") "motors.py:61"))
       (libsource
@@ -501,7 +501,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "48a70b99-bdac-5dd4-ba9e-94cda18748e6"))
+      (tstamps "4a781de2-7454-5d74-844a-ce1e5dbc958e"))
     (comp
       (ref "R46")
       (value "10k")
@@ -515,7 +515,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "iW7jPXkXWH")
+          (name "SKiDL Tag") "4JsAciWnTG")
         (field
           (name "SKiDL Line") "motors.py:61"))
       (libsource
@@ -524,7 +524,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "076e60fa-4220-5dc3-aa61-96f0c7b01fc2"))
+      (tstamps "6c24788d-fe06-5218-a7fa-8ff131ce3543"))
     (comp
       (ref "R47")
       (value "10k")
@@ -538,7 +538,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "2iX6QFKdjZ")
+          (name "SKiDL Tag") "RWrxVJQWB3")
         (field
           (name "SKiDL Line") "motors.py:61"))
       (libsource
@@ -547,7 +547,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "6a18c01c-a59c-56ae-a0ad-2578030fa7d7"))
+      (tstamps "c974c474-a777-54d4-b894-d213219360fa"))
     (comp
       (ref "U1")
       (value "STM32F405RGT6")
@@ -561,16 +561,16 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "PV1dfK1wgM")
+          (name "SKiDL Tag") "AWpuR52HvT")
         (field
-          (name "SKiDL Line") "motors.py:104"))
+          (name "SKiDL Line") "motors.py:105"))
       (libsource
         (lib "NO_LIB")
         (part "STM32F405RGT6"))
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "f0b0e83b-8d31-5171-b8fb-5d7fbbae6c98")))
+      (tstamps "44d8425d-f42e-5f69-ae63-762a1a5cc461")))
   (nets
     (net
       (code 1)

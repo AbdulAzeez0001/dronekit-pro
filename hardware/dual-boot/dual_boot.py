@@ -44,13 +44,13 @@ C = Part(name="C", tool=SKIDL, ref_prefix="C", dest=TEMPLATE,
 
 # SPST slide switch for boot mode select
 SW = Part(name="SW_SPST", tool=SKIDL, ref_prefix="SW", dest=TEMPLATE,
-          footprint="Button_Switch_SMD:SW_SPDT_PCM12",  # verify in KiCad
+          footprint="Button_Switch_SMD:SW_DIP_SPSTx01_Slide_Copal_CHS-01A_W5.08mm_P1.27mm_JPin",  # 1-pos slide, top-actuated
           pins=[Pin(num=1, name="A", func=T.PASSIVE),
                 Pin(num=2, name="B", func=T.PASSIVE)])
 
 # Momentary button to put ESP32 into download mode (pulls GPIO0 low)
 BTN = Part(name="SW_PUSH", tool=SKIDL, ref_prefix="SW", dest=TEMPLATE,
-           footprint="Button_Switch_SMD:SW_SPST_SKQG_WithStem",  # verify in KiCad
+           footprint="Button_Switch_SMD:SW_Push_1P1T_NO_CK_KMR2",  # C&K KMR2, 4.2 x 2.8 mm
            pins=[Pin(num=1, name="A", func=T.PASSIVE),
                  Pin(num=2, name="B", func=T.PASSIVE)])
 
@@ -174,7 +174,7 @@ UART_PADS = Part(name="UART0_Pads", tool=SKIDL, ref_prefix="J", dest=TEMPLATE,
                        Pin(num=2, name="TX",  func=T.PASSIVE),
                        Pin(num=3, name="RX",  func=T.PASSIVE)])
 j_uart = UART_PADS(value="ESP_UART0",
-                   footprint="Connector_PinHeader_1.27mm:PinHeader_1x03_P1.27mm_Vertical")
+                   footprint="dronekit:SolderPads_1x03_P1.5mm_1x1.8mm")
 gnd += j_uart["GND"]
 esp_txd0 = Net("ESP_TXD0"); esp_txd0 += esp32["TXD0"], j_uart["TX"]
 esp_rxd0 = Net("ESP_RXD0"); esp_rxd0 += esp32["RXD0"], j_uart["RX"]

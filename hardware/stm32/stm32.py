@@ -136,7 +136,7 @@ j90 = Part(name="USB_C_Receptacle_USB2.0", tool=SKIDL, ref_prefix="J", dest=TEMP
                  Pin(num="B8",  name="SBU2",     func=T.NOCONNECT),
                  Pin(num="B9",  name="VBUS_B9",  func=T.PASSIVE),
                  Pin(num="B12", name="GND_B12",  func=T.PASSIVE),
-                 Pin(num="S1",  name="SHIELD",   func=T.PASSIVE)]
+                 Pin(num="SH",  name="SHIELD",   func=T.PASSIVE)]
            )(value="USB-C", footprint="Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
 j90.ref = "J90"
 
@@ -154,7 +154,7 @@ u91.ref = "U91"
 # TS3USB221A USB 2.0 2:1 switch, UQFN-10 (RSE), TI SCDS277C Table 4-1:
 #  1 1D+  2 1D-  3 2D+  4 2D-  5 GND  6 OE  7 D-  8 D+  9 S  10 VCC
 # Truth table (7-1): OE=H disconnect; OE=L,S=L: D=1D; OE=L,S=H: D=2D.
-# Footprint: import TI's RSE0010A.
+# Footprint: KiCad's Texas_UQFN-10_1.5x2mm_P0.5mm is TI's RSE0010A.
 u92 = Part(name="TS3USB221A", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
            pins=[Pin(num=1,  name="1D+", func=T.PASSIVE),
                  Pin(num=2,  name="1D-", func=T.PASSIVE),
@@ -166,7 +166,7 @@ u92 = Part(name="TS3USB221A", tool=SKIDL, ref_prefix="U", dest=TEMPLATE,
                  Pin(num=8,  name="D+",  func=T.PASSIVE),
                  Pin(num=9,  name="S",   func=T.INPUT),
                  Pin(num=10, name="VCC", func=T.PWRIN)]
-           )(value="TS3USB221A", footprint="TI:RSE0010A")
+           )(value="TS3USB221A", footprint="Package_DFN_QFN:Texas_UQFN-10_1.5x2mm_P0.5mm")
 u92.ref = "U92"
 
 # ESP32-S3 (same part as dual-boot U2) - native USB pins only. Local numbers.
@@ -179,7 +179,7 @@ esp.ref = "U2"
 sw90 = Part(name="SW_PUSH", tool=SKIDL, ref_prefix="SW", dest=TEMPLATE,
             pins=[Pin(num=1, name="A", func=T.PASSIVE),
                   Pin(num=2, name="B", func=T.PASSIVE)]
-            )(value="BOOT", footprint="Button_Switch_SMD:SW_SPST_SKQG_WithStem")
+            )(value="BOOT", footprint="Button_Switch_SMD:SW_Push_1P1T_NO_CK_KMR2")  # C&K KMR2, 4.2 x 2.8 mm
 sw90.ref = "SW90"
 
 d90 = Part(name="LED", tool=SKIDL, ref_prefix="D", dest=TEMPLATE,
@@ -195,7 +195,7 @@ j91 = Part(name="SWD_Pads", tool=SKIDL, ref_prefix="J", dest=TEMPLATE,
                  Pin(num=3, name="SWCLK", func=T.PASSIVE),
                  Pin(num=4, name="NRST",  func=T.PASSIVE),
                  Pin(num=5, name="GND",   func=T.PASSIVE)]
-           )(value="SWD", footprint="Connector_PinHeader_1.27mm:PinHeader_1x05_P1.27mm_Vertical")
+           )(value="SWD", footprint="dronekit:SolderPads_1x05_P1.5mm_1x1.8mm")
 j91.ref = "J91"
 
 # ----------------------------------------------------------------------------

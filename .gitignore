@@ -13,6 +13,7 @@ fp-info-cache
 # If you want to commit gerbers for a release, do it deliberately, not by default.
 hardware/gerbers/
 hardware/**/*.zip
+hardware/board/fab/
 
 # ---------- Python ----------
 __pycache__/
@@ -52,3 +53,9 @@ Thumbs.db
 
 # Editor local history
 .history/
+
+# Freerouting work files (autoroute.py)
+hardware/board/.routing/
+
+# ---------- PlatformIO ----------
+.pio/

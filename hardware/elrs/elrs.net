@@ -2,7 +2,7 @@
   (version "D")
   (design
     (source "elrs.py")
-    (date "11/22/2026 10:21 PM")
+    (date "11/23/2026 12:50 PM")
     (tool "SKiDL (2.2.3)")
     (sheet
       (number 1)
@@ -55,7 +55,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "AVFnMzBcrA")
+          (name "SKiDL Tag") "oceasoam5M")
         (field
           (name "SKiDL Line") "elrs.py:57"))
       (libsource
@@ -64,7 +64,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "3635b7e3-6809-5ca7-bbed-a63c9e080661"))
+      (tstamps "6dd652ba-c66c-59b1-aa35-7ed2956a8f66"))
     (comp
       (ref "C61")
       (value "100nF")
@@ -78,7 +78,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "EtnNm8TD5D")
+          (name "SKiDL Tag") "GqMzt3rbCg")
         (field
           (name "SKiDL Line") "elrs.py:57"))
       (libsource
@@ -87,21 +87,21 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "e9d2ccf7-091a-5b87-8722-a0d5817fe8bc"))
+      (tstamps "09794236-35a5-54d0-a099-32c5d9de3d8c"))
     (comp
       (ref "J60")
       (value "ELRS_RX")
       (description "")
-      (footprint "Connector_PinHeader_1.27mm:PinHeader_1x04_P1.27mm_Vertical")
+      (footprint "dronekit:SolderPads_1x04_P1.5mm_1x1.8mm")
       (fields
         (field
           (name "Description"))
         (field
-          (name "Footprint") "Connector_PinHeader_1.27mm:PinHeader_1x04_P1.27mm_Vertical")
+          (name "Footprint") "dronekit:SolderPads_1x04_P1.5mm_1x1.8mm")
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "72OJk7sYGk")
+          (name "SKiDL Tag") "EQBLFgxd3C")
         (field
           (name "SKiDL Line") "elrs.py:64"))
       (libsource
@@ -110,7 +110,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "2d21ca93-01e4-5691-bf8f-dd0547746e9d"))
+      (tstamps "a4a0deb4-a6e9-5953-b84d-e79edcc7ffcd"))
     (comp
       (ref "R60")
       (value "100R")
@@ -124,7 +124,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "VB4J35OArY")
+          (name "SKiDL Tag") "OPS6ETVhjn")
         (field
           (name "SKiDL Line") "elrs.py:54"))
       (libsource
@@ -133,7 +133,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "bf9451e0-8242-5b8e-bead-b933f8624bfb"))
+      (tstamps "92663cc2-38c1-5ecd-97b9-572a4baaab9b"))
     (comp
       (ref "R61")
       (value "100R")
@@ -147,7 +147,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "53DFJvuUGd")
+          (name "SKiDL Tag") "PfA1MiGI_0")
         (field
           (name "SKiDL Line") "elrs.py:54"))
       (libsource
@@ -156,7 +156,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "0e9ea71e-bcdc-5767-992a-ecfd8b631388"))
+      (tstamps "de350f19-2420-54d8-a8c5-d3ca99b1327f"))
     (comp
       (ref "U1")
       (value "STM32F405RGT6")
@@ -170,7 +170,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "tw2QuqdpVb")
+          (name "SKiDL Tag") "WNnpwPd8hS")
         (field
           (name "SKiDL Line") "elrs.py:73"))
       (libsource
@@ -179,7 +179,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "17702c84-0361-516a-8bf2-e1f83bde4983")))
+      (tstamps "4dffd232-2075-5db5-bcfe-d1dd6b0a3e8b")))
   (nets
     (net
       (code 1)

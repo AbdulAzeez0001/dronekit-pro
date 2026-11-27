@@ -50,7 +50,7 @@ is now fixed in the design (`hardware/baro/`); the gyro is still open:
 
 | Ref | Part | LCSC | Qty | Unit ≈ | Line ≈ | Stock / note |
 |---|---|---|---|---|---|---|
-| U1 | STM32F405RGT6 | C15742 | 1 | 4.51–5.05 | 5.00 | ~1.8k–3k; several snapshots |
+| U1 | STM32F405RGT6 (TR reel C2054141 when C15742 is out of stock) | C15742 | 1 | 4.51–5.05 | 5.00 | ~1.8k–3k; several snapshots |
 | U2 | ESP32-S3-WROOM-1-N8R2 | C2913204 | 1 | 2.99–3.16 | 3.00 | ~2.8k–9.4k |
 | U80 | ICM-42688-P | C1850418 | 1 | 16.30 | 16.30 | ~3.1k–6.2k. **Cost driver**, see above |
 | U70 | SPA06-003 (Goertek) | C30589048 | 1 | 0.43 | 0.43 | ~36k–72k. Replaces the BMP280 (C83291: discontinued, ~$10.59) |
@@ -68,7 +68,7 @@ is now fixed in the design (`hardware/baro/`); the gyro is still open:
 |---|---|---|---|---|---|---|
 | Q40–43, Q120 | AO3400A | C20917 | 5 | 0.046 | 0.23 | 500k+ |
 | Q10 | AO3401A | C15127 | 1 | 0.046 | 0.05 | 600k+ |
-| D40–43 | SS34 | C8678 | 4 | 0.035 | 0.14 | 2.9M |
+| D40–43 | SS54 (5 A, for 8×20 motors) | C22452 | 4 | 0.036 | 0.15 | 2.2M |
 | D10, D120 | B5819W | C8598 | 2 | 0.016 | 0.03 | 223k |
 | J90 | USB-C TYPE-C-31-M-12 | C165948 | 1 | 0.17 | 0.17 | 200k |
 | J30 | 24-pin 0.5 mm flip FPC, e.g. AFC01-S24FCC-00 | C262276 | 1 | 0.07 | 0.07 | ~4k. Pick one whose contact side matches the camera ribbon |
@@ -77,7 +77,7 @@ is now fixed in the design (`hardware/baro/`); the gyro is still open:
 | J132 | JST SH 3-pin | — | 1 | ~0.12 | 0.12 | estimate |
 | L10 | 1.5 µH shielded, Isat ≥ 2 A | — | 1 | ~0.15 | 0.15 | estimate. The Coilcraft XFL4020 isn't at LCSC, so pick an LCSC equivalent |
 | Y90 | 8 MHz 3225, CL = 20 pF | — | 1 | ~0.05 | 0.05 | estimate |
-| SW1, SW2, SW90 | slide + 2 tactile | — | 3 | ~0.05 | 0.15 | estimate |
+| SW1, SW2, SW90 | Copal CHS-01A 1-position slide + 2 × C&K KMR2 tactile (4.2 × 2.8 mm) | — | 3 | ~0.05 | 0.15 | estimate |
 | D90 | LED 0402 | — | 1 | 0.01 | 0.01 | basic part |
 | C*, R* | ~95 passives, 0402/0603/0805 | basic | ~95 | ~0.003 | 0.30 | estimate |
 
@@ -143,7 +143,7 @@ are PCB pads and cost nothing.
 [XC6206P122MR](https://www.lcsc.com/product-detail/C2827649.html) ·
 [USBLC6-2SC6](https://www.lcsc.com/product-detail/C7519.html) ·
 [AO3400A](https://www.lcsc.com/product-detail/C20917.html) ·
-[SS34](https://www.lcsc.com/product-detail/C8678.html) ·
+[SS54](https://www.lcsc.com/product-detail/C22452.html) ·
 [B5819W](https://www.lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_Jiangsu-Changjing-Electronics-Technology-Co-Ltd-B5819W-SL_C8598.html) ·
 [TYPE-C-31-M-12](https://www.lcsc.com/product-detail/C165948.html) ·
 [AFC01-S24FCC-00](https://www.lcsc.com/product-detail/C262276.html) ·
